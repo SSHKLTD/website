@@ -16,7 +16,7 @@ const nav = [
     <div class="cols">
       <div class="brand-col">
         <img src="/brand/sshk-logo-white.png" alt="SSHK — Social Strategy Hong Kong" width="150" height="63" loading="lazy" />
-        <p class="muted tagline-line">We listen. We manage. We create.</p>
+        <p class="muted tagline-line">The next chapter is written by you — not about you.</p>
       </div>
       <nav aria-label="Footer">
         <ul class="foot-nav">
@@ -40,16 +40,16 @@ const nav = [
 </footer>
 
 <style>
-  .site-footer { padding-block: clamp(3rem, 6vw, 4.5rem) 2rem; }
+  .site-footer { padding-block: clamp(3rem, 6vw, 4.5rem) 2rem; border-top: var(--bw) solid var(--ink); }
   .cols { display: grid; gap: 2.5rem; grid-template-columns: 1fr; padding-bottom: 2.5rem; border-bottom: 1px solid var(--line-dark); }
   @media (min-width: 760px) { .cols { grid-template-columns: 1.4fr 1fr 1.4fr; } }
   .brand-col img { width: 140px; height: auto; }
-  .tagline-line { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; margin-top: 1.2rem; }
+  .tagline-line { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; margin-top: 1.2rem; }
   .foot-nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .55rem; }
-  .foot-nav a, address a { color: inherit; text-decoration: none; font-size: .92rem; }
-  .foot-nav a:hover, address a:hover { color: var(--signal); }
+  .foot-nav a, address a { color: inherit; text-decoration: none; font-size: .92rem; font-weight: 600; }
+  .foot-nav a:hover, address a:hover { color: var(--acc); }
   address { font-style: normal; display: flex; flex-direction: column; gap: .55rem; }
   .socials { display: flex; gap: 1.4rem; margin-top: .8rem; }
-  .socials a { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; border-bottom: 1px solid var(--line-dark); padding-bottom: .15rem; }
+  .socials a { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; border-bottom: 2px solid var(--acc); padding-bottom: .15rem; }
   .legal { font-size: .8rem; margin: 1.6rem 0 0; }
 </style>

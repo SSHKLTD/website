@@ -46,10 +46,10 @@ const why = [
   <section class="section">
     <div class="wrap">
       <p class="eyebrow">About us</p>
-      <h1 class="display">Ideas that leave<br />a lasting impression</h1>
+      <h1 class="display">We started as readers,<br /><span class="hl">not marketers.</span></h1>
       <p class="lede" style="margin-top:1.5rem;">
-        In the era of shrinking attention spans, we drive digital ideas that stay with everyone who
-        sees them — like works of art.
+        Attention is the scarcest currency in this city, and a reputation is the easiest thing to
+        spend. We built our practice the way an editor builds a paper.
       </p>
     </div>
   </section>
@@ -62,19 +62,19 @@ const why = [
       </div>
       <div class="body-max">
         <p>
-          Social Strategy Hong Kong (SSHK) is an integrated creative communication agency with deep
-          market roots and a strong digital DNA. Originating from <strong>Photoblog.hk</strong> in 2010 — one of
-          Hong Kong's most popular photography communities, with over 400K followers — SSHK has evolved
-          into a full-service, ePR-led agency serving prominent institutions.
+          We began, as all good stories do, with an audience. In 2010, <strong>Photoblog.hk</strong> gathered four
+          hundred thousand readers who came for the photographs and stayed for the telling — and by
+          2017, that instinct for what makes this city stop scrolling had become an agency.
         </p>
         <p>
-          Since becoming an agency in 2017, we have provided professional social media marketing
-          solutions across higher education, public utilities, government bodies and commercial brands.
-          Today the agency counts <strong>over 50 professionals</strong>, led by individuals with extensive media
-          backgrounds bringing significant political and public-relations acumen.
+          Today more than <strong>fifty of us</strong> — strategists, producers, and reporters who once filed copy
+          for Hong Kong's newsrooms — help over fifty-five leading organisations decide what to say
+          when it matters most, and how to say it so people actually listen.
         </p>
         <p>
-          Our expertise: <strong>social strategy, creative execution, content engagement and crisis management</strong>.
+          That is why we built our practice the way an editor builds a paper: <strong>a listening desk that
+          never closes, a crisis team that has sat on both sides of the press release, and a studio
+          that believes the best defence a brand can have is a story worth telling.</strong>
         </p>
         <p style="margin-top:1.6rem;">
           <img src="/images/photoblog-logo.webp" alt="Photoblog.hk" width="200" style="opacity:.75;" loading="lazy" />
@@ -139,8 +139,8 @@ const why = [
         </div>
       </div>
       <p class="body-max muted" style="margin-bottom:2.5rem;">
-        Complementary specialisms — public affairs, social strategy, video and visual design — in one
-        leadership constellation.
+        Written by people who have held a deadline: public affairs, social strategy, film and visual
+        design — four specialisms, one desk.
       </p>
       <div class="grid founders">
         {founders.map((f) => (
@@ -158,7 +158,7 @@ const why = [
   <section class="section on-dark">
     <div class="wrap">
       <p class="eyebrow">Work with us</p>
-      <h2 class="h2">We are the right people to implement<br />the best-fitted solution for you.</h2>
+      <h2 class="h2">A crisis is just a story that got ahead of you.<br />Our job is to make sure nothing ever does.</h2>
       <div style="margin-top:2rem;">
         <a class="btn solid" href="/contact">Talk to us</a>
       </div>
@@ -167,16 +167,18 @@ const why = [
 </Base>
 
 <style>
-  .why-grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 0; grid-template-columns: 1fr; }
-  @media (min-width: 720px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+  .why-grid { display: grid; gap: var(--bw); background: var(--ink); border: var(--bw) solid var(--ink); margin: 0; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .why-grid { grid-template-columns: repeat(2, 1fr); } .why-item:last-child { grid-column: 1 / -1; } }
   @media (min-width: 1000px) { .why-grid { grid-template-columns: repeat(3, 1fr); } }
-  .why-item { background: var(--paper); padding: 1.6rem 1.7rem; margin: 0; }
+  .why-item { background: var(--paper); padding: 1.6rem 1.7rem; margin: 0; transition: background var(--snap); }
+  .why-item:hover { background: var(--paper-2); }
   .why-item dt { font-weight: 800; text-transform: uppercase; letter-spacing: .04em; display: flex; gap: .8rem; align-items: baseline; }
   .why-item dd { margin: .5rem 0 0; }
 
   .founders { grid-template-columns: 1fr 1fr; }
   @media (min-width: 900px) { .founders { grid-template-columns: repeat(4, 1fr); } }
-  .founder img { border-radius: 50%; width: min(100%, 12rem); filter: grayscale(1); }
-  .founder h3 { margin-top: 1.2rem; font-size: 1.08rem; }
+  .founder img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: var(--frame); filter: grayscale(1); transition: filter var(--snap); }
+  .founder:hover img { filter: none; }
+  .founder h3 { margin-top: 1.2rem; font-size: 1.05rem; }
   .founder .bio { font-size: .9rem; line-height: 1.65; }
 </style>
