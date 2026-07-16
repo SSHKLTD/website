@@ -1,0 +1,85 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const reports = [
+  { name: 'Instant Alert', desc: 'Around-the-clock alerts the moment a high-risk signal appears — first read within two hours, faster in crisis mode.' },
+  { name: 'Daily Report', desc: 'Configurable up to twice daily, public holidays included: the day in brief, post-level tables with engagement and separate article/comment sentiment, and seven-day trends.' },
+  { name: 'Weekly & Monthly Landscape', desc: 'Executive snapshots — total buzz, buzz change, top channels — with daily trend annotation, sentiment analysis, hot topics and share of voice.' },
+  { name: 'Quarterly & Annual Review', desc: 'The long view: issue structure, competitor benchmarks and channel performance over time.' },
+  { name: 'Ad-hoc Crisis Deep-Dive', desc: 'Originating post, highest-engagement content, full event timeline and an assessment of response effectiveness.' },
+];
+---
+
+<Base
+  title="Social Listening | SSHK"
+  description="AI-powered social media monitoring with 24/7 human judgement — instant alerts, daily reports, sentiment analysis and crisis deep-dives by Social Strategy Hong Kong."
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="num-label" style="font-size:.9rem;">01 · LISTEN</p>
+      <h1 class="display" style="margin-top:.8rem;">Social Listening</h1>
+      <p class="lede" style="margin-top:1.5rem;">
+        Negative signals can be caught while conversations are still forming on social platforms —
+        long before they converge into headlines. We make sure you hear them first.
+      </p>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap grid cols-2">
+      <div>
+        <p class="eyebrow">How we work</p>
+        <h2 class="h2">Data plus judgement —<br />not just a dashboard</h2>
+      </div>
+      <div class="body-max">
+        <p>
+          Our monitoring combines a co-developed AI listening tool with a <strong>24/7 in-house analyst
+          team</strong>. Coverage spans news sites, Facebook, Instagram, YouTube, Threads and the forums
+          where Hong Kong conversations actually happen — including derivative content and memes that
+          often out-travel official channels.
+        </p>
+        <p>
+          What sets the service apart is who reads the data: analysts and former journalists who know
+          how media think, what makes an issue escalate, and when a signal deserves a call at 2am —
+          following an <strong>identify → strategise → execute</strong> discipline rather than a raw feed.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Deliverables</p>
+          <h2 class="h2">Report formats</h2>
+        </div>
+      </div>
+      <div class="grid cols-2">
+        {reports.map((r, i) => (
+          <div class="card">
+            <span class="num-label">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="h3">{r.name}</h3>
+            <p class="muted">{r.desc}</p>
+          </div>
+        ))}
+        <div class="card" style="justify-content:center;">
+          <p class="muted" style="margin:0;">
+            Formats fully customised to your workflow — Excel and PPT, WhatsApp alert channels, and
+            reporting cadences built around your risk calendar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section on-dark">
+    <div class="wrap">
+      <p class="eyebrow">Next step</p>
+      <h2 class="h2">Know what Hong Kong is saying —<br />before it becomes news.</h2>
+      <div style="margin-top:2rem;">
+        <a class="btn solid" href="/contact">Talk to us</a>
+      </div>
+    </div>
+  </section>
+</Base>

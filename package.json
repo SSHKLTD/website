@@ -1,0 +1,21 @@
+{
+  "name": "sshk-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Social Strategy Hong Kong — company website, content-managed via Notion",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "sync": "node scripts/sync-notion.mjs",
+    "build:cms": "node scripts/sync-notion.mjs && astro build"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.3.0",
+    "@fontsource-variable/archivo": "^5.2.5",
+    "@fontsource/ibm-plex-mono": "^5.2.5",
+    "@notionhq/client": "^2.3.0",
+    "astro": "^5.7.0"
+  }
+}

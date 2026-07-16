@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site.js';
+---
+
+<Base
+  title="Contact | SSHK"
+  description="Talk to Social Strategy Hong Kong — 6/F, China Paint Building, 1163 Canton Road, Mong Kok. +852 2713 0997 · info@sshk.ltd"
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h1 class="display">Talk to us.<br />Problem will be solved.</h1>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap grid cols-2">
+      <div class="details">
+        <div class="detail">
+          <p class="num-label">ADDRESS</p>
+          <p><a href={site.mapsUrl} rel="noopener" target="_blank">{site.address}</a></p>
+        </div>
+        <div class="detail">
+          <p class="num-label">PHONE</p>
+          <p><a href={site.phoneHref}>{site.phone}</a></p>
+        </div>
+        <div class="detail">
+          <p class="num-label">EMAIL</p>
+          <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+        </div>
+        <div class="detail">
+          <p class="num-label">FOLLOW</p>
+          <p style="display:flex;gap:1.5rem;">
+            <a href={site.facebook} rel="noopener" target="_blank">Facebook</a>
+            <a href={site.linkedin} rel="noopener" target="_blank">LinkedIn</a>
+          </p>
+        </div>
+      </div>
+
+      <form id="contact-form" class="contact-form" method="post" action="/api/contact">
+        <div class="field">
+          <label for="cf-name">Name *</label>
+          <input id="cf-name" name="name" type="text" required maxlength="100" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="cf-email">Email *</label>
+          <input id="cf-email" name="email" type="email" required maxlength="250" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="cf-phone">Phone</label>
+          <input id="cf-phone" name="phone" type="tel" maxlength="50" autocomplete="tel" />
+        </div>
+        <div class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="5" placeholder="Type your message here…"></textarea>
+        </div>
+        <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;" />
+        <button class="btn solid" type="submit">Submit</button>
+        <p id="form-status" role="status" aria-live="polite" class="form-status"></p>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .details { display: flex; flex-direction: column; gap: 1.8rem; align-self: start; }
+  .detail p { margin: .35rem 0 0; font-size: 1.05rem; }
+  .detail a { text-decoration: none; }
+  .detail a:hover { color: var(--signal); }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; position: relative; }
+  .form-status { margin: 0; font-weight: 600; display: none; }
+  .form-status.show { display: block; }
+  .form-status.ok { color: var(--ok, #2b7457); }
+  .form-status.err { color: var(--signal); }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!status) return;
+    status.className = 'form-status show';
+    status.textContent = 'Sending…';
+    try {
+      const res = await fetch('/api/contact', { method: 'POST', body: new FormData(form) });
+      if (res.ok) {
+        status.classList.add('ok');
+        status.textContent = 'Thanks for submitting! We will get back to you shortly.';
+        form.reset();
+      } else {
+        throw new Error(String(res.status));
+      }
+    } catch {
+      status.classList.add('err');
+      status.innerHTML = 'Something went wrong — please email us directly at <a href="mailto:info@sshk.ltd">info@sshk.ltd</a>.';
+    }
+  });
+</script>

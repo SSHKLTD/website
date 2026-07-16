@@ -1,0 +1,108 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const contentServices = [
+  'Concept creation',
+  'Project management',
+  'Social media retainers',
+  'Ad placement & optimisation',
+  'KOL & media amplification',
+];
+const productionServices = ['Photography', 'Video production', 'Post-production & animation'];
+
+const showreel = [
+  { title: '郊響樂 - 燕尾蝶', client: 'Greenpeace 綠色和平', href: 'https://www.youtube.com/watch?v=4t17Z7WlU7c' },
+  { title: '十七歲，決定自己的路', client: 'HKU School of Nursing', href: 'https://www.facebook.com/hkuson/videos/527158800979879/' },
+  { title: '又睇你識唔識Law：員工優惠', client: 'ICAC 廉政公署', href: 'https://www.facebook.com/watch/?v=131722891538284' },
+  { title: '【城大人の科學】透明茶大揭秘', client: 'City University of Hong Kong', href: 'https://www.facebook.com/182053561695/videos/10155266370101696' },
+  { title: '大腸癌篩查 321 Action!', client: 'Department of Health 衛生署', href: 'https://www.youtube.com/watch?v=0dz9h6o0Ex8' },
+  { title: '香港國際機場職業博覽會 2019', client: 'Hong Kong International Airport', href: 'https://www.facebook.com/watch/?v=803519493366575' },
+  { title: '我們承載夢想 成就暖意團圓', client: 'Cathay Pacific 國泰航空', href: 'https://www.facebook.com/watch/?v=1274745022669198' },
+];
+---
+
+<Base
+  title="Campaign & Production | SSHK"
+  description="Campaign, content and production services by Social Strategy Hong Kong — concept creation, social retainers, photography and video, produced fully in-house."
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="num-label" style="font-size:.9rem;">03 · CREATE</p>
+      <h1 class="display" style="margin-top:.8rem;">Campaign &amp;<br />Production</h1>
+      <p class="lede" style="margin-top:1.5rem;">
+        Stories worth remembering, told in the language of the internet — and produced end-to-end by
+        our own team, from concept to final cut.
+      </p>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap grid cols-2">
+      <div class="card">
+        <p class="num-label">CONTENT</p>
+        <h2 class="h3">Strategy to daily delivery</h2>
+        <ul class="check-list">
+          {contentServices.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+      <div class="card">
+        <p class="num-label">PRODUCTION</p>
+        <h2 class="h3">A production powerhouse in-house</h2>
+        <ul class="check-list">
+          {productionServices.map((s) => <li>{s}</li>)}
+        </ul>
+        <p class="muted" style="margin:0;">
+          Grown out of Photoblog.hk — Hong Kong's most popular photography community — our production
+          team shoots for airlines, universities, government departments and global brands.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Showreel</p>
+          <h2 class="h2">Selected productions</h2>
+        </div>
+      </div>
+      <ul class="reel">
+        {showreel.map((v, i) => (
+          <li>
+            <a href={v.href} rel="noopener" target="_blank">
+              <span class="num-label">{String(i + 1).padStart(2, '0')}</span>
+              <span class="reel-title">{v.title}</span>
+              <span class="reel-client muted">{v.client}</span>
+              <span class="reel-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="muted" style="margin-top:1.5rem;font-size:.85rem;">Links open on YouTube / Facebook.</p>
+    </div>
+  </section>
+
+  <section class="section on-dark">
+    <div class="wrap">
+      <p class="eyebrow">Next step</p>
+      <h2 class="h2">Have a story to tell?</h2>
+      <div style="margin-top:2rem;">
+        <a class="btn solid" href="/contact">Talk to us</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .reel { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .reel a {
+    display: grid; grid-template-columns: 3rem 1fr auto; align-items: baseline; gap: 1rem 1.5rem;
+    padding: 1.15rem 0; border-bottom: 1px solid var(--line); text-decoration: none;
+  }
+  @media (min-width: 760px) { .reel a { grid-template-columns: 3rem 1.4fr 1fr auto; } }
+  .reel-title { font-weight: 700; font-size: 1.05rem; }
+  .reel-client { font-size: .9rem; }
+  .reel-arrow { font-size: 1.1rem; }
+  .reel a:hover .reel-title { color: var(--signal); }
+</style>

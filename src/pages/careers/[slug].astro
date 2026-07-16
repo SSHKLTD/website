@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import jobs from '../../data/jobs.json';
+import { site } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return jobs.map((job) => ({ params: { slug: job.slug }, props: { job } }));
+}
+
+const { job } = Astro.props;
+
+const jobLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'JobPosting',
+  title: job.title,
+  description: job.summary,
+  datePosted: job.posted,
+  employmentType: job.type === 'Internship' ? 'INTERN' : 'FULL_TIME',
+  hiringOrganization: {
+    '@type': 'Organization',
+    name: site.legalName,
+    sameAs: site.url,
+    logo: `${site.url}/brand/sshk-logo-black.png`,
+  },
+  jobLocation: {
+    '@type': 'Place',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '6/F, China Paint Building, No. 1163 Canton Road',
+      addressLocality: 'Mong Kok',
+      addressRegion: 'Kowloon',
+      addressCountry: 'HK',
+    },
+  },
+});
+---
+
+<Base title={`${job.title} (${job.type}) | SSHK`} description={job.summary}>
+  <script slot="head" type="application/ld+json" set:html={jobLd} />
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Careers</p>
+      <h1 class="display" style="font-size:clamp(1.9rem,4.5vw,3.2rem);">{job.title}</h1>
+      <div style="margin-top:1.2rem;display:flex;gap:.5rem;flex-wrap:wrap;">
+        <span class="tag">{job.type}</span>
+        <span class="tag">Hong Kong · Mong Kok</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap grid cols-2">
+      <div>
+        <h2 class="h3" style="margin-bottom:1.2rem;">Responsibilities</h2>
+        <ul class="check-list">
+          {job.responsibilities.map((r) => <li>{r}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h2 class="h3" style="margin-bottom:1.2rem;">Requirements</h2>
+        <ul class="check-list">
+          {job.requirements.map((r) => <li>{r}</li>)}
+        </ul>
+        <div class="apply card" style="margin-top:2.5rem;">
+          <h3 class="h3">How to apply</h3>
+          <p class="muted" style="margin:0;">
+            Send your CV to
+            <a href={`mailto:${site.email}?subject=Application — ${job.title}`}>{site.email}</a>
+            with the position in the subject line.
+          </p>
+          <a class="btn solid" href={`mailto:${site.email}?subject=Application — ${job.title}`} style="align-self:flex-start;">Apply by email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <a class="arrow-link" href="/careers">← All openings</a>
+    </div>
+  </section>
+</Base>

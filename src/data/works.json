@@ -1,0 +1,235 @@
+[
+  {
+    "slug": "hkia",
+    "title": "Three-Runway System 10km International Race",
+    "client": "Hong Kong International Airport",
+    "industry": "Transport & Aviation",
+    "services": ["Campaign", "Event"],
+    "featured": true,
+    "tagline": "Turning skepticism into support.",
+    "copy": [
+      "There was significant public skepticism and negative sentiment toward the Three-Runway System Project.",
+      "The race offered a unique opportunity to highlight the Project's progress and HKIA's management excellence — significantly improving overall public sentiment."
+    ],
+    "results": [
+      "Sentiment shifted from predominantly negative to over 90% neutral or positive in post-event discussions",
+      "Over half of Hong Kong's population was aware of and actively discussing the Three-Runway System",
+      "100%+ increase in engagement across official project social platforms"
+    ],
+    "gallery": 5
+  },
+  {
+    "slug": "mtr",
+    "title": "MTR — Social Retainer",
+    "client": "MTR",
+    "industry": "Transport & Aviation",
+    "services": ["Social Retainer"],
+    "featured": true,
+    "tagline": "Part of every journey.",
+    "copy": [
+      "From large-scale campaigns to everyday touchpoints, we delivered creative solutions across a wide spectrum of projects.",
+      "Building on this, we crafted tailored initiatives that resonate with railway enthusiasts, turning interest into meaningful engagement — strengthening communication and reinforcing MTR's role as an integral part of daily journeys."
+    ],
+    "results": [],
+    "gallery": 7
+  },
+  {
+    "slug": "ocbc",
+    "title": "OCBC — Social Retainer",
+    "client": "OCBC",
+    "industry": "Banking & Finance",
+    "services": ["Social Retainer"],
+    "featured": true,
+    "tagline": "Regional strength, everyday relevance.",
+    "copy": [
+      "Starting from OCBC Bank's strong Singaporean roots, we built a narrative that underscores its regional strength and legacy.",
+      "We highlighted key banking services and offerings, making them relevant to customers' everyday needs, and placed emphasis on ESG initiatives — positioning the bank as a forward-looking institution dedicated to enabling aspirations and uplifting communities."
+    ],
+    "results": [],
+    "gallery": 7
+  },
+  {
+    "slug": "generali",
+    "title": "Generali — Social Retainer",
+    "client": "Generali",
+    "industry": "Insurance",
+    "services": ["Social Retainer"],
+    "featured": false,
+    "tagline": "Heritage with a lighter touch.",
+    "copy": [
+      "Rooted in Generali's rich Italian heritage, we set out to elevate brand visibility with a distinctive narrative.",
+      "To broaden its appeal — especially among younger audiences — we introduced mascots and lighter, more approachable storytelling, alongside regular promotion of insurance offerings: a balanced mix of credibility, accessibility and engagement."
+    ],
+    "results": [],
+    "gallery": 6
+  },
+  {
+    "slug": "stanley-plaza",
+    "title": "Christmas Market Campaign 2023",
+    "client": "Stanley Plaza",
+    "industry": "Property & Retail",
+    "services": ["Campaign", "Production"],
+    "featured": false,
+    "tagline": "One-stop festive experience.",
+    "copy": [
+      "To celebrate the festive season, we delivered a one-stop solution for Stanley Plaza's Christmas Market.",
+      "This included a campaign website with integrated event information and car park pre-booking — supported by social media content and video production for a seamless, engaging experience across every touchpoint."
+    ],
+    "results": [],
+    "gallery": 6
+  },
+  {
+    "slug": "nwg",
+    "title": "New World Group — Social Retainer",
+    "client": "New World Group",
+    "industry": "Property & Retail",
+    "services": ["Social Retainer"],
+    "featured": false,
+    "tagline": "Design thinking, brought to life.",
+    "copy": [
+      "Through a series of striking visuals, we showcased the breadth of New World Group's portfolio — spanning commercial, residential and community developments.",
+      "Each image was carefully composed to highlight not just the projects themselves but the design thinking behind them, bringing to life the group's commitment to art, architecture and culture."
+    ],
+    "results": [],
+    "gallery": 6
+  },
+  {
+    "slug": "asiaworld-expo",
+    "title": "AsiaWorld-Expo — Social Retainer",
+    "client": "AsiaWorld-Expo",
+    "industry": "Entertainment & Events",
+    "services": ["Social Retainer"],
+    "featured": false,
+    "tagline": "From venue to destination.",
+    "copy": [
+      "To capture the energy of AsiaWorld-Expo, we developed engaging, magazine-style content that brings each event and concert to life.",
+      "Beyond headline performances, we expanded the narrative to include surrounding amenities such as dining and leisure — positioning the venue not just as an event space but as a complete destination experience."
+    ],
+    "results": [],
+    "gallery": 7
+  },
+  {
+    "slug": "taikoo-place",
+    "title": "Personality Matters — Taikoo Place",
+    "client": "Taikoo Place",
+    "industry": "Property & Retail",
+    "services": ["Social Retainer"],
+    "featured": false,
+    "tagline": "A tone of voice with wit and charm.",
+    "copy": [
+      "The vibrant community of Taikoo Place makes it an ideal place to live, work and play.",
+      "To help shape its identity on the web, we refined the brand's tone of voice: every message sparkled with a blend of wit and charm, and offer and event posts came with a unique touch of wisdom — quality content that appealed to millennial audiences."
+    ],
+    "results": [],
+    "gallery": 7
+  },
+  {
+    "slug": "extra-mile-hk",
+    "title": "The Art of Following Trends — EXTRA MILE",
+    "client": "Airport Authority Hong Kong",
+    "industry": "Transport & Aviation",
+    "services": ["Social Retainer"],
+    "featured": false,
+    "tagline": "Trending topics, amplified brand values.",
+    "copy": [
+      "Attaching a brand to trending topics is simple — mastering it while amplifying brand values is not.",
+      "The EXTRA MILE project serves as a collaborative platform for the Airport Authority, business partners and NGOs to create shared value for the community. We created content with the right blend of hot topics and cultural trivia, leading to a surge in engagement rates."
+    ],
+    "results": [],
+    "gallery": 4
+  },
+  {
+    "slug": "hkiaa",
+    "title": "Balance Is Key — HKIAA",
+    "client": "Hong Kong International Aviation Academy",
+    "industry": "Education",
+    "services": ["Social Retainer"],
+    "featured": false,
+    "tagline": "Professional, but never distant.",
+    "copy": [
+      "Creating fun content while staying professional on social media can be a real conundrum for institutes — especially while still building credibility.",
+      "For the newly-established Hong Kong International Aviation Academy, we talked about the aviation industry with a twist — giving informative feeds a touch of friendliness and making aviation less distant to young audiences."
+    ],
+    "results": [],
+    "gallery": 4
+  },
+  {
+    "slug": "unicef",
+    "title": "A Real WOW Factor — WhatsApp Sticker Campaign",
+    "client": "UNICEF",
+    "industry": "NGO & Community",
+    "services": ["Campaign"],
+    "featured": false,
+    "tagline": "Incentives, taken to the next level.",
+    "copy": [
+      "The practice of creating incentives is no stranger to donation campaigns — either to attract new donors or to give an extra boost to devoted supporters.",
+      "Taking it to the next level, we leveraged the growing popularity of WhatsApp stickers and created a one-of-a-kind campaign for UNICEF — an approach that proved a success, driving both monthly and one-time donations."
+    ],
+    "results": [],
+    "gallery": 7
+  },
+  {
+    "slug": "alibaba",
+    "title": "B2B Never Means Boring2Business — Alibaba",
+    "client": "Alibaba",
+    "industry": "Technology",
+    "services": ["Social Retainer"],
+    "featured": false,
+    "tagline": "The human side of an e-commerce giant.",
+    "copy": [
+      "We reinforced Alibaba's positioning as an e-commerce giant while letting its human side shine through."
+    ],
+    "results": [],
+    "gallery": 7
+  },
+  {
+    "slug": "cedd",
+    "title": "The Perfect Duo: Mascots and Animation — CEDD",
+    "client": "CEDD Geotechnical Engineering Office",
+    "industry": "Government & Public",
+    "services": ["Social Retainer", "Production"],
+    "featured": false,
+    "tagline": "Making geology lovable.",
+    "copy": [
+      "More government departments are dipping a toe into digital marketing, but their use of social media often centres on information — making it hard to foster user interaction.",
+      "That's where brand mascots come into play: we brought the page to life with a friendly presence. Animation also played a role, helping clarify complex geological knowledge in a fun and approachable manner."
+    ],
+    "results": [],
+    "gallery": 4
+  },
+  {
+    "slug": "hku-nursing",
+    "title": "It's All About the Audience — HKU Nursing",
+    "client": "HKU School of Nursing",
+    "industry": "Education",
+    "services": ["Production", "Social Retainer"],
+    "featured": false,
+    "tagline": "Speak the audience's language.",
+    "copy": [
+      "To pull off any great social media strategy, we must have a thorough understanding of the audience.",
+      "We stepped up HKU School of Nursing's social media presence with dynamic videos in a style favoured by young people — and our videos became a firm favourite of students."
+    ],
+    "results": [
+      "Significant growth in enrolment numbers following the campaign launch"
+    ],
+    "gallery": 1
+  },
+  {
+    "slug": "john-tsang",
+    "title": "Right Time, Right Channel — CE Election Campaign",
+    "client": "John Tsang 2017 Campaign",
+    "industry": "Public Affairs",
+    "services": ["Social Retainer", "Campaign"],
+    "featured": false,
+    "tagline": "An epitome of social media success.",
+    "copy": [
+      "Many see John Tsang's CE Election Campaign as an epitome of social media success in the history of Hong Kong.",
+      "We chose social media as the primary communication tool — giving a full display of the candidate's charisma and competence while making his public presence more real and natural."
+    ],
+    "results": [
+      "320K Facebook fans and 28.5K Instagram followers in 3 months",
+      "Most-viewed video: 1.16M+ views, 56K likes and 11K shares"
+    ],
+    "gallery": 4
+  }
+]

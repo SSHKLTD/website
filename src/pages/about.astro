@@ -1,0 +1,182 @@
+---
+import Base from '../layouts/Base.astro';
+
+const founders = [
+  {
+    slug: 'alex-lo',
+    name: 'Alex Lo 盧勁業',
+    role: 'Public Affairs',
+    bio: 'Award-winning former investigative journalist. Leads overall content strategy across the agency, with deep crisis-management expertise spanning traditional and digital landscapes.',
+  },
+  {
+    slug: 'nok-chan',
+    name: 'Nok Chan 陳偉諾',
+    role: 'Social Media Strategy',
+    bio: 'Over 15 years in social media strategy. Has delivered issue-management training and consultancy for major institutions including MTR, HKIA, PolyU and UNICEF.',
+  },
+  {
+    slug: 'rex-wong',
+    name: 'Rex Wong 黃志峰',
+    role: 'Video Production',
+    bio: 'Specialises in commercial and social-media video for government bodies, NGOs and finance — from TVC-level productions to post-production and animation. Leads all multimedia output.',
+  },
+  {
+    slug: 'kenneth-yung',
+    name: 'Kenneth Yung 容匡彝',
+    role: 'Photography & Design',
+    bio: 'Co-founder of Photoblog.hk. Visual storytelling across production, media and digital, with commercial photography experience covering architecture, events, media and portraiture.',
+  },
+];
+
+const why = [
+  { k: 'Brand', d: 'We translate your brand into Hong Kong stories' },
+  { k: 'Insight', d: 'Journalist background to catch the next trend and potential crisis' },
+  { k: 'Strategy', d: 'Full-depth planning team embedded' },
+  { k: 'Content', d: 'Small expert teams in full gear' },
+  { k: 'Production', d: 'Comprehensive production powerhouse' },
+  { k: 'Media', d: 'Extensive KOL, media and cross-promotion networks' },
+  { k: 'Social PR', d: 'Manage media point of view from offline to online' },
+];
+---
+
+<Base
+  title="About Us | SSHK"
+  description="Social Strategy Hong Kong (SSHK) is an integrated creative communication agency — 50+ professionals grown out of Photoblog.hk, led by media veterans with deep political and public-relations acumen."
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">About us</p>
+      <h1 class="display">Ideas that leave<br />a lasting impression</h1>
+      <p class="lede" style="margin-top:1.5rem;">
+        In the era of shrinking attention spans, we drive digital ideas that stay with everyone who
+        sees them — like works of art.
+      </p>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap grid cols-2">
+      <div>
+        <p class="eyebrow">Our story</p>
+        <h2 class="h2">From Photoblog.hk<br />to full-service agency</h2>
+      </div>
+      <div class="body-max">
+        <p>
+          Social Strategy Hong Kong (SSHK) is an integrated creative communication agency with deep
+          market roots and a strong digital DNA. Originating from <strong>Photoblog.hk</strong> in 2010 — one of
+          Hong Kong's most popular photography communities, with over 400K followers — SSHK has evolved
+          into a full-service, ePR-led agency serving prominent institutions.
+        </p>
+        <p>
+          Since becoming an agency in 2017, we have provided professional social media marketing
+          solutions across higher education, public utilities, government bodies and commercial brands.
+          Today the agency counts <strong>over 50 professionals</strong>, led by individuals with extensive media
+          backgrounds bringing significant political and public-relations acumen.
+        </p>
+        <p>
+          Our expertise: <strong>social strategy, creative execution, content engagement and crisis management</strong>.
+        </p>
+        <p style="margin-top:1.6rem;">
+          <img src="/images/photoblog-logo.webp" alt="Photoblog.hk" width="200" style="opacity:.75;" loading="lazy" />
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Our methodologies</p>
+          <h2 class="h2">Three ways we think</h2>
+        </div>
+      </div>
+      <div class="grid cols-3">
+        <div class="card">
+          <span class="num-label">01</span>
+          <h3 class="h3">Bomb Remover</h3>
+          <p class="muted">Identify brand opportunities from current affairs and crisis.</p>
+        </div>
+        <div class="card">
+          <span class="num-label">02</span>
+          <h3 class="h3">Buzz Planner</h3>
+          <p class="muted">Set the agenda for your campaigns with a forward-looking mindset.</p>
+        </div>
+        <div class="card">
+          <span class="num-label">03</span>
+          <h3 class="h3">Brand Storyteller</h3>
+          <p class="muted">Tell your brand story creatively and effectively.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Why us</p>
+          <h2 class="h2">Seven reasons brands stay</h2>
+        </div>
+      </div>
+      <dl class="why-grid">
+        {why.map((item, i) => (
+          <div class="why-item">
+            <dt><span class="num-label">{String(i + 1).padStart(2, '0')}</span> {item.k}</dt>
+            <dd class="muted">{item.d}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Meet the team</p>
+          <h2 class="h2">Founding partners</h2>
+        </div>
+      </div>
+      <p class="body-max muted" style="margin-bottom:2.5rem;">
+        Complementary specialisms — public affairs, social strategy, video and visual design — in one
+        leadership constellation.
+      </p>
+      <div class="grid founders">
+        {founders.map((f) => (
+          <div class="founder">
+            <img src={`/images/team/${f.slug}.webp`} alt={`Portrait of ${f.name}`} width="240" height="240" loading="lazy" />
+            <h3 class="h3">{f.name}</h3>
+            <p class="num-label" style="letter-spacing:.14em;">{f.role}</p>
+            <p class="muted bio">{f.bio}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section on-dark">
+    <div class="wrap">
+      <p class="eyebrow">Work with us</p>
+      <h2 class="h2">We are the right people to implement<br />the best-fitted solution for you.</h2>
+      <div style="margin-top:2rem;">
+        <a class="btn solid" href="/contact">Talk to us</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .why-grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 0; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .why-grid { grid-template-columns: repeat(3, 1fr); } }
+  .why-item { background: var(--paper); padding: 1.6rem 1.7rem; margin: 0; }
+  .why-item dt { font-weight: 800; text-transform: uppercase; letter-spacing: .04em; display: flex; gap: .8rem; align-items: baseline; }
+  .why-item dd { margin: .5rem 0 0; }
+
+  .founders { grid-template-columns: 1fr 1fr; }
+  @media (min-width: 900px) { .founders { grid-template-columns: repeat(4, 1fr); } }
+  .founder img { border-radius: 50%; width: min(100%, 12rem); filter: grayscale(1); }
+  .founder h3 { margin-top: 1.2rem; font-size: 1.08rem; }
+  .founder .bio { font-size: .9rem; line-height: 1.65; }
+</style>

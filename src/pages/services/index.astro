@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const services = [
+  {
+    n: '01',
+    k: 'LISTEN',
+    title: 'Social Listening',
+    href: '/services/social-listening',
+    desc: 'AI-powered monitoring, read by people who used to work in newsrooms. Instant alerts, daily and periodic reports, and a 24/7 in-house analyst team — so negative signals are caught at the whisper stage.',
+    points: ['24/7 monitoring & alert', 'Daily / weekly / monthly reporting', 'Sentiment & share-of-voice analysis', 'Ad-hoc crisis deep-dives'],
+  },
+  {
+    n: '02',
+    k: 'MANAGE',
+    title: 'Issue & Crisis Management',
+    href: '/services/issue-management',
+    desc: 'From risk grading to response strategy: we help institutions navigate the first 48 hours — and prepare long before them, with risk calendars and ready-to-use lines-to-take.',
+    points: ['Five-dimension risk assessment', 'High/low risk grading', 'Response strategy & advisory', 'Post-incident reporting'],
+  },
+  {
+    n: '03',
+    k: 'CREATE',
+    title: 'Campaign & Production',
+    href: '/services/campaign-production',
+    desc: 'Concept creation, social retainers, ad placement, photography and video — a comprehensive in-house production powerhouse that tells brand stories in the language of the internet.',
+    points: ['Concept creation & project management', 'Social media retainers', 'Photography & video production', 'Ad placement & optimisation', 'KOL & media amplification'],
+  },
+];
+---
+
+<Base
+  title="Services | SSHK"
+  description="Social listening, issue & crisis management, campaign & production — the three service pillars of Social Strategy Hong Kong."
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Services</p>
+      <h1 class="display">We listen.<br />We manage.<br />We create.</h1>
+      <p class="lede" style="margin-top:1.5rem;">
+        Three service pillars, one team — from hearing the first whisper of an issue to producing the
+        story everyone remembers.
+      </p>
+    </div>
+  </section>
+
+  {services.map((s, i) => (
+    <section class={`section ${i % 2 === 0 ? 'tinted' : ''}`}>
+      <div class="wrap grid cols-2">
+        <div>
+          <p class="num-label" style="font-size:.9rem;">{s.n} · {s.k}</p>
+          <h2 class="h2" style="margin-top:.8rem;">{s.title}</h2>
+          <p class="body-max" style="margin-top:1.2rem;">{s.desc}</p>
+          <p style="margin-top:1.8rem;"><a class="btn" href={s.href}>Explore {s.title} →</a></p>
+        </div>
+        <ul class="check-list" style="align-self:center;">
+          {s.points.map((p) => <li>{p}</li>)}
+        </ul>
+      </div>
+    </section>
+  ))}
+</Base>

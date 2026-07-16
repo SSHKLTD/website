@@ -1,0 +1,18 @@
+# Legacy Wix URL map — Wix cannot serve 301s after cancellation,
+# so every old path must be handled here (Cloudflare Pages format).
+/about-us            /about                                   301
+/our-clients         /clients                                 301
+/join-us             /careers                                 301
+/sms-intern          /careers/social-media-specialist-intern  301
+/officer-intern      /careers/public-affairs-officer-intern   301
+/analyst-intern      /careers/research-analyst-intern         301
+/production          /services/campaign-production            301
+/epr                 /services/issue-management               301
+/cedd                /works/cedd                              301
+/unicef              /works/unicef                            301
+/alibaba             /works/alibaba                           301
+/hku-nursing         /works/hku-nursing                       301
+/john-tsang          /works/john-tsang                        301
+/extra-mile-hk       /works/extra-mile-hk                     301
+/taikoo-place        /works/taikoo-place                      301
+/hkiaa               /works/hkiaa                             301

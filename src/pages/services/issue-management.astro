@@ -1,0 +1,151 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const questions = [
+  'Hate comments are springing up on social media platforms.',
+  'The platforms have encountered a massive drop of followers.',
+  'People are talking negatively about your brand on forums.',
+  'Your brand always gets picked on due to a past issue.',
+  'There is an ongoing backlash against your brand.',
+];
+
+const dimensions = [
+  { en: 'Moral perception', zh: '道德觀感' },
+  { en: 'Media commentary', zh: '媒體評論' },
+  { en: 'Calls to action', zh: '行動號召' },
+  { en: 'Crowd feedback', zh: '群眾回饋' },
+  { en: 'Social climate', zh: '社會氣氛' },
+];
+---
+
+<Base
+  title="Issue & Crisis Management | SSHK"
+  description="Issue and crisis management by Social Strategy Hong Kong — five-dimension risk assessment, response strategy and 24/7 crisis support for institutions and brands."
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="num-label" style="font-size:.9rem;">02 · MANAGE</p>
+      <h1 class="display" style="margin-top:.8rem;">Issue &amp; Crisis<br />Management</h1>
+      <p class="lede" style="margin-top:1.5rem;">
+        In the first 48 hours of a crisis, every word of your response is re-interpreted by the crowd.
+        We help you say the right thing, at the right time, in the right place.
+      </p>
+    </div>
+  </section>
+
+  <section class="section tinted quiz-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Self-check</p>
+          <h2 class="h2">Something goes wrong in<br />your branded channels?</h2>
+        </div>
+      </div>
+      <form id="crisis-quiz" class="quiz">
+        <ol class="quiz-list">
+          {questions.map((q, i) => (
+            <li class="quiz-item">
+              <span class="q-text">{q}</span>
+              <span class="q-opts" role="group" aria-label={`Question ${i + 1}`}>
+                <label><input type="radio" name={`q${i}`} value="1" /> <span>Yes</span></label>
+                <label><input type="radio" name={`q${i}`} value="0" /> <span>No</span></label>
+              </span>
+            </li>
+          ))}
+        </ol>
+        <button type="submit" class="btn solid">How many Yes did you get?</button>
+        <p id="quiz-result" class="quiz-result" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid cols-2">
+      <div>
+        <p class="eyebrow">Our framework</p>
+        <h2 class="h2">Risk assessment in<br />five dimensions</h2>
+        <p class="body-max" style="margin-top:1.2rem;">
+          Not every negative comment deserves a task force. We grade every signal — high-risk issues
+          get immediate strategy and response; low-risk ones are flagged and monitored, so your
+          resources stay focused on what genuinely threatens the brand.
+        </p>
+        <p class="body-max muted">
+          Day to day, that means monitoring with risk flags and periodic sentiment summaries. Around
+          known risk windows — court schedules, seasonal issues, report publication cycles — it means
+          lines-to-take prepared in advance. And in a live crisis: 24/7 alert, assessment, recommended
+          response with ready-to-use copy, execution, and a post-incident report.
+        </p>
+      </div>
+      <ol class="dim-list">
+        {dimensions.map((d, i) => (
+          <li>
+            <span class="num-label">{String(i + 1).padStart(2, '0')}</span>
+            <span class="dim-en">{d.en}</span>
+            <span class="dim-zh muted">{d.zh}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section on-dark">
+    <div class="wrap">
+      <p class="eyebrow">Remember</p>
+      <h2 class="h2">Do not let fears of attack deter your brand<br />from doing great on social media.</h2>
+      <div style="margin-top:2rem;">
+        <a class="btn solid" href="/contact">Talk to us</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .quiz-list { list-style: none; margin: 0 0 2rem; padding: 0; display: flex; flex-direction: column; }
+  .quiz-item {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem 2rem;
+    padding: 1.1rem 0; border-bottom: 1px solid var(--line);
+  }
+  .q-text { font-weight: 600; max-width: 46ch; }
+  .q-opts { display: flex; gap: .6rem; }
+  .q-opts label {
+    display: inline-flex; align-items: center; gap: .45rem; cursor: pointer;
+    border: 1px solid var(--line); padding: .45rem 1.1rem; background: var(--paper);
+    font-family: var(--font-mono); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+  }
+  .q-opts label:has(input:checked) { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .q-opts input { accent-color: var(--signal); }
+  .quiz-result { margin-top: 1.6rem; max-width: 60ch; font-size: 1.05rem; display: none; }
+  .quiz-result.show { display: block; border-left: 4px solid var(--signal); padding-left: 1.2rem; }
+  .quiz-result strong { display: block; font-size: 1.25rem; margin-bottom: .3rem; }
+
+  .dim-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); align-self: start; }
+  .dim-list li { background: var(--paper); display: grid; grid-template-columns: 3rem 1fr auto; align-items: baseline; gap: 1rem; padding: 1.1rem 1.4rem; }
+  .dim-en { font-weight: 700; }
+  .dim-zh { font-size: .95rem; }
+</style>
+
+<script>
+  const form = document.getElementById('crisis-quiz') as HTMLFormElement | null;
+  const result = document.getElementById('quiz-result');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    let yes = 0;
+    for (let i = 0; i < 5; i++) yes += Number(data.get(`q${i}`) ?? 0);
+    let head = '', body = '';
+    if (yes <= 1) {
+      head = `${yes} Yes — nothing too damaging yet, but…`;
+      body = 'Rumours spread online like wildfire — any time, from anywhere. Stay ahead of potential problems and wipe out a brand attack before it gets started.';
+    } else if (yes <= 4) {
+      head = `${yes} Yes — beware of the situation.`;
+      body = 'Public discontent can spread across the social world in a matter of days. It is time to prevent disaster from striking the brand.';
+    } else {
+      head = '5 Yes — your company is in a full-blown crisis!';
+      body = 'Take prompt action to limit the damage. Rebuilding reputation is hard — but possible with a seasoned team backing you up.';
+    }
+    if (result) {
+      result.innerHTML = `<strong>${head}</strong>${body}`;
+      result.classList.add('show');
+    }
+  });
+</script>
