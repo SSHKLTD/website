@@ -167,18 +167,17 @@ const why = [
 </Base>
 
 <style>
-  .why-grid { display: grid; gap: var(--bw); background: var(--ink); border: var(--bw) solid var(--ink); margin: 0; grid-template-columns: 1fr; }
+  .why-grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin: 0; grid-template-columns: 1fr; }
   @media (min-width: 720px) { .why-grid { grid-template-columns: repeat(2, 1fr); } .why-item:last-child { grid-column: 1 / -1; } }
   @media (min-width: 1000px) { .why-grid { grid-template-columns: repeat(3, 1fr); } }
-  .why-item { background: var(--paper); padding: 1.6rem 1.7rem; margin: 0; transition: background var(--snap); }
-  .why-item:hover { background: var(--paper-2); }
+  .why-item { background: var(--card); padding: 1.6rem 1.7rem; margin: 0; transition: background var(--snap); }
+  .why-item:hover { background: var(--paper); }
   .why-item dt { font-weight: 800; text-transform: uppercase; letter-spacing: .04em; display: flex; gap: .8rem; align-items: baseline; }
   .why-item dd { margin: .5rem 0 0; }
 
   .founders { grid-template-columns: 1fr 1fr; }
   @media (min-width: 900px) { .founders { grid-template-columns: repeat(4, 1fr); } }
-  .founder img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: var(--frame); filter: grayscale(1); transition: filter var(--snap); }
-  .founder:hover img { filter: none; }
+  .founder img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 1px solid var(--line); border-radius: var(--radius); }
   .founder h3 { margin-top: 1.2rem; font-size: 1.05rem; }
   .founder .bio { font-size: .9rem; line-height: 1.65; }
 </style>

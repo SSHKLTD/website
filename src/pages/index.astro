@@ -11,29 +11,52 @@ const logoNames = Object.fromEntries(
   clientGroups.flatMap((g) => g.clients.map((c) => [c.slug, c.name]))
 );
 
-const tickerItems = ['Social Listening', '24/7 Monitoring', 'Issue Management', 'Crisis Response', 'Campaign', 'Production', 'Social Retainers', 'KOL & Media'];
+// Anonymised, invented posts for the ambient stream (decorative only).
+// mk = keeps showing on mobile · rk/rl = shown in the reduced-motion static sample
+const posts = [
+  { u: '@user432', t: '4m', p: '今次公關災難…點收科 🙈', f: '♥ 1.2k · ↻ 340', cls: 'mk rk read', vars: '--x:69%;--d:28s;--dl:-4s;--mx:52%;--sx:72%;--st:10%', s: 'READ ✓ 0.4s' },
+  { u: '熱門', t: '2m', p: '機場新跑道 好正 ✈️', f: '♥ 3.8k · ↻ 1.4k', cls: 'mk rk read', vars: '--x:80%;--d:34s;--dl:-18s;--mx:8%;--sx:72%;--st:33%', s: 'READ ✓ 0.3s' },
+  { u: '@foodie852', t: '11m', p: '呢間新餐廳排隊兩粒鐘，值唔值?', f: '♥ 689 · ↻ 76', cls: 'mk rk read', vars: '--x:63%;--d:30s;--dl:-12s;--mx:30%;--sx:72%;--st:56%', s: 'READ ✓ 0.6s' },
+  { u: '#週末好去處', t: '26m', p: '西九自由約 📷 影唔停', f: '♥ 2.6k · ↻ 3.4k', cls: 'mk rk', vars: '--x:75%;--d:26s;--dl:-22s;--mx:58%;--sx:72%;--st:79%', s: 'READ ✓ 0.4s' },
+  { u: '@user2081', t: '7m', p: '個 brand 道歉聲明寫得幾好，respect', f: '♥ 954 · ↻ 218', cls: '', vars: '--x:84%;--d:38s;--dl:-8s', s: 'READ ✓ 0.2s' },
+  { u: '@nightowl852', t: '18m', p: '深夜茶餐廳 recommendations please 🥚', f: '♥ 212 · ↻ 31', cls: 'mk', vars: '--x:66%;--d:36s;--dl:-27s;--mx:16%', s: 'READ ✓ 0.4s' },
+  { u: '熱門', t: '33s', p: '兩餸飯評測 thread 🍱 越寫越長', f: '♥ 2.1k · ↻ 690', cls: '', vars: '--x:78%;--d:30s;--dl:-2s', s: 'READ ✓ 0.5s' },
+  { u: '@user660', t: '9m', p: '個 campaign 條片幾好笑，已 share', f: '♥ 1.5k · ↻ 412', cls: '', vars: '--x:71%;--d:42s;--dl:-33s', s: 'READ ✓ 0.3s' },
+  { u: '#天文台', t: '1m', p: '黃雨定紅雨? ☔ 帶遮先', f: '♥ 5.2k · ↻ 2.0k', cls: 'edge rk rl read', vars: '--x:1%;--d:46s;--dl:-6s;--sx:88%;--st:22%', s: 'READ ✓ 0.4s' },
+  { u: '@user917', t: '41m', p: '客服半個鐘內覆 IG DM，加分', f: '♥ 178 · ↻ 12', cls: 'edge', vars: '--x:4%;--d:50s;--dl:-24s', s: 'READ ✓ 0.5s' },
+  { u: '熱門', t: '3h', p: '渡輪夜航 加開班次', f: '♥ 820 · ↻ 145', cls: 'edge', vars: '--x:2%;--d:44s;--dl:-38s', s: 'READ ✓ 0.4s' },
+  { u: '@mk_walker', t: '55m', p: '旺角新壁畫 打卡位 📍', f: '♥ 645 · ↻ 88', cls: 'edge rk rl', vars: '--x:91%;--d:46s;--dl:-15s;--sx:88%;--st:66%', s: 'READ ✓ 0.6s' },
+  { u: '#跑步', t: '2h', p: '10km 初馬 有咩 tips? 🏃', f: '♥ 356 · ↻ 44', cls: 'edge', vars: '--x:94%;--d:40s;--dl:-30s', s: 'READ ✓ 0.4s' },
+  { u: '@user333', t: '12m', p: '睇完個 statement，印象改觀', f: '♥ 508 · ↻ 96', cls: 'edge', vars: '--x:88%;--d:52s;--dl:-11s', s: 'READ ✓ 0.3s' },
+];
 
-const pillars = [
+const modules = [
   {
-    n: '01',
-    key: 'Listen',
-    title: 'Social Listening',
+    tag: 'DESK/LISTEN',
+    key: 'LISTEN',
+    zh: '聆聽',
+    svc: 'Social Listening',
     href: '/services/social-listening',
-    desc: 'Every crisis is a whisper before it is a headline. Our desk reads Hong Kong the way an editor reads the wires — around the clock, across every platform, in both languages the city argues in — so you hear the murmur while it is still a murmur.',
+    body: 'Every crisis is a whisper before it is a headline. Our desk reads Hong Kong the way an editor reads the wires — around the clock, across every platform, in both languages the city argues in — so you hear the murmur while it is still a murmur.',
+    meta: 'coverage: <b>24/7</b> · languages: <b>2</b> · first read: <b>&lt; 2 hrs</b>',
   },
   {
-    n: '02',
-    key: 'Manage',
-    title: 'Issue & Crisis Management',
+    tag: 'DESK/MANAGE',
+    key: 'MANAGE',
+    zh: '應變',
+    svc: 'Issue & Crisis Management',
     href: '/services/issue-management',
-    desc: 'When the story turns, the worst place to draft your reply is the middle of the storm. We have sat on the other side of the press release — so we write the statement, brief the room, and steady the narrative while it can still be steadied.',
+    body: 'When the story turns, the worst place to draft your reply is the middle of the storm. We have sat on the other side of the press release — so we write the statement, brief the room, and steady the narrative while it can still be steadied.',
+    meta: 'first read: <b>&lt; 2 hrs</b> · escalation: <b>one call</b> · debrief: <b>full report</b>',
   },
   {
-    n: '03',
-    key: 'Create',
-    title: 'Campaign & Production',
+    tag: 'DESK/CREATE',
+    key: 'CREATE',
+    zh: '創作',
+    svc: 'Campaign & Production',
     href: '/services/campaign-production',
-    desc: 'The best defence is a story worth telling. From key visual to final cut, our studio makes work people share because they want to — campaigns with a beginning, a middle, and a reason to care.',
+    body: 'The best defence is a story worth telling. From key visual to final cut, our studio makes work people share because they want to — campaigns with a beginning, a middle, and a reason to care.',
+    meta: 'studio: <b>in-house</b> · format: <b>KV → final cut</b> · since: <b>2010</b>',
   },
 ];
 
@@ -62,61 +85,96 @@ const orgLd = JSON.stringify({
   <script slot="head" type="application/ld+json" set:html={orgLd} />
 
   <section class="hero">
+    <div class="stream" aria-hidden="true">
+      {posts.map((post) => (
+        <article class={`post ${post.cls}`} style={post.vars}>
+          <header><span class="u">{post.u}</span><span class="t">{post.t}</span></header>
+          <p>{post.p}</p>
+          <footer>{post.f}</footer>
+          <span class="rstamp">{post.s}</span>
+        </article>
+      ))}
+    </div>
+
+    <div class="deskline" aria-hidden="true">
+      <div class="rule"></div>
+      <span class="dtag"><span class="live-dot"></span>THE DESK · READING 24/7 · <span id="hkt">HKT --:--</span></span>
+    </div>
+
     <div class="wrap">
-      <p class="eyebrow">Social Strategy Hong Kong · Crisis Management Expert</p>
-      <h1 class="display hero-h1">
-        Every brand is one headline away from <span class="hl">becoming the story.</span>
-      </h1>
-      <div class="hero-deck">
+      <div class="hero-panel">
+        <p class="hero-kicker">Social Strategy Hong Kong · Crisis Management Expert · 危機管理</p>
+        <h1 class="display">Every brand is one headline away from becoming the story.</h1>
         <p class="hero-sub">
           We are the newsroom on your side of it — fifty storytellers and former journalists, reading
           Hong Kong around the clock, so the next chapter is written by you, not about you.
         </p>
-        <div class="hero-stamps" aria-hidden="true">
-          <span class="stamp tilt-l">Est. 2010</span>
-          <span class="stamp blue tilt-r">Mong Kok, HK</span>
-          <span class="stamp tilt-l">First read &lt; 2 hrs</span>
+        <div class="hero-actions">
+          <a class="btn solid" href="/contact">Brief the desk</a>
+          <a class="btn" href="/works">Read our stories</a>
         </div>
+        <p class="hero-note">MONG KOK DESK · UTC+8 · EVERY BRIEF READ WITHIN 2H</p>
       </div>
-      <div class="hero-cta">
-        <a class="btn solid" href="/contact">Brief the desk</a>
-        <a class="btn" href="/works">Read our stories</a>
-      </div>
-    </div>
-    <div class="hero-media wrap">
-      <img src="/images/studio.webp" alt="The SSHK team on the rooftop of China Paint Building, Mong Kok" width="1600" height="686" loading="eager" fetchpriority="high" />
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      {[0, 1].map(() => tickerItems.map((t) => <span>{t} <i>✦</i></span>))}
+  <section class="stats-wrap" aria-label="Monitoring summary">
+    <div class="wrap">
+      <div class="stats-panel">
+        <div class="stats-head">
+          <span><span class="k">MONITORING SUMMARY</span> · MONG KOK DESK</span>
+          <span>SHIFT: ALWAYS · LOG CONTINUOUS SINCE 2010</span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-cell"><span class="key">since</span><p class="num">2010</p><p class="lbl">roots in Photoblog.hk</p></div>
+          <div class="stat-cell"><span class="key">headcount</span><p class="num">50+</p><p class="lbl">storytellers, producers &amp; former journalists</p></div>
+          <div class="stat-cell"><span class="key">coverage</span><p class="num">24/7</p><p class="lbl">the desk never closes</p></div>
+          <div class="stat-cell"><span class="key">reading for</span><p class="num">55+</p><p class="lbl">leading organisations</p></div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="stats" role="list" aria-label="SSHK at a glance">
-    <div class="stat" role="listitem"><div class="v">2010</div><div class="k">Roots in Photoblog.hk — 400K readers before we ever wrote a post for a client</div></div>
-    <div class="stat" role="listitem"><div class="v">50+</div><div class="k">Storytellers, producers &amp; former journalists</div></div>
-    <div class="stat" role="listitem"><div class="v">24/7</div><div class="k">The desk never closes — day, night, typhoon signal eight</div></div>
-    <div class="stat" role="listitem"><div class="v">55+</div><div class="k">Leading organisations trust us with their story</div></div>
-  </div>
-
-  <section class="section">
+  <section class="section" style="padding-top:0;">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">What we do</p>
-          <h2 class="h2">Three chapters.<br /><span class="hl">One discipline.</span></h2>
+          <span class="eyebrow">Services · the desk, three ways</span>
+          <h2 class="h2">One desk. Three shifts of work.</h2>
         </div>
         <a class="arrow-link" href="/services">All services →</a>
       </div>
-      <div class="pillars">
-        {pillars.map((p) => (
-          <a class="pillar" href={p.href}>
-            <span class="pillar-num" aria-hidden="true">{p.n}</span>
-            <span class="pillar-key">{p.key}</span>
-            <h3 class="pillar-title">{p.title}</h3>
-            <p>{p.desc}</p>
+      <div class="grid cols-3">
+        {modules.map((m) => (
+          <a class="module" href={m.href}>
+            <p class="module-tag">{m.tag}</p>
+            <h3>{m.key} <span class="zh" lang="zh-Hant">{m.zh}</span></h3>
+            <p class="svc">{m.svc}</p>
+            <p class="mbody">{m.body}</p>
+            <p class="meta-row" set:html={m.meta} />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Works · from the archive</span>
+          <h2 class="h2">Stories we turned around</h2>
+        </div>
+        <a class="arrow-link" href="/works">All case studies →</a>
+      </div>
+      <div class="grid cols-3">
+        {featured.map((w) => (
+          <a class="work-card" href={`/works/${w.slug}`}>
+            <span class="thumb"><img src={coverOf(w)} alt={`${w.client} — ${w.title}`} loading="lazy" width="640" height="400" /></span>
+            <span class="meta">
+              <span class="client">{w.client} · {w.services[0]}</span>
+              <span class="title">{w.title}</span>
+            </span>
           </a>
         ))}
       </div>
@@ -127,37 +185,8 @@ const orgLd = JSON.stringify({
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Selected works</p>
-          <h2 class="h2">Work worth<br />the <span class="hl">front page.</span></h2>
-        </div>
-        <a class="arrow-link" href="/works">All case studies →</a>
-      </div>
-      <div class="grid cols-3">
-        {featured.map((w) => (
-          <a class="work-card" href={`/works/${w.slug}`}>
-            <span class="thumb"><img src={coverOf(w)} alt={`${w.client} — ${w.title}`} loading="lazy" width="640" height="400" /></span>
-            <span class="meta">
-              <span class="client">{w.client}</span>
-              <span class="title">{w.title}</span>
-            </span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <div class="marquee ink" aria-hidden="true">
-    <div class="marquee-track">
-      {[0, 1].map(() => ['MTR', 'Cathay Pacific', 'HKIA', 'Standard Chartered', 'HKJC', 'Alibaba', 'UNICEF', 'Tesla'].map((t) => <span>{t} <i>✦</i></span>))}
-    </div>
-  </div>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">The company we keep</p>
-          <h2 class="h2">Trusted by the ones who<br /><span class="hl">can't afford a bad day.</span></h2>
+          <span class="eyebrow">Clients</span>
+          <h2 class="h2">Names we read for</h2>
         </div>
         <a class="arrow-link" href="/clients">All clients →</a>
       </div>
@@ -169,69 +198,230 @@ const orgLd = JSON.stringify({
     </div>
   </section>
 
-  <section class="section on-blue cta-band">
+  <section class="section">
     <div class="wrap">
-      <h2 class="display cta-h">The next chapter is unwritten. Let's decide who holds the pen.</h2>
-      <div class="cta-row">
-        <p class="cta-sub">
-          Whether the story is turning against you or simply waiting to be told — tell us where it
-          stands. The desk reads every brief within two hours.
-        </p>
-        <a class="btn solid" href="/contact">Brief the desk</a>
+      <div class="cta-panel">
+        <div class="cta-copy">
+          <span class="eyebrow">File a brief</span>
+          <h2 class="h2">The next chapter is unwritten. Let's decide who holds the pen.</h2>
+          <p class="muted">
+            Whether the story is turning against you or simply waiting to be told — tell us where it
+            stands. The desk reads every brief within two hours.
+          </p>
+          <div class="hero-actions">
+            <a class="btn solid" href="/contact">Brief the desk</a>
+            <a class="btn" href={site.phoneHref}>Call {site.phone}</a>
+          </div>
+          <p class="cta-contacts">
+            BRIEFS → <a href={`mailto:${site.email}`}>{site.email}</a><br />
+            HOTLINE → <a href={site.phoneHref}>{site.phone}</a>
+          </p>
+        </div>
+        <figure class="cta-photo">
+          <img src="/images/studio.webp" alt="The SSHK team on the rooftop of China Paint Building, Mong Kok" loading="lazy" />
+          <figcaption>THE DESK · CHINA PAINT BUILDING · MONG KOK</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
-  .hero { padding-top: clamp(2.5rem, 5vw, 4.5rem); }
-  .hero-h1 { max-width: 18ch; margin-bottom: clamp(1.8rem, 3vw, 3rem); }
-  .hero-deck { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 2rem; margin-bottom: clamp(2rem, 3vw, 3rem); }
-  .hero-sub {
-    max-width: 52ch; font-size: clamp(1.05rem, 1.5vw, 1.3rem); font-weight: 500; line-height: 1.5;
-    border-left: 6px solid var(--acc); padding-left: 1em; margin: 0;
+  /* ---------- hero + stream ---------- */
+  .hero {
+    --lineY: 60%;
+    position: relative; overflow: clip;
+    min-height: max(640px, calc(100svh - 64px));
+    display: flex; align-items: center;
+    padding: 64px 0 96px;
   }
-  .hero-stamps { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; }
-  .hero-cta { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-bottom: clamp(2.5rem, 4vw, 4rem); }
-  .hero-media img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; border: var(--frame); background: var(--ink); }
+  .stream {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  }
+  .post {
+    position: absolute; left: var(--x); top: 110%; width: 216px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 11px 13px 10px; box-shadow: 0 10px 26px rgba(22, 24, 27, 0.07);
+    pointer-events: auto;
+    animation: drift var(--d) linear var(--dl) infinite;
+  }
+  .post header { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 5px; font: 500 10.5px/1 var(--font-mono); }
+  .post header .u { color: var(--link); }
+  .post header .t { color: var(--grey-2); }
+  .post p { font: 400 12px/1.5 var(--font-sans); color: var(--ink); margin: 0; }
+  .post footer { margin-top: 7px; font: 400 10px/1 var(--font-mono); color: var(--grey-2); }
+  .post:hover { animation-play-state: paused; }
+  .post:hover .rstamp { animation-play-state: paused; }
+  .post.edge { filter: blur(1.7px); opacity: .55; }
 
-  .pillars { display: grid; grid-template-columns: 1fr; border: var(--bw) solid var(--ink); }
-  @media (min-width: 860px) { .pillars { grid-template-columns: repeat(3, 1fr); } }
-  .pillar {
-    position: relative; border-bottom: var(--bw) solid var(--ink);
-    padding: clamp(1.5rem, 2.6vw, 2.75rem);
-    display: flex; flex-direction: column; text-decoration: none;
-    min-height: clamp(20rem, 30vw, 30rem);
-    transition: background var(--snap), color var(--snap);
+  .rstamp {
+    position: absolute; top: -10px; right: -9px;
+    font: 600 9.5px/1 var(--font-mono); letter-spacing: .05em; white-space: nowrap;
+    color: var(--alert); background: var(--card); border: 1px solid var(--alert);
+    border-radius: 999px; padding: 4px 8px;
+    opacity: 0; transform: rotate(-4deg) scale(.5);
+    animation: stampIn var(--d) linear var(--dl) infinite;
   }
-  .pillar:last-child { border-bottom: none; }
-  @media (min-width: 860px) {
-    .pillar { border-bottom: none; border-right: var(--bw) solid var(--ink); }
-    .pillar:last-child { border-right: none; }
+  @keyframes drift { from { top: 110%; } to { top: -34%; } }
+  /* desk line at 60% → cards cross at (110−60)/144 ≈ 34.7% of the loop */
+  @keyframes stampIn {
+    0%, 34.5% { opacity: 0; transform: rotate(-4deg) scale(.5); }
+    36.2% { opacity: 1; transform: rotate(-4deg) scale(1.14); }
+    38% { transform: rotate(-4deg) scale(1); }
+    100% { opacity: 1; transform: rotate(-4deg) scale(1); }
   }
-  .pillar-num {
-    font-weight: 900; font-size: clamp(5.5rem, 9vw, 9rem); line-height: .82; letter-spacing: -.02em;
-    margin-bottom: auto; transition: color var(--snap);
+  @keyframes stampInM {
+    0%, 16.4% { opacity: 0; transform: rotate(-4deg) scale(.5); }
+    18.2% { opacity: 1; transform: rotate(-4deg) scale(1.14); }
+    20% { transform: rotate(-4deg) scale(1); }
+    100% { opacity: 1; transform: rotate(-4deg) scale(1); }
   }
-  .pillar-key {
-    align-self: flex-start;
-    font-weight: 900; font-size: clamp(1.4rem, 2vw, 1.9rem); text-transform: uppercase;
-    background: var(--acc); padding: .1em .3em;
-    margin: clamp(1.2rem, 2vw, 2rem) 0 .5em;
-  }
-  .pillar-title { font-weight: 800; font-size: .95rem; text-transform: uppercase; letter-spacing: .14em; margin-bottom: .9em; }
-  .pillar p { font-size: .98rem; line-height: 1.6; max-width: 36ch; margin: 0; }
-  .pillar:hover { background: var(--ink); color: var(--paper); }
-  .pillar:hover .pillar-num { color: var(--acc); }
 
-  .logo-strip { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--bw); background: var(--ink); border: var(--bw) solid var(--ink); }
+  .deskline { position: absolute; left: 0; right: 0; top: var(--lineY); z-index: 2; }
+  .deskline .rule {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(36, 105, 212, 0) 0, var(--link) 5%, var(--link) 95%, rgba(36, 105, 212, 0) 100%);
+  }
+  .dtag {
+    position: absolute; right: clamp(16px, 4vw, 60px); top: -12px;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--paper); border: 1px solid var(--link); border-radius: 999px;
+    padding: 5px 12px; font: 500 10px/1 var(--font-mono); letter-spacing: .09em; color: var(--link);
+  }
+
+  .hero-panel {
+    position: relative; z-index: 3;
+    background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+    box-shadow: 0 24px 70px rgba(22, 24, 27, 0.10);
+    width: min(720px, 56vw);
+    padding: clamp(30px, 4.5vw, 56px);
+  }
+  @media (max-width: 900px) { .hero-panel { width: 100%; } }
+  .hero-kicker {
+    font: 500 11px/1.5 var(--font-mono); letter-spacing: .12em; color: var(--link);
+    text-transform: uppercase; margin: 0 0 22px;
+  }
+  .hero-panel h1 { margin-bottom: 20px; }
+  .hero-sub { font-size: 1.03rem; line-height: 1.7; color: var(--grey); max-width: 56ch; margin: 0 0 32px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .hero-note { margin: 24px 0 0; font: 400 10.5px/1.6 var(--font-mono); color: var(--grey-2); letter-spacing: .04em; }
+
+  /* ---------- monitoring summary ---------- */
+  .stats-wrap { padding: 0 0 clamp(64px, 8vw, 100px); }
+  .stats-panel {
+    background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+    margin-top: -54px; position: relative; z-index: 4;
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  .stats-head {
+    display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; align-items: center;
+    padding: 14px 26px; border-bottom: 1px solid var(--line);
+    font: 500 10px/1.5 var(--font-mono); letter-spacing: .11em; color: var(--grey-2);
+    text-transform: uppercase;
+  }
+  .stats-head .k { color: var(--link); }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat-cell { padding: 26px 26px 28px; border-left: 1px solid var(--line); }
+  .stat-cell:first-child { border-left: none; }
+  .stat-cell .key { font: 500 10px/1 var(--font-mono); letter-spacing: .1em; color: var(--grey-2); text-transform: uppercase; display: block; margin-bottom: 12px; }
+  .stat-cell .num { font: 800 clamp(1.9rem, 3vw, 2.4rem)/1 var(--font-sans); letter-spacing: -.02em; margin: 0 0 9px; }
+  .stat-cell .lbl { font: 400 13px/1.5 var(--font-sans); color: var(--grey); max-width: 22ch; margin: 0; }
+  @media (max-width: 900px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .stat-cell:nth-child(3) { border-left: none; }
+    .stat-cell:nth-child(n+3) { border-top: 1px solid var(--line); }
+  }
+  @media (max-width: 520px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat-cell { border-left: none; }
+    .stat-cell:nth-child(n+2) { border-top: 1px solid var(--line); }
+  }
+
+  /* ---------- service modules ---------- */
+  .module {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px 28px 0; display: flex; flex-direction: column;
+    text-decoration: none; color: var(--ink);
+    transition: border-color var(--snap);
+  }
+  .module:hover { border-color: var(--link); }
+  .module-tag { font: 500 10px/1 var(--font-mono); letter-spacing: .12em; color: var(--grey-2); text-transform: uppercase; margin: 0 0 20px; }
+  .module h3 { font: 800 1.45rem/1.1 var(--font-sans); letter-spacing: -.01em; margin: 0 0 4px; display: flex; align-items: baseline; gap: 10px; }
+  .module h3 .zh { font-weight: 400; font-size: 1.05rem; color: var(--grey-2); }
+  .module .svc { font: 500 11px/1.5 var(--font-mono); letter-spacing: .08em; color: var(--link); text-transform: uppercase; margin: 0 0 18px; }
+  .module .mbody { font-size: .9rem; line-height: 1.72; color: var(--grey); flex-grow: 1; margin: 0; }
+  .module .meta-row {
+    margin: 24px 0 0; padding: 15px 0 17px; border-top: 1px solid var(--line);
+    font: 400 11px/1.7 var(--font-mono); color: var(--grey-2); letter-spacing: .02em;
+  }
+  .module .meta-row :global(b) { font-weight: 500; color: var(--ink); }
+
+  /* ---------- client logos ---------- */
+  .logo-strip { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 30px; align-items: center; }
   @media (min-width: 720px) { .logo-strip { grid-template-columns: repeat(6, 1fr); } }
-  .logo-strip li { background: var(--paper); display: flex; align-items: center; justify-content: center; padding: 1.6rem 1.4rem; min-height: 6.2rem; transition: background var(--snap); }
-  .logo-strip img { max-height: 3rem; width: auto; max-width: 100%; filter: grayscale(1) contrast(1.05); transition: filter var(--snap); }
-  .logo-strip li:hover { background: var(--acc); }
-  .logo-strip li:hover img { filter: none; }
+  .logo-strip li { display: flex; justify-content: center; padding: 18px 6px; }
+  .logo-strip img { height: 34px; width: auto; max-width: 100%; object-fit: contain; filter: grayscale(1); opacity: .7; transition: filter var(--snap), opacity var(--snap); }
+  .logo-strip li:hover img { filter: none; opacity: 1; }
 
-  .cta-h { max-width: 16ch; margin-bottom: clamp(1.5rem, 3vw, 2.5rem); font-size: clamp(2.2rem, 6vw, 5rem); }
-  .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(1.5rem, 3vw, 2.5rem); }
-  .cta-sub { font-weight: 600; font-size: clamp(1rem, 1.5vw, 1.25rem); max-width: 38ch; margin: 0; }
+  /* ---------- CTA panel ---------- */
+  .cta-panel {
+    background: var(--card); border: 1px solid var(--line); border-radius: 22px;
+    overflow: hidden; display: grid; grid-template-columns: 1.15fr .85fr;
+    box-shadow: 0 24px 70px rgba(22, 24, 27, 0.08);
+  }
+  @media (max-width: 900px) { .cta-panel { grid-template-columns: 1fr; } }
+  .cta-copy { padding: clamp(30px, 4.5vw, 56px); }
+  .cta-copy h2 { margin-bottom: 18px; }
+  .cta-copy .muted { font-size: .96rem; max-width: 52ch; margin: 0 0 30px; }
+  .cta-contacts { margin: 26px 0 0; font: 400 11px/2 var(--font-mono); color: var(--grey-2); letter-spacing: .05em; }
+  .cta-contacts a { color: var(--link); text-decoration: none; }
+  .cta-contacts a:hover { text-decoration: underline; }
+  .cta-photo { position: relative; min-height: 280px; border-left: 1px solid var(--line); margin: 0; }
+  @media (max-width: 900px) { .cta-photo { border-left: none; border-top: 1px solid var(--line); } }
+  .cta-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cta-photo figcaption {
+    position: absolute; left: 14px; bottom: 14px;
+    background: rgba(22, 24, 27, 0.82); color: #fff; border-radius: 999px;
+    font: 500 9.5px/1 var(--font-mono); letter-spacing: .1em; padding: 7px 13px; text-transform: uppercase;
+  }
+
+  /* ---------- mobile stream tuning ---------- */
+  @media (max-width: 900px) {
+    .hero { --lineY: 86%; padding-bottom: 190px; }
+    .post { width: 168px; display: none; }
+    .post p { font-size: 11px; }
+    .post.mk { display: block; left: var(--mx, var(--x)); }
+    .post .rstamp { animation-name: stampInM; }
+  }
+
+  /* ---------- reduced motion: static desk sample ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    .hero { --lineY: 60%; }
+    .stream .post { display: none; filter: none; opacity: 1; animation: none; }
+    .stream .post.rk { display: block; top: var(--st); left: var(--sx); }
+    .stream .rstamp { animation: none; opacity: 0; transform: rotate(-4deg) scale(1); }
+    .stream .post.read .rstamp { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) and (max-width: 1359px) {
+    .stream .post.rl { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) and (max-width: 900px) {
+    .stream .post { display: none !important; }
+  }
 </style>
+
+<script>
+  // Desk clock — Hong Kong time, minute precision (calm, no ticking)
+  const el = document.getElementById('hkt');
+  if (el) {
+    let fmt: Intl.DateTimeFormat | null = null;
+    try {
+      fmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Hong_Kong' });
+    } catch { fmt = null; }
+    const tick = () => { el.textContent = 'HKT ' + (fmt ? fmt.format(new Date()) : new Date().toTimeString().slice(0, 5)); };
+    tick();
+    setInterval(tick, 30000);
+  }
+</script>

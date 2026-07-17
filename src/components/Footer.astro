@@ -11,45 +11,66 @@ const nav = [
 ];
 ---
 
-<footer class="site-footer on-dark">
+<footer class="site-footer">
   <div class="wrap">
     <div class="cols">
       <div class="brand-col">
         <img src="/brand/sshk-logo-white.png" alt="SSHK — Social Strategy Hong Kong" width="150" height="63" loading="lazy" />
-        <p class="muted tagline-line">The next chapter is written by you — not about you.</p>
+        <p class="fline">The newsroom on your side of the headline, reading Hong Kong since 2010.</p>
       </div>
       <nav aria-label="Footer">
+        <h4>Site</h4>
         <ul class="foot-nav">
           {nav.map((item) => (
             <li><a href={item.href}>{item.label}</a></li>
           ))}
         </ul>
       </nav>
-      <address>
-        <a href={site.mapsUrl} rel="noopener" target="_blank">{site.address}</a>
-        <a href={site.phoneHref}>{site.phone}</a>
-        <a href={`mailto:${site.email}`}>{site.email}</a>
-        <div class="socials">
-          <a href={site.facebook} rel="noopener" target="_blank">Facebook</a>
-          <a href={site.linkedin} rel="noopener" target="_blank">LinkedIn</a>
-        </div>
-      </address>
+      <div>
+        <h4>Visit</h4>
+        <address>
+          <a href={site.mapsUrl} rel="noopener" target="_blank">{site.address}</a>
+        </address>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="foot-nav">
+          <li><a href={site.phoneHref}>{site.phone}</a></li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href={site.facebook} rel="noopener" target="_blank">Facebook</a></li>
+          <li><a href={site.linkedin} rel="noopener" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
     </div>
-    <p class="legal muted">© {year} {site.legalName} All rights reserved.</p>
+    <div class="footer-bottom">
+      <p>© {year} {site.legalName}</p>
+      <p class="status"><span class="live-dot" aria-hidden="true"></span> DESK STATUS: OPEN · READING 24/7</p>
+    </div>
   </div>
 </footer>
 
 <style>
-  .site-footer { padding-block: clamp(3rem, 6vw, 4.5rem) 2rem; border-top: var(--bw) solid var(--ink); }
-  .cols { display: grid; gap: 2.5rem; grid-template-columns: 1fr; padding-bottom: 2.5rem; border-bottom: 1px solid var(--line-dark); }
-  @media (min-width: 760px) { .cols { grid-template-columns: 1.4fr 1fr 1.4fr; } }
-  .brand-col img { width: 140px; height: auto; }
-  .tagline-line { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; margin-top: 1.2rem; }
-  .foot-nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .55rem; }
-  .foot-nav a, address a { color: inherit; text-decoration: none; font-size: .92rem; font-weight: 600; }
-  .foot-nav a:hover, address a:hover { color: var(--acc); }
-  address { font-style: normal; display: flex; flex-direction: column; gap: .55rem; }
-  .socials { display: flex; gap: 1.4rem; margin-top: .8rem; }
-  .socials a { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; border-bottom: 2px solid var(--acc); padding-bottom: .15rem; }
-  .legal { font-size: .8rem; margin: 1.6rem 0 0; }
+  .site-footer { background: var(--ink); color: #c6cdd5; padding: 4rem 0 2.1rem; }
+  .cols { display: grid; gap: 2.25rem; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .cols { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 900px) { .cols { grid-template-columns: 1.4fr .8fr 1.1fr 1fr; } }
+  .brand-col img { height: 40px; width: auto; margin-bottom: 1rem; }
+  .fline { font-size: .82rem; line-height: 1.7; color: #9ba4af; max-width: 30ch; margin: 0; }
+  h4 {
+    font-family: var(--font-mono); font-weight: 500; font-size: .64rem;
+    letter-spacing: .14em; color: #7b8591; text-transform: uppercase;
+    margin: 0 0 1rem;
+  }
+  .foot-nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .45rem; }
+  .foot-nav a, address a { color: #fff; text-decoration: none; font-size: .85rem; font-weight: 400; }
+  .foot-nav a:hover, address a:hover { text-decoration: underline; text-underline-offset: 3px; color: #fff; }
+  address { font-style: normal; font-size: .85rem; line-height: 1.85; max-width: 26ch; }
+  .footer-bottom {
+    margin-top: 3.2rem; padding-top: 1.4rem; border-top: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; justify-content: space-between;
+    font-family: var(--font-mono); font-size: .68rem; color: #7b8591; letter-spacing: .05em;
+  }
+  .footer-bottom p { margin: 0; }
+  .status { color: #9ba4af; }
+  .site-footer :global(:focus-visible) { outline-color: #fff; }
 </style>

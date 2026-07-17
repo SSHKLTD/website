@@ -5,7 +5,6 @@ const nav = [
   { href: '/works', label: 'Works' },
   { href: '/clients', label: 'Clients' },
   { href: '/careers', label: 'Careers' },
-  { href: '/contact', label: 'Contact' },
 ];
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
@@ -13,11 +12,11 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 <header class="site-header">
   <div class="wrap bar">
     <a href="/" class="logo-link" aria-label="Social Strategy Hong Kong — home">
-      <img src="/brand/sshk-logo-black.png" alt="SSHK — Social Strategy Hong Kong" width="132" height="56" loading="eager" />
+      <img src="/brand/sshk-logo-black.png" alt="SSHK — Social Strategy Hong Kong" width="108" height="46" loading="eager" />
     </a>
     <button class="menu-btn" aria-expanded="false" aria-controls="site-nav">
+      <span aria-hidden="true">≡</span>
       <span class="visually-hidden">Menu</span>
-      <span class="bars" aria-hidden="true"></span>
     </button>
     <nav id="site-nav" class="site-nav" aria-label="Main">
       <ul>
@@ -30,42 +29,58 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         ))}
       </ul>
     </nav>
+    <a class="header-cta" href="/contact">Brief the desk</a>
   </div>
 </header>
 
 <style>
   .site-header {
-    position: sticky; top: 0; z-index: 50;
-    background: var(--paper);
-    border-bottom: var(--bw) solid var(--ink);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(244, 246, 248, 0.92);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
   }
-  .bar { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding-block: .8rem; }
-  .logo-link img { width: 112px; height: auto; }
+  .bar { display: flex; align-items: center; gap: 1.75rem; height: 64px; }
+  .logo-link { display: flex; align-items: center; flex-shrink: 0; }
+  .logo-link img { height: 30px; width: auto; }
 
-  .site-nav ul { list-style: none; display: flex; gap: 2px; margin: 0; padding: 0; align-items: center; }
+  .site-nav { margin-left: auto; }
+  .site-nav ul { list-style: none; display: flex; gap: 1.6rem; margin: 0; padding: 0; }
   .site-nav a {
-    font-weight: 800; font-size: .8rem;
-    letter-spacing: .1em; text-transform: uppercase; text-decoration: none;
-    padding: .7em 1em;
-    transition: background var(--snap), color var(--snap);
+    color: var(--ink); text-decoration: none;
+    font-weight: 600; font-size: .82rem; letter-spacing: .01em;
+    padding: .5rem .1rem; border-bottom: 2px solid transparent;
   }
-  .site-nav a:hover { background: var(--ink); color: var(--acc); }
-  .site-nav a[aria-current='page'] { background: var(--acc); color: var(--ink); }
+  .site-nav a:hover { color: var(--link); border-bottom-color: var(--link); }
+  .site-nav a[aria-current='page'] { color: var(--link); border-bottom-color: var(--link); }
 
-  .menu-btn { display: none; background: var(--acc); border: var(--bw) solid var(--ink); padding: .7rem .75rem; cursor: pointer; box-shadow: 3px 3px 0 var(--ink); }
-  .bars, .bars::before, .bars::after {
-    content: ''; display: block; width: 1.15rem; height: 2px; background: var(--ink); transition: transform .18s ease;
+  .header-cta {
+    flex-shrink: 0; background: var(--ink); color: #fff; text-decoration: none;
+    font-weight: 600; font-size: .78rem; line-height: 1;
+    padding: .7rem 1.15rem; border-radius: 999px; border: 1px solid var(--ink);
+    transition: background var(--snap), border-color var(--snap);
   }
-  .bars { position: relative; }
-  .bars::before { position: absolute; top: -6px; }
-  .bars::after { position: absolute; top: 6px; }
+  .header-cta:hover { background: var(--link); border-color: var(--link); }
 
-  @media (max-width: 860px) {
+  .menu-btn {
+    display: none; margin-left: auto;
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    width: 42px; height: 38px; cursor: pointer; color: var(--ink);
+    font-family: var(--font-mono); font-weight: 600; font-size: .95rem;
+  }
+
+  @media (max-width: 900px) {
     .menu-btn { display: block; }
-    .site-nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--paper); border-bottom: var(--bw) solid var(--ink); }
+    .header-cta { display: none; }
+    .site-nav {
+      display: none; position: absolute; left: 16px; right: 16px; top: 70px; margin: 0;
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      box-shadow: 0 18px 50px rgba(22, 24, 27, 0.12); padding: 10px;
+    }
     .site-nav.open { display: block; }
-    .site-nav ul { flex-direction: column; gap: 0; padding: .5rem var(--pad) 1rem; align-items: stretch; }
-    .site-nav a { display: block; padding: .9rem .6rem; font-size: .95rem; }
+    .site-nav ul { flex-direction: column; gap: 0; }
+    .site-nav a { display: block; padding: .85rem .9rem; border-bottom: none; border-radius: 10px; font-size: .95rem; }
+    .site-nav a:hover { background: var(--paper); }
   }
 </style>
 
