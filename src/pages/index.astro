@@ -101,11 +101,6 @@ const orgLd = JSON.stringify({
 
     <div class="veil" aria-hidden="true"></div>
 
-    <div class="deskline" aria-hidden="true">
-      <div class="rule"></div>
-      <span class="dtag"><span class="live-dot"></span>THE DESK · READING 24/7 · <span id="hkt">HKT --:--</span></span>
-    </div>
-
     <div class="wrap">
       <div class="hero-panel">
         <p class="hero-kicker">Social Strategy Hong Kong · Crisis Management Expert · 危機管理</p>
@@ -312,9 +307,8 @@ const orgLd = JSON.stringify({
 <style>
   /* ---------- hero + stream ---------- */
   .hero {
-    --lineY: 60%;
     position: relative; overflow: clip;
-    min-height: max(640px, calc(100svh - 64px));
+    min-height: max(640px, calc(100svh - 72px));
     display: flex; align-items: center;
     padding: 64px 0 96px;
   }
@@ -362,18 +356,7 @@ const orgLd = JSON.stringify({
     100% { opacity: 1; transform: rotate(-4deg) scale(1); }
   }
 
-  .deskline { position: absolute; left: 0; right: 0; top: var(--lineY); z-index: 2; }
   .stream { z-index: 1; }
-  .deskline .rule {
-    height: 1px;
-    background: linear-gradient(90deg, rgba(36, 105, 212, 0) 0, var(--link) 5%, var(--link) 95%, rgba(36, 105, 212, 0) 100%);
-  }
-  .dtag {
-    position: absolute; right: clamp(16px, 4vw, 60px); top: -12px;
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--paper); border: 1px solid var(--link); border-radius: 999px;
-    padding: 5px 12px; font: 500 10px/1 var(--font-mono); letter-spacing: .09em; color: var(--link);
-  }
 
   /* readability veil: copy is centred, cards run clear lanes both sides;
      anything drifting behind the centre column fades under this glow */
@@ -561,7 +544,7 @@ const orgLd = JSON.stringify({
 
   /* ---------- mobile stream tuning ---------- */
   @media (max-width: 900px) {
-    .hero { --lineY: 86%; padding-bottom: 190px; }
+    .hero { padding-bottom: 190px; }
     .post { width: 168px; display: none; }
     .post p { font-size: 11px; }
     .post.mk { display: block; left: var(--mx, var(--x)); }
@@ -570,7 +553,6 @@ const orgLd = JSON.stringify({
 
   /* ---------- reduced motion: static desk sample ---------- */
   @media (prefers-reduced-motion: reduce) {
-    .hero { --lineY: 60%; }
     .stream .post { display: none; filter: none; opacity: 1; animation: none; }
     .stream .post.rk { display: block; top: var(--st); left: var(--sx); }
     .stream .rstamp { animation: none; opacity: 0; transform: rotate(-4deg) scale(1); }
@@ -593,17 +575,5 @@ const orgLd = JSON.stringify({
       });
     }, { threshold: 0.35 });
     document.querySelectorAll('.process li').forEach((li) => io.observe(li));
-  }
-
-  // Desk clock — Hong Kong time, minute precision (calm, no ticking)
-  const el = document.getElementById('hkt');
-  if (el) {
-    let fmt: Intl.DateTimeFormat | null = null;
-    try {
-      fmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Hong_Kong' });
-    } catch { fmt = null; }
-    const tick = () => { el.textContent = 'HKT ' + (fmt ? fmt.format(new Date()) : new Date().toTimeString().slice(0, 5)); };
-    tick();
-    setInterval(tick, 30000);
   }
 </script>
