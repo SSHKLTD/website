@@ -178,21 +178,61 @@ const orgLd = JSON.stringify({
       </p>
       <ol class="process">
         <li>
+          <div class="scene" aria-hidden="true">
+            <svg viewBox="0 0 220 96" class="scene-svg">
+              <circle cx="110" cy="50" r="14" fill="none" stroke="#C9D4DE" stroke-width="1" />
+              <circle cx="110" cy="50" r="28" fill="none" stroke="#C9D4DE" stroke-width="1" />
+              <circle cx="110" cy="50" r="42" fill="none" stroke="#C9D4DE" stroke-width="1" />
+              <line class="sweep" x1="110" y1="50" x2="152" y2="50" stroke="var(--link)" stroke-width="2" stroke-linecap="round" />
+              <circle cx="110" cy="50" r="2.5" fill="var(--ink)" />
+              <circle class="blip b1" cx="134" cy="32" r="3.5" fill="var(--link)" />
+              <circle class="blip b2" cx="86" cy="64" r="3.5" fill="var(--alert)" />
+            </svg>
+          </div>
           <span class="p-tag">01 · 觀天 FORECAST</span>
           <h3 class="p-title">Watch the sky</h3>
           <p>AI monitoring across 1M+ channels, five-minute crawl intervals, trend prediction — the whisper is caught while it is still a whisper.</p>
         </li>
         <li>
+          <div class="scene" aria-hidden="true">
+            <svg viewBox="0 0 220 96" class="scene-svg">
+              <line x1="86" y1="10" x2="86" y2="86" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" />
+              <line x1="86" y1="12" x2="112" y2="12" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" />
+              <line x1="112" y1="12" x2="112" y2="22" stroke="#C9D4DE" stroke-width="1.5" />
+              <polygon class="t8" points="112,22 128,50 96,50" fill="var(--ink)" />
+              <text class="t8-tag" x="140" y="46" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--alert)" font-weight="600">T·8</text>
+              <line x1="60" y1="86" x2="160" y2="86" stroke="#C9D4DE" stroke-width="1.5" />
+            </svg>
+          </div>
           <span class="p-tag">02 · 掛波 HOIST THE SIGNAL</span>
           <h3 class="p-title">Raise the signal early</h3>
           <p>Risk assessment, emergency plans and lines-to-take prepared before the storm makes landfall — so nobody drafts in the rain.</p>
         </li>
         <li>
+          <div class="scene" aria-hidden="true">
+            <svg viewBox="0 0 220 96" class="scene-svg">
+              <line x1="8" y1="74" x2="212" y2="74" stroke="#C9D4DE" stroke-width="1" stroke-dasharray="3 4" />
+              <path class="spike" pathLength="100" d="M8,70 L56,64 L92,22" fill="none" stroke="var(--alert)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path class="calmed" pathLength="100" d="M92,22 L122,58 L154,50 L212,46" fill="none" stroke="var(--link)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path class="flame" d="M92,20 C88,14 90,9 92,5 C94,9 97,11 96,15 C99,13 99,11 99,9 C101,13 100,18 96,20 Z" fill="var(--alert)" />
+            </svg>
+          </div>
           <span class="p-tag">03 · 救火 FIGHT THE FIRE</span>
           <h3 class="p-title">Contain and steady</h3>
           <p>Press-release optimisation, alternative-opinion development, correct-information penetration and sentiment management — stage by stage of the crisis cycle.</p>
         </li>
         <li>
+          <div class="scene" aria-hidden="true">
+            <svg viewBox="0 0 220 96" class="scene-svg">
+              <line x1="8" y1="84" x2="212" y2="84" stroke="#C9D4DE" stroke-width="1.5" />
+              <rect class="bar r1" x="34" y="66" width="22" height="18" rx="2" fill="#C9D4DE" />
+              <rect class="bar r2" x="72" y="54" width="22" height="30" rx="2" fill="#AFC4D6" />
+              <rect class="bar r3" x="110" y="40" width="22" height="44" rx="2" fill="var(--link)" opacity=".55" />
+              <rect class="bar r4" x="148" y="26" width="22" height="58" rx="2" fill="var(--link)" />
+              <path class="rise" pathLength="100" d="M45,60 L83,48 L121,32 L159,20 L196,14" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" />
+              <circle class="rise-dot" cx="196" cy="14" r="3.5" fill="var(--ink)" />
+            </svg>
+          </div>
           <span class="p-tag">04 · 重建 REBUILD</span>
           <h3 class="p-title">Rebuild, then fireproof</h3>
           <p>The best defence is a story worth telling: creative campaigns and community acquisition that leave the brand stronger than before the smoke.</p>
@@ -440,6 +480,56 @@ const orgLd = JSON.stringify({
   .p-title { font-weight: 700; font-size: 1.05rem; margin-bottom: .5rem; }
   .process li p { font-size: .86rem; line-height: 1.65; color: var(--grey); margin: 0; }
 
+  /* ---------- animated stage scenes ---------- */
+  .scene { margin: -.2rem 0 1rem; border-bottom: 1px solid var(--line); padding-bottom: .8rem; }
+  .scene-svg { width: 100%; height: auto; display: block; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* stage 1 — radar: ambient sweep + blips ping as the beam passes */
+    .sweep { transform-origin: 110px 50px; animation: sweep 5.5s linear infinite; }
+    @keyframes sweep { to { transform: rotate(360deg); } }
+    .blip { opacity: .15; animation: blip 5.5s linear infinite; }
+    .blip.b1 { animation-delay: -4.45s; }
+    .blip.b2 { animation-delay: -2.1s; }
+    @keyframes blip {
+      0%, 6% { opacity: 1; }
+      30%, 100% { opacity: .15; }
+    }
+
+    /* stage 2 — the T8 hoists up the mast once the card scrolls into view */
+    .go .t8 { animation: hoist 1.1s cubic-bezier(.2, .8, .3, 1) both; }
+    @keyframes hoist { from { transform: translateY(34px); } to { transform: translateY(0); } }
+    .go .t8-tag { animation: fadein .5s ease 1.1s both; }
+    @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+    /* stage 3 — spike draws, flame flickers, response line calms it */
+    .go .spike { animation: draw 0.8s ease-out both; }
+    .go .calmed { animation: draw 1s ease-out .9s both; }
+    @keyframes draw { from { stroke-dasharray: 100; stroke-dashoffset: 100; } to { stroke-dasharray: 100; stroke-dashoffset: 0; } }
+    .flame { transform-box: fill-box; transform-origin: 50% 100%; animation: flicker 1.6s ease-in-out infinite; }
+    .go .flame { animation: flamein .4s ease .7s both, flicker 1.6s ease-in-out 1.1s infinite; }
+    @keyframes flamein { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: scale(1); } }
+    @keyframes flicker {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+      35% { transform: scale(.9) rotate(-2deg); opacity: .85; }
+      70% { transform: scale(1.06) rotate(1.5deg); opacity: .95; }
+    }
+
+    /* stage 4 — recovery bars grow, trend line redraws, endpoint pulses */
+    .bar { transform-box: fill-box; transform-origin: 50% 100%; }
+    .go .bar { animation: grow .7s cubic-bezier(.2, .8, .3, 1) both; }
+    .go .bar.r2 { animation-delay: .12s; }
+    .go .bar.r3 { animation-delay: .24s; }
+    .go .bar.r4 { animation-delay: .36s; }
+    @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+    .go .rise { animation: draw 1s ease-out .5s both; }
+    .go .rise-dot { animation: fadein .4s ease 1.4s both, pulse-dot 2.2s ease-in-out 1.8s infinite; }
+    @keyframes pulse-dot {
+      0%, 100% { r: 3.5; }
+      50% { r: 5; }
+    }
+  }
+
   /* ---------- client logos ---------- */
   .logo-strip { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 30px; align-items: center; }
   @media (min-width: 720px) { .logo-strip { grid-template-columns: repeat(6, 1fr); } }
@@ -495,6 +585,16 @@ const orgLd = JSON.stringify({
 </style>
 
 <script>
+  // Playbook scenes: fire each card's entrance animation once when scrolled into view
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('go'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('.process li').forEach((li) => io.observe(li));
+  }
+
   // Desk clock — Hong Kong time, minute precision (calm, no ticking)
   const el = document.getElementById('hkt');
   if (el) {
