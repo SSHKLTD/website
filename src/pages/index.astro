@@ -704,19 +704,34 @@ const orgLd = JSON.stringify({
   .t-grid { display: grid; grid-template-columns: minmax(300px, 380px) 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; width: 100%; }
   .t-rail .h2 { margin-top: .6rem; }
   .t-steps { list-style: none; margin: 1.9rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 1.15rem; }
-  .t-steps li { display: flex; gap: .9rem; transition: opacity .45s ease; }
-  .t-num { font: 600 10.5px/1.9 var(--font-mono); color: var(--link); letter-spacing: .08em; }
+  .t-steps li { display: flex; align-items: flex-start; gap: .9rem; transition: opacity .45s ease; }
+  .t-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 30px; height: 19px; padding: 0 6px; margin-top: .1rem;
+    border-radius: 999px; background: var(--card); border: 1px solid var(--line);
+    font: 600 9.5px/1 var(--font-mono); color: var(--grey); letter-spacing: .08em;
+    transition: background .35s ease, color .35s ease, border-color .35s ease;
+  }
   .t-steps h3 { font-size: .95rem; font-weight: 700; margin: 0 0 .25rem; }
   .t-steps p { margin: 0; font-size: .88rem; line-height: 1.6; color: var(--grey); max-width: 34ch; }
   .t-steps .arrow-link { margin-top: .5rem; display: inline-block; font-size: .85rem; }
-  .triage.scrub .t-steps li { opacity: .32; }
+  /* NB: keep this base rule lower-specificity than the .p0–.p3 overrides —
+     Astro's scope attributes count toward specificity on every compound */
+  .scrub .t-steps li { opacity: .25; }
   .triage.scrub.p0 .s0 { opacity: 1; }
-  .triage.scrub.p1 .s0 { opacity: .32; }
+  .triage.scrub.p1 .s0 { opacity: .25; }
   .triage.scrub.p1 .s1 { opacity: 1; }
-  .triage.scrub.p2 .s1 { opacity: .32; }
+  .triage.scrub.p2 .s1 { opacity: .25; }
   .triage.scrub.p2 .s2 { opacity: 1; }
-  .triage.scrub.p3 .s2 { opacity: .32; }
+  .triage.scrub.p3 .s2 { opacity: .25; }
   .triage.scrub.p3 .s3 { opacity: 1; }
+  .triage.scrub.p0 .s0 .t-num { background: var(--link); border-color: var(--link); color: #fff; }
+  .triage.scrub.p1 .s0 .t-num { background: var(--card); border-color: var(--line); color: var(--grey); }
+  .triage.scrub.p1 .s1 .t-num { background: var(--link); border-color: var(--link); color: #fff; }
+  .triage.scrub.p2 .s1 .t-num { background: var(--card); border-color: var(--line); color: var(--grey); }
+  .triage.scrub.p2 .s2 .t-num { background: var(--link); border-color: var(--link); color: #fff; }
+  .triage.scrub.p3 .s2 .t-num { background: var(--card); border-color: var(--line); color: var(--grey); }
+  .triage.scrub.p3 .s3 .t-num { background: var(--link); border-color: var(--link); color: #fff; }
 
   .t-stage { position: relative; height: clamp(400px, 52vh, 520px); }
   .t-count { position: absolute; right: 0; top: -28px; font: 500 10px/1 var(--font-mono); letter-spacing: .09em; color: var(--grey-2); opacity: 0; transition: opacity .4s ease; }
