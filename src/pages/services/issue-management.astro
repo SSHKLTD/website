@@ -9,6 +9,39 @@ const questions = [
   'There is an ongoing backlash against your brand.',
 ];
 
+const cycle = [
+  {
+    stage: 'Unfavourable news',
+    zh: '觀天 · 未成災',
+    moves: ['Internal alignment', 'Risk assessment', 'Social monitoring'],
+    note: 'The story exists but has not travelled. This is the cheapest moment to act — and the easiest to waste.',
+  },
+  {
+    stage: 'Mass media reporting',
+    zh: '掛波 · 落地前',
+    moves: ['"Line-to-take" preparation', 'Press release optimisation'],
+    note: 'Newsrooms pick it up. Every word of your response will be quoted — so it is drafted before it is needed.',
+  },
+  {
+    stage: "Influencers' negative comments",
+    zh: '風眼 · 意見領袖',
+    moves: ['Alternative-opinion development', 'Influencer marketing', 'Media buy'],
+    note: 'Voices with followings set the frame. The answer is other credible voices, not louder official ones.',
+  },
+  {
+    stage: 'Attack by netizens',
+    zh: '救火 · 全面應對',
+    moves: ['Correct-information penetration', 'Sentiment management', 'Social seeding'],
+    note: 'The crowd joins in. Facts must reach the places the crowd actually reads — in the register it actually speaks.',
+  },
+];
+
+const alters = [
+  { k: 'Focus diversion', d: 'Move the conversation to ground where the brand can win.' },
+  { k: 'Penetration of correct information', d: 'Put the facts where the discussion actually happens.' },
+  { k: 'Alternative storytelling', d: 'A better narrative beats a rebuttal.' },
+];
+
 const dimensions = [
   { en: 'Moral perception', zh: '道德觀感' },
   { en: 'Media commentary', zh: '媒體評論' },
@@ -20,24 +53,109 @@ const dimensions = [
 
 <Base
   title="Issue & Crisis Management | SSHK"
-  description="Issue and crisis management by Social Strategy Hong Kong — five-dimension risk assessment, response strategy and 24/7 crisis support for institutions and brands."
+  description="Issue and crisis management by Social Strategy Hong Kong — the crisis cycle, five-dimension risk assessment, neutralisation and social seeding, with 24/7 crisis support."
 >
   <section class="section">
     <div class="wrap">
-      <p class="num-label" style="font-size:.9rem;">02 · MANAGE</p>
+      <p class="num-label" style="font-size:.8rem;">WE INTERVENE · 掛波與救火</p>
       <h1 class="display" style="margin-top:.8rem;">Issue &amp; Crisis<br />Management</h1>
       <p class="lede" style="margin-top:1.5rem;">
-        When the story turns, the worst place to draft your reply is the middle of the storm. We have
-        sat on the other side of the press release — we know what the newsroom does next.
+        A crisis moves like weather: it can be forecast, signalled, and ridden out — if someone is
+        watching the pressure fall. When it ignites anyway, the first 48 hours decide everything.
       </p>
     </div>
   </section>
 
-  <section class="section tinted quiz-section">
+  <section class="section tinted">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Self-check</p>
+          <span class="eyebrow">Methodology · the crisis cycle</span>
+          <h2 class="h2">Four stages. A right move<br />at every one of them.</h2>
+        </div>
+      </div>
+      <p class="body-max muted" style="margin-bottom:2.25rem;">
+        Every crisis follows the same route: unfavourable news → mass media reporting → influencers'
+        negative comments → attack by netizens → negative sentiment. We intervene at each stage —
+        the earlier, the cheaper.
+      </p>
+      <ol class="cycle">
+        {cycle.map((c, i) => (
+          <li>
+            <div class="c-head">
+              <span class="num-label">STAGE {i + 1} · {c.zh}</span>
+              <h3 class="p-title">{c.stage}</h3>
+            </div>
+            <ul class="moves">
+              {c.moves.map((m) => <li>{m}</li>)}
+            </ul>
+            <p class="c-note">{c.note}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid cols-2">
+      <div>
+        <span class="eyebrow">Risk grading · 唔係逢負面就出手</span>
+        <h2 class="h2">Risk assessment in<br />five dimensions</h2>
+        <p class="body-max" style="margin-top:1.2rem;">
+          Not every negative comment deserves a task force. We grade every signal — high-risk issues
+          get immediate strategy and response; low-risk ones are flagged and monitored, so your
+          resources stay focused on what genuinely threatens the brand.
+        </p>
+        <p class="body-max muted">
+          Around known risk windows — court schedules, seasonal issues, report publication cycles —
+          lines-to-take are prepared in advance. In a live crisis: 24/7 alert, assessment, a
+          recommended response with ready-to-use copy, execution, and a post-incident report.
+        </p>
+      </div>
+      <ol class="dim-list">
+        {dimensions.map((d, i) => (
+          <li>
+            <span class="num-label">{String(i + 1).padStart(2, '0')}</span>
+            <span class="dim-en">{d.en}</span>
+            <span class="dim-zh muted">{d.zh}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">We alter · how discussions turn</span>
+          <h2 class="h2">Three ways a conversation<br />changes direction</h2>
+        </div>
+      </div>
+      <div class="grid cols-3">
+        {alters.map((a) => (
+          <div class="card">
+            <h3 class="h3" style="font-size:1.02rem;">{a.k}</h3>
+            <p class="muted" style="margin:0;font-size:.9rem;">{a.d}</p>
+          </div>
+        ))}
+      </div>
+      <div class="seed-stat">
+        <p class="seed-num">2000%+</p>
+        <p class="seed-copy">
+          In a like-for-like campaign, <strong>social seeding produced over twenty times the engagement of
+          paid media buy</strong> (7,805 likes vs 323). Where a message comes from matters more than how
+          loudly it is said — that is why the desk practises seeding as a craft.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section quiz-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Self-check</span>
           <h2 class="h2">Something goes wrong in<br />your branded channels?</h2>
         </div>
       </div>
@@ -59,38 +177,9 @@ const dimensions = [
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap grid cols-2">
-      <div>
-        <p class="eyebrow">Our framework</p>
-        <h2 class="h2">Risk assessment in<br />five dimensions</h2>
-        <p class="body-max" style="margin-top:1.2rem;">
-          Not every negative comment deserves a task force. We grade every signal — high-risk issues
-          get immediate strategy and response; low-risk ones are flagged and monitored, so your
-          resources stay focused on what genuinely threatens the brand.
-        </p>
-        <p class="body-max muted">
-          Day to day, that means monitoring with risk flags and periodic sentiment summaries. Around
-          known risk windows — court schedules, seasonal issues, report publication cycles — it means
-          lines-to-take prepared in advance. And in a live crisis: 24/7 alert, assessment, recommended
-          response with ready-to-use copy, execution, and a post-incident report.
-        </p>
-      </div>
-      <ol class="dim-list">
-        {dimensions.map((d, i) => (
-          <li>
-            <span class="num-label">{String(i + 1).padStart(2, '0')}</span>
-            <span class="dim-en">{d.en}</span>
-            <span class="dim-zh muted">{d.zh}</span>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
   <section class="section on-dark">
     <div class="wrap">
-      <p class="eyebrow">Remember</p>
+      <span class="eyebrow">Remember</span>
       <h2 class="h2">Do not let fears of attack deter your brand<br />from doing great on social media.</h2>
       <div style="margin-top:2rem;">
         <a class="btn solid" href="/contact">Talk to us</a>
@@ -100,6 +189,34 @@ const dimensions = [
 </Base>
 
 <style>
+  .cycle { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+  @media (min-width: 860px) { .cycle { grid-template-columns: 1fr 1fr; } }
+  .cycle > li { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem 1.6rem; }
+  .c-head { margin-bottom: 1rem; }
+  .p-title { font-weight: 700; font-size: 1.12rem; margin: .4rem 0 0; }
+  .moves { list-style: none; margin: 0 0 1rem; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+  .moves li {
+    font-family: var(--font-mono); font-size: .68rem; font-weight: 500;
+    letter-spacing: .06em; text-transform: uppercase;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 999px;
+    padding: .4em .9em; color: var(--ink);
+  }
+  .c-note { font-size: .88rem; line-height: 1.65; color: var(--grey); margin: 0; }
+
+  .dim-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; align-self: start; }
+  .dim-list li { background: var(--card); display: grid; grid-template-columns: 2.6rem 1fr auto; align-items: baseline; gap: 1rem; padding: 1.05rem 1.4rem; }
+  .dim-en { font-weight: 700; }
+  .dim-zh { font-size: .92rem; }
+
+  .seed-stat {
+    margin-top: 2rem; display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: center;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+  }
+  @media (max-width: 720px) { .seed-stat { grid-template-columns: 1fr; } }
+  .seed-num { font-weight: 800; font-size: clamp(2.4rem, 5vw, 3.6rem); letter-spacing: -.02em; color: var(--link); margin: 0; line-height: 1; }
+  .seed-copy { margin: 0; font-size: .95rem; color: var(--grey); max-width: 56ch; }
+
   .quiz-list { list-style: none; margin: 0 0 2rem; padding: 0; display: flex; flex-direction: column; }
   .quiz-item {
     display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem 2rem;
@@ -109,19 +226,14 @@ const dimensions = [
   .q-opts { display: flex; gap: .6rem; }
   .q-opts label {
     display: inline-flex; align-items: center; gap: .45rem; cursor: pointer;
-    border: 1px solid var(--line); padding: .45rem 1.1rem; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 999px; padding: .45rem 1.1rem; background: var(--card);
     font-family: var(--font-mono); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
   }
-  .q-opts label:has(input:checked) { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .q-opts input { accent-color: var(--signal); }
+  .q-opts label:has(input:checked) { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .q-opts input { accent-color: var(--link); }
   .quiz-result { margin-top: 1.6rem; max-width: 60ch; font-size: 1.05rem; display: none; }
-  .quiz-result.show { display: block; border-left: 4px solid var(--signal); padding-left: 1.2rem; }
+  .quiz-result.show { display: block; border-left: 4px solid var(--link); padding-left: 1.2rem; }
   .quiz-result strong { display: block; font-size: 1.25rem; margin-bottom: .3rem; }
-
-  .dim-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); align-self: start; }
-  .dim-list li { background: var(--paper); display: grid; grid-template-columns: 3rem 1fr auto; align-items: baseline; gap: 1rem; padding: 1.1rem 1.4rem; }
-  .dim-en { font-weight: 700; }
-  .dim-zh { font-size: .95rem; }
 </style>
 
 <script>

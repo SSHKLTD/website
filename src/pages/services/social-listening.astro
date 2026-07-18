@@ -1,57 +1,103 @@
 ---
 import Base from '../../layouts/Base.astro';
 
+const lenxSteps = [
+  { n: 'STEP 1', name: 'AI data gathering', desc: 'Crawlers sweep the platforms every five minutes on keyword sets defined with you — brand, product, people and the public issues around them.' },
+  { n: 'STEP 2', name: 'AI categorisation', desc: 'The system learns your categories and reads sentiment directly — processing up to 5 million items a day.' },
+  { n: 'STEP 3', name: '24/7 real-time alert', desc: 'Urgent and critical signals reach you instantly over WhatsApp — day, night, and typhoon signal eight.' },
+  { n: 'STEP 4', name: 'AskLenx AI chatbot', desc: 'Ask the data questions in plain language, any time, straight from WhatsApp — and get immediate answers.' },
+];
+
+const insightSteps = [
+  { k: 'Identify', d: 'Media coverage, trending topics, and the sentiments, trends and special moments that matter to the brand — what actually happened.' },
+  { k: 'Strategize', d: 'What the sentiment implies, where the opportunity or gap sits, and what the brand can realistically do about it — as a product, a service, a message.' },
+  { k: 'Execute', d: 'An action plan for the identified moment: brand protection through message neutralisation, ePR amplification, or a new play for social commerce.' },
+];
+
 const reports = [
-  { name: 'Instant Alert', desc: 'Around-the-clock alerts the moment a high-risk signal appears — first read within two hours, faster in crisis mode.' },
-  { name: 'Daily Report', desc: 'Configurable up to twice daily, public holidays included: the day in brief, post-level tables with engagement and separate article/comment sentiment, and seven-day trends.' },
-  { name: 'Weekly & Monthly Landscape', desc: 'Executive snapshots — total buzz, buzz change, top channels — with daily trend annotation, sentiment analysis, hot topics and share of voice.' },
-  { name: 'Quarterly & Annual Review', desc: 'The long view: issue structure, competitor benchmarks and channel performance over time.' },
-  { name: 'Ad-hoc Crisis Deep-Dive', desc: 'Originating post, highest-engagement content, full event timeline and an assessment of response effectiveness.' },
+  { name: 'Instant alert', desc: 'The moment a high-risk signal appears — first read within two hours, faster in crisis mode.' },
+  { name: 'Daily report', desc: 'Configurable up to twice daily, public holidays included: the day in brief, post-level engagement and sentiment, seven-day trends.' },
+  { name: 'Weekly & monthly landscape', desc: 'Executive snapshots — total buzz, buzz change, top channels — with trend annotation, hot topics and share of voice.' },
+  { name: 'Ad-hoc crisis deep-dive', desc: 'Originating post, highest-engagement content, full event timeline and an assessment of response effectiveness.' },
 ];
 ---
 
 <Base
   title="Social Listening | SSHK"
-  description="AI-powered social media monitoring with 24/7 human judgement — instant alerts, daily reports, sentiment analysis and crisis deep-dives by Social Strategy Hong Kong."
+  description="AI-powered social monitoring across 1M+ channels with 24/7 human judgement — Lenx AI data gathering, real-time WhatsApp alerts, and Identify-Strategize-Execute insights by SSHK."
 >
   <section class="section">
     <div class="wrap">
-      <p class="num-label" style="font-size:.9rem;">01 · LISTEN</p>
+      <p class="num-label" style="font-size:.8rem;">WE LISTEN · 觀天</p>
       <h1 class="display" style="margin-top:.8rem;">Social Listening</h1>
       <p class="lede" style="margin-top:1.5rem;">
-        Every crisis is a whisper before it is a headline. We read Hong Kong the way an editor reads
-        the wires — so you hear the murmur while it is still a murmur.
+        Every crisis is a whisper before it is a headline. We watch the sky the way Hong Kong watches
+        the Observatory — so you hear the murmur while it is still a murmur.
       </p>
     </div>
   </section>
 
   <section class="section tinted">
-    <div class="wrap grid cols-2">
-      <div>
-        <p class="eyebrow">How we work</p>
-        <h2 class="h2">Data plus judgement —<br />not just a dashboard</h2>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">The instrument · Lenx AI</span>
+          <h2 class="h2">Our own monitoring tool,<br />built in 2020</h2>
+        </div>
       </div>
-      <div class="body-max">
-        <p>
-          Our monitoring combines a co-developed AI listening tool with a <strong>24/7 in-house analyst
-          team</strong>. Coverage spans news sites, Facebook, Instagram, YouTube, Threads and the forums
-          where Hong Kong conversations actually happen — including derivative content and memes that
-          often out-travel official channels.
-        </p>
-        <p>
-          What sets the service apart is who reads the data: analysts and former journalists who know
-          how media think, what makes an issue escalate, and when a signal deserves a call at 2am —
-          following an <strong>identify → strategise → execute</strong> discipline rather than a raw feed.
-        </p>
+      <p class="body-max muted" style="margin-bottom:2.25rem;">
+        Developed together with Jervois One, Lenx watches <strong>over one million channels</strong> — news
+        sites, social accounts, forums and platforms — and the coverage grows every day. Four steps
+        take a post from the feed to your phone:
+      </p>
+      <div class="grid cols-2">
+        {lenxSteps.map((s) => (
+          <div class="card">
+            <span class="num-label">{s.n}</span>
+            <h3 class="h3" style="font-size:1.08rem;">{s.name}</h3>
+            <p class="muted" style="margin:0;font-size:.92rem;">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+      <div class="statline">
+        <span><b>1M+</b> channels covered</span>
+        <span><b>5 min</b> crawl interval</span>
+        <span><b>5M</b> items processed daily</span>
+        <span><b>24/7</b> WhatsApp alert</span>
       </div>
     </div>
   </section>
 
   <section class="section">
+    <div class="wrap grid cols-2">
+      <div>
+        <span class="eyebrow">The judgement · data plus newsroom</span>
+        <h2 class="h2">A dashboard doesn't<br />call you at 2am.</h2>
+        <p class="body-max" style="margin-top:1.2rem;">
+          What sets the desk apart is who reads the data: <strong>former journalists, PR practitioners and
+          marketing &amp; data specialists</strong> who decode industry trends, marketing insights and consumer
+          sentiment — and who know when a signal deserves a call, whatever the hour.
+        </p>
+      </div>
+      <ol class="ise">
+        {insightSteps.map((s, i) => (
+          <li>
+            <span class="num-label">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3 class="p-title">{s.k}</h3>
+              <p class="muted" style="margin:0;font-size:.88rem;">{s.d}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section tinted">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Deliverables</p>
+          <span class="eyebrow">Deliverables</span>
           <h2 class="h2">Report formats</h2>
         </div>
       </div>
@@ -59,23 +105,21 @@ const reports = [
         {reports.map((r, i) => (
           <div class="card">
             <span class="num-label">{String(i + 1).padStart(2, '0')}</span>
-            <h3 class="h3">{r.name}</h3>
-            <p class="muted">{r.desc}</p>
+            <h3 class="h3" style="font-size:1.05rem;">{r.name}</h3>
+            <p class="muted" style="margin:0;font-size:.9rem;">{r.desc}</p>
           </div>
         ))}
-        <div class="card" style="justify-content:center;">
-          <p class="muted" style="margin:0;">
-            Formats fully customised to your workflow — Excel and PPT, WhatsApp alert channels, and
-            reporting cadences built around your risk calendar.
-          </p>
-        </div>
       </div>
+      <p class="muted" style="margin-top:1.75rem;font-size:.88rem;">
+        Formats fully customised to your workflow — Excel and PPT, WhatsApp alert channels, and
+        reporting cadences built around your risk calendar.
+      </p>
     </div>
   </section>
 
   <section class="section on-dark">
     <div class="wrap">
-      <p class="eyebrow">Next step</p>
+      <span class="eyebrow">Next step</span>
       <h2 class="h2">By the time it's news,<br />we've already read it.</h2>
       <div style="margin-top:2rem;">
         <a class="btn solid" href="/contact">Talk to us</a>
@@ -83,3 +127,21 @@ const reports = [
     </div>
   </section>
 </Base>
+
+<style>
+  .statline {
+    display: flex; flex-wrap: wrap; gap: 1rem 2.5rem;
+    margin-top: 2rem; padding: 1.1rem 1.5rem;
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    font-family: var(--font-mono); font-size: .78rem; color: var(--grey); letter-spacing: .04em;
+  }
+  .statline b { color: var(--ink); font-weight: 700; font-size: 1rem; }
+
+  .ise { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; align-self: start; }
+  .ise li {
+    display: grid; grid-template-columns: 2.6rem 1fr; gap: .9rem; align-items: start;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 1.2rem 1.4rem;
+  }
+  .p-title { font-weight: 700; font-size: 1rem; margin: 0 0 .3rem; }
+</style>

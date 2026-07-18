@@ -14,19 +14,22 @@ const logoNames = Object.fromEntries(
 // Anonymised, invented posts for the ambient stream (decorative only).
 // mk = keeps showing on mobile · rk/rl = shown in the reduced-motion static sample
 const posts = [
-  { u: '@user432', t: '4m', p: '今次公關災難…點收科 🙈', f: '♥ 1.2k · ↻ 340', cls: 'mk rk read', vars: '--x:69%;--d:28s;--dl:-4s;--mx:52%;--sx:72%;--st:10%', s: 'READ ✓ 0.4s' },
-  { u: '熱門', t: '2m', p: '機場新跑道 好正 ✈️', f: '♥ 3.8k · ↻ 1.4k', cls: 'mk rk read', vars: '--x:80%;--d:34s;--dl:-18s;--mx:8%;--sx:72%;--st:33%', s: 'READ ✓ 0.3s' },
-  { u: '@foodie852', t: '11m', p: '呢間新餐廳排隊兩粒鐘，值唔值?', f: '♥ 689 · ↻ 76', cls: 'mk rk read', vars: '--x:63%;--d:30s;--dl:-12s;--mx:30%;--sx:72%;--st:56%', s: 'READ ✓ 0.6s' },
-  { u: '#週末好去處', t: '26m', p: '西九自由約 📷 影唔停', f: '♥ 2.6k · ↻ 3.4k', cls: 'mk rk', vars: '--x:75%;--d:26s;--dl:-22s;--mx:58%;--sx:72%;--st:79%', s: 'READ ✓ 0.4s' },
-  { u: '@user2081', t: '7m', p: '個 brand 道歉聲明寫得幾好，respect', f: '♥ 954 · ↻ 218', cls: '', vars: '--x:84%;--d:38s;--dl:-8s', s: 'READ ✓ 0.2s' },
-  { u: '@nightowl852', t: '18m', p: '深夜茶餐廳 recommendations please 🥚', f: '♥ 212 · ↻ 31', cls: 'mk', vars: '--x:66%;--d:36s;--dl:-27s;--mx:16%', s: 'READ ✓ 0.4s' },
-  { u: '熱門', t: '33s', p: '兩餸飯評測 thread 🍱 越寫越長', f: '♥ 2.1k · ↻ 690', cls: '', vars: '--x:78%;--d:30s;--dl:-2s', s: 'READ ✓ 0.5s' },
-  { u: '@user660', t: '9m', p: '個 campaign 條片幾好笑，已 share', f: '♥ 1.5k · ↻ 412', cls: '', vars: '--x:71%;--d:42s;--dl:-33s', s: 'READ ✓ 0.3s' },
-  { u: '#天文台', t: '1m', p: '黃雨定紅雨? ☔ 帶遮先', f: '♥ 5.2k · ↻ 2.0k', cls: 'edge rk rl read', vars: '--x:1%;--d:46s;--dl:-6s;--sx:88%;--st:22%', s: 'READ ✓ 0.4s' },
-  { u: '@user917', t: '41m', p: '客服半個鐘內覆 IG DM，加分', f: '♥ 178 · ↻ 12', cls: 'edge', vars: '--x:4%;--d:50s;--dl:-24s', s: 'READ ✓ 0.5s' },
-  { u: '熱門', t: '3h', p: '渡輪夜航 加開班次', f: '♥ 820 · ↻ 145', cls: 'edge', vars: '--x:2%;--d:44s;--dl:-38s', s: 'READ ✓ 0.4s' },
-  { u: '@mk_walker', t: '55m', p: '旺角新壁畫 打卡位 📍', f: '♥ 645 · ↻ 88', cls: 'edge rk rl', vars: '--x:91%;--d:46s;--dl:-15s;--sx:88%;--st:66%', s: 'READ ✓ 0.6s' },
-  { u: '#跑步', t: '2h', p: '10km 初馬 有咩 tips? 🏃', f: '♥ 356 · ↻ 44', cls: 'edge', vars: '--x:94%;--d:40s;--dl:-30s', s: 'READ ✓ 0.4s' },
+  // right lane (sharp)
+  { u: '@user432', t: '4m', p: '今次公關災難…點收科 🙈', f: '♥ 1.2k · ↻ 340', cls: 'mk rk read', vars: '--x:76%;--d:28s;--dl:-4s;--mx:52%;--sx:74%;--st:10%', s: 'READ ✓ 0.4s' },
+  { u: '熱門', t: '2m', p: '機場新跑道 好正 ✈️', f: '♥ 3.8k · ↻ 1.4k', cls: 'mk rk read', vars: '--x:86%;--d:34s;--dl:-18s;--mx:8%;--sx:74%;--st:44%', s: 'READ ✓ 0.3s' },
+  { u: '熱門', t: '33s', p: '兩餸飯評測 thread 🍱 越寫越長', f: '♥ 2.1k · ↻ 690', cls: '', vars: '--x:80%;--d:30s;--dl:-2s', s: 'READ ✓ 0.5s' },
+  { u: '@user660', t: '9m', p: '個 campaign 條片幾好笑，已 share', f: '♥ 1.5k · ↻ 412', cls: '', vars: '--x:72%;--d:42s;--dl:-33s', s: 'READ ✓ 0.3s' },
+  // left lane (sharp)
+  { u: '@foodie852', t: '11m', p: '呢間新餐廳排隊兩粒鐘，值唔值?', f: '♥ 689 · ↻ 76', cls: 'mk rk read', vars: '--x:8%;--d:30s;--dl:-12s;--mx:30%;--sx:7%;--st:24%', s: 'READ ✓ 0.6s' },
+  { u: '#週末好去處', t: '26m', p: '西九自由約 📷 影唔停', f: '♥ 2.6k · ↻ 3.4k', cls: 'mk rk', vars: '--x:2%;--d:26s;--dl:-22s;--mx:58%;--sx:7%;--st:62%', s: 'READ ✓ 0.4s' },
+  { u: '@user2081', t: '7m', p: '個 brand 道歉聲明寫得幾好，respect', f: '♥ 954 · ↻ 218', cls: '', vars: '--x:14%;--d:38s;--dl:-8s', s: 'READ ✓ 0.2s' },
+  { u: '@nightowl852', t: '18m', p: '深夜茶餐廳 recommendations please 🥚', f: '♥ 212 · ↻ 31', cls: 'mk', vars: '--x:5%;--d:36s;--dl:-27s;--mx:16%', s: 'READ ✓ 0.4s' },
+  // blurred edge lanes (both sides)
+  { u: '#天文台', t: '1m', p: '黃雨定紅雨? ☔ 帶遮先', f: '♥ 5.2k · ↻ 2.0k', cls: 'edge rk rl read', vars: '--x:1%;--d:46s;--dl:-6s;--sx:1%;--st:82%', s: 'READ ✓ 0.4s' },
+  { u: '@user917', t: '41m', p: '客服半個鐘內覆 IG DM，加分', f: '♥ 178 · ↻ 12', cls: 'edge', vars: '--x:20%;--d:50s;--dl:-24s', s: 'READ ✓ 0.5s' },
+  { u: '熱門', t: '3h', p: '渡輪夜航 加開班次', f: '♥ 820 · ↻ 145', cls: 'edge', vars: '--x:26%;--d:44s;--dl:-38s', s: 'READ ✓ 0.4s' },
+  { u: '@mk_walker', t: '55m', p: '旺角新壁畫 打卡位 📍', f: '♥ 645 · ↻ 88', cls: 'edge rk rl', vars: '--x:91%;--d:46s;--dl:-15s;--sx:90%;--st:66%', s: 'READ ✓ 0.6s' },
+  { u: '#跑步', t: '2h', p: '10km 初馬 有咩 tips? 🏃', f: '♥ 356 · ↻ 44', cls: 'edge', vars: '--x:64%;--d:40s;--dl:-30s', s: 'READ ✓ 0.4s' },
   { u: '@user333', t: '12m', p: '睇完個 statement，印象改觀', f: '♥ 508 · ↻ 96', cls: 'edge', vars: '--x:88%;--d:52s;--dl:-11s', s: 'READ ✓ 0.3s' },
 ];
 
@@ -157,6 +160,44 @@ const orgLd = JSON.stringify({
           </a>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="section tinted" id="playbook">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">The playbook · 由觀天到救火</span>
+          <h2 class="h2">From forecast to fire-out</h2>
+        </div>
+        <a class="arrow-link" href="/services/issue-management">The full crisis cycle →</a>
+      </div>
+      <p class="lede" style="margin-bottom:2.5rem;">
+        Hong Kong reads weather signals; we read sentiment the same way. Every crisis follows a
+        cycle — and at every stage of it, there is a right move.
+      </p>
+      <ol class="process">
+        <li>
+          <span class="p-tag">01 · 觀天 FORECAST</span>
+          <h3 class="p-title">Watch the sky</h3>
+          <p>AI monitoring across 1M+ channels, five-minute crawl intervals, trend prediction — the whisper is caught while it is still a whisper.</p>
+        </li>
+        <li>
+          <span class="p-tag">02 · 掛波 HOIST THE SIGNAL</span>
+          <h3 class="p-title">Raise the signal early</h3>
+          <p>Risk assessment, emergency plans and lines-to-take prepared before the storm makes landfall — so nobody drafts in the rain.</p>
+        </li>
+        <li>
+          <span class="p-tag">03 · 救火 FIGHT THE FIRE</span>
+          <h3 class="p-title">Contain and steady</h3>
+          <p>Press-release optimisation, alternative-opinion development, correct-information penetration and sentiment management — stage by stage of the crisis cycle.</p>
+        </li>
+        <li>
+          <span class="p-tag">04 · 重建 REBUILD</span>
+          <h3 class="p-title">Rebuild, then fireproof</h3>
+          <p>The best defence is a story worth telling: creative campaigns and community acquisition that leave the brand stronger than before the smoke.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -294,14 +335,14 @@ const orgLd = JSON.stringify({
     padding: 5px 12px; font: 500 10px/1 var(--font-mono); letter-spacing: .09em; color: var(--link);
   }
 
-  /* soft readability veil between the stream and the copy — no box, just air */
+  /* readability veil: copy is centred, cards run clear lanes both sides;
+     anything drifting behind the centre column fades under this glow */
   .veil {
     position: absolute; inset: 0; z-index: 2; pointer-events: none;
-    background: linear-gradient(90deg,
-      var(--paper) 0%,
-      color-mix(in srgb, var(--paper) 88%, transparent) 38%,
-      color-mix(in srgb, var(--paper) 45%, transparent) 58%,
-      transparent 74%);
+    background: radial-gradient(ellipse 46% 72% at 50% 46%,
+      var(--paper) 34%,
+      color-mix(in srgb, var(--paper) 72%, transparent) 62%,
+      transparent 82%);
   }
   @media (max-width: 900px) {
     .veil { background: linear-gradient(180deg,
@@ -312,9 +353,13 @@ const orgLd = JSON.stringify({
 
   .hero-panel {
     position: relative; z-index: 3;
-    width: min(680px, 58vw);
+    width: min(760px, 92vw);
+    margin-inline: auto;
+    text-align: center;
   }
-  @media (max-width: 900px) { .hero-panel { width: 100%; } }
+  .hero-panel .hero-sub { margin-inline: auto; }
+  .hero-actions { justify-content: center; }
+  @media (max-width: 900px) { .hero-panel { width: 100%; text-align: left; } .hero-actions { justify-content: flex-start; } .hero-panel .hero-sub { margin-inline: 0; } }
   .hero-kicker {
     font: 500 11px/1.5 var(--font-mono); letter-spacing: .12em; color: var(--link);
     text-transform: uppercase; margin: 0 0 22px;
@@ -374,11 +419,32 @@ const orgLd = JSON.stringify({
   }
   .module .meta-row :global(b) { font-weight: 500; color: var(--ink); }
 
+  /* ---------- playbook process ---------- */
+  .process {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+  }
+  @media (min-width: 900px) { .process { grid-template-columns: repeat(4, 1fr); } }
+  .process li {
+    position: relative;
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 1.5rem 1.5rem 1.6rem;
+  }
+  @media (min-width: 900px) {
+    .process li:not(:last-child)::after {
+      content: '→'; position: absolute; right: -1.05rem; top: 50%; transform: translateY(-50%);
+      color: var(--grey-2); font-weight: 600; z-index: 1;
+    }
+  }
+  .p-tag { font: 500 10px/1.5 var(--font-mono); letter-spacing: .12em; color: var(--link); text-transform: uppercase; display: block; margin-bottom: .8rem; }
+  .p-title { font-weight: 700; font-size: 1.05rem; margin-bottom: .5rem; }
+  .process li p { font-size: .86rem; line-height: 1.65; color: var(--grey); margin: 0; }
+
   /* ---------- client logos ---------- */
   .logo-strip { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 30px; align-items: center; }
   @media (min-width: 720px) { .logo-strip { grid-template-columns: repeat(6, 1fr); } }
-  .logo-strip li { display: flex; justify-content: center; padding: 18px 6px; }
-  .logo-strip img { height: 34px; width: auto; max-width: 100%; object-fit: contain; filter: grayscale(1); opacity: .7; transition: filter var(--snap), opacity var(--snap); }
+  .logo-strip li { display: flex; justify-content: center; padding: 22px 8px; }
+  .logo-strip img { height: 56px; width: auto; max-width: 100%; object-fit: contain; filter: grayscale(1); opacity: .75; transition: filter var(--snap), opacity var(--snap); }
   .logo-strip li:hover img { filter: none; opacity: 1; }
 
   /* ---------- CTA panel ---------- */

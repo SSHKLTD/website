@@ -1,62 +1,180 @@
 ---
 import Base from '../../layouts/Base.astro';
 
-const services = [
+const sentimentSolutions = [
+  'Social monitoring & instant alert',
+  'Risk assessment',
+  'Trend prediction & data analysis',
+  'Emergency planning',
+  'Press release optimisation',
+  'Neutralisation',
+  'Social seeding',
+  'Media pitching',
+  'Community engagement',
+];
+
+const appearanceSolutions = [
+  'Photography & videography',
+  'Live streaming & animation',
+  'Graphic design & copywriting',
+  'AR / VR filters & AI chatbot',
+  'Influencer marketing',
+  'Market research',
+  'Physical & virtual events',
+  'Website development',
+  'Wow creative campaigns',
+  'Performance marketing',
+];
+
+const shifts = [
   {
-    n: '01',
-    k: 'LISTEN',
-    title: 'Social Listening',
-    href: '/services/social-listening',
-    desc: 'Every crisis is a whisper before it is a headline. Our desk reads Hong Kong the way an editor reads the wires — around the clock, across every platform, in both languages the city argues in.',
-    points: ['24/7 monitoring & alert', 'Daily / weekly / monthly reporting', 'Sentiment & share-of-voice analysis', 'Ad-hoc crisis deep-dives'],
+    k: 'Death of organic reach',
+    d: 'Platforms no longer hand out attention for free. Every message needs a strategy for how it travels — earned, seeded or amplified.',
   },
   {
-    n: '02',
-    k: 'MANAGE',
-    title: 'Issue & Crisis Management',
-    href: '/services/issue-management',
-    desc: 'When the story turns, the worst place to draft your reply is the middle of the storm. We write the statement, brief the room, and steady the narrative while it can still be steadied.',
-    points: ['Five-dimension risk assessment', 'High/low risk grading', 'Response strategy & advisory', 'Post-incident reporting'],
+    k: 'Demographic transition',
+    d: 'Hong Kong audiences have scattered across XHS, Threads, forums and group chats. Where a story spreads decides who believes it.',
   },
   {
-    n: '03',
-    k: 'CREATE',
-    title: 'Campaign & Production',
-    href: '/services/campaign-production',
-    desc: 'The best defence is a story worth telling. From key visual to final cut, our studio makes work people share because they want to — with strategy, design, film and always-on publishing under one roof.',
-    points: ['Concept creation & project management', 'Social media retainers', 'Photography & video production', 'Ad placement & optimisation', 'KOL & media amplification'],
+    k: 'Evolution of communication flow',
+    d: 'News no longer flows from press release to reader. It starts anywhere, travels sideways, and arrives at journalists last.',
   },
+];
+
+const why = [
+  { k: 'Integrated account servicing', d: 'A creative and social-specialist team on one streamlined workflow — high efficiency, fast turnaround.' },
+  { k: 'Expertise in social seeding', d: 'A deep working understanding of social sentiment: we keep brands informed, and help shape the discussion.' },
+  { k: '10+ years of trusted clients', d: 'Long-term relationships and one-stop, full-funnel campaigns for institutions that stay.' },
+  { k: 'Strong media background', d: 'Former journalists on the desk — the instinct to minimise a PR crisis, and to respond swiftly when one lands.' },
 ];
 ---
 
 <Base
   title="Services | SSHK"
-  description="Social listening, issue & crisis management, campaign & production — the three service pillars of Social Strategy Hong Kong."
+  description="Social Sentiment Management and Social Appearance Management — crisis handling, social monitoring, ePR, and full-service creative production by Social Strategy Hong Kong."
 >
   <section class="section">
     <div class="wrap">
-      <p class="eyebrow">Services</p>
-      <h1 class="display">Three chapters.<br /><span class="hl">One discipline.</span></h1>
+      <span class="eyebrow">Services · we strategize</span>
+      <h1 class="display">Two things we manage:<br /><span class="hl">sentiment</span> and <span class="hl">appearance.</span></h1>
       <p class="lede" style="margin-top:1.5rem;">
-        Listening, managing, creating — in that order, because that is the order in which stories are
-        won. From the first whisper of an issue to the story everyone remembers.
+        Everything we do falls under two disciplines. <strong>Social Sentiment Management</strong> protects the
+        brand — monitoring, ePR and crisis handling. <strong>Social Appearance Management</strong> builds it —
+        strategy, content and production. Most clients need both; that is the point of one desk.
       </p>
     </div>
   </section>
 
-  {services.map((s, i) => (
-    <section class={`section ${i % 2 === 0 ? 'tinted' : ''}`}>
-      <div class="wrap grid cols-2">
-        <div>
-          <p class="num-label" style="font-size:.9rem;">{s.n} · {s.k}</p>
-          <h2 class="h2" style="margin-top:.8rem;">{s.title}</h2>
-          <p class="body-max" style="margin-top:1.2rem;">{s.desc}</p>
-          <p style="margin-top:1.8rem;"><a class="btn" href={s.href}>Explore {s.title} →</a></p>
-        </div>
-        <ul class="check-list" style="align-self:center;">
-          {s.points.map((p) => <li>{p}</li>)}
+  <section class="section tinted" style="padding-top:clamp(2.5rem,5vw,4rem);">
+    <div class="wrap grid cols-2">
+      <a class="pillar-card" href="/services/issue-management">
+        <p class="num-label">PILLAR 1 · 輿情管理</p>
+        <h2 class="h3" style="margin:.6rem 0 .2rem;">Social Sentiment Management</h2>
+        <p class="svc-line">ePR · Crisis Handling · Social Monitoring</p>
+        <ul class="check-list">
+          {sentimentSolutions.map((s) => <li>{s}</li>)}
         </ul>
+        <span class="arrow-link" style="margin-top:1.4rem;">Issue &amp; Crisis Management →</span>
+      </a>
+      <a class="pillar-card" href="/services/campaign-production">
+        <p class="num-label">PILLAR 2 · 品牌呈現</p>
+        <h2 class="h3" style="margin:.6rem 0 .2rem;">Social Appearance Management</h2>
+        <p class="svc-line">Holistic Strategy · Community Acquisition · Integrated Solution</p>
+        <ul class="check-list">
+          {appearanceSolutions.map((s) => <li>{s}</li>)}
+        </ul>
+        <span class="arrow-link" style="margin-top:1.4rem;">Campaign &amp; Production →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Methodology · the KPI we actually watch</span>
+          <h2 class="h2">Your share of the conversation<br />is your share of the market.</h2>
+        </div>
       </div>
-    </section>
-  ))}
+      <div class="grid cols-2" style="align-items:start;">
+        <div class="kpi-card">
+          <p class="kpi-formula"><span>your buzz volume</span><span class="divide">÷</span><span>industry buzz volume</span><span class="eq">=</span><span class="mk">market share</span></p>
+          <p class="muted" style="font-size:.9rem;margin:1rem 0 0;">
+            The paradigm shift of KPIs: likes measure a post; share of voice measures a brand. We
+            manage your <strong>social appearance</strong> as the sum of three things — <strong>sentiment</strong> (how they
+            feel), <strong>spotlights</strong> (what they see) and <strong>mentions</strong> (how often you come up).
+          </p>
+        </div>
+        <div class="shifts">
+          {shifts.map((s) => (
+            <div class="shift">
+              <h3 class="p-title">{s.k}</h3>
+              <p class="muted" style="font-size:.88rem;margin:0;">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Why SSHK</span>
+          <h2 class="h2">Four reasons the desk is retained</h2>
+        </div>
+      </div>
+      <div class="grid cols-2">
+        {why.map((w) => (
+          <div class="card">
+            <h3 class="h3" style="font-size:1.05rem;">{w.k}</h3>
+            <p class="muted" style="margin:0;font-size:.92rem;">{w.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cta-inline">
+        <div>
+          <span class="eyebrow">Start here</span>
+          <h2 class="h2">Tell us which side of the story you're on.</h2>
+        </div>
+        <a class="btn solid" href="/contact">Brief the desk</a>
+      </div>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .pillar-card {
+    display: flex; flex-direction: column;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: clamp(1.6rem, 3vw, 2.25rem);
+    text-decoration: none; color: var(--ink);
+    transition: border-color var(--snap);
+  }
+  .pillar-card:hover { border-color: var(--link); }
+  .svc-line { font: 500 11px/1.6 var(--font-mono); letter-spacing: .08em; color: var(--link); text-transform: uppercase; margin: 0 0 1.2rem; }
+
+  .kpi-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.6rem, 3vw, 2.25rem); }
+  .kpi-formula {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: .6rem 1rem; margin: 0;
+    font-family: var(--font-mono); font-size: .95rem; color: var(--ink);
+  }
+  .kpi-formula .divide, .kpi-formula .eq { color: var(--grey-2); }
+  .kpi-formula .mk { font-weight: 700; color: var(--link); }
+
+  .shifts { display: flex; flex-direction: column; gap: 1.1rem; }
+  .shift { border-left: 3px solid var(--link); padding-left: 1.1rem; }
+  .p-title { font-weight: 700; font-size: 1rem; margin: 0 0 .3rem; }
+
+  .cta-inline {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: clamp(1.8rem, 3.5vw, 2.75rem);
+  }
+</style>

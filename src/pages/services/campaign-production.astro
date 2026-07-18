@@ -1,14 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
 
-const contentServices = [
-  'Concept creation',
-  'Project management',
-  'Social media retainers',
-  'Ad placement & optimisation',
-  'KOL & media amplification',
+const groups = [
+  { k: 'CONTENT & CREATIVE', items: ['Copywriting', 'Graphic design', 'Wow creative campaigns', 'Key visual development', 'Social retainers'] },
+  { k: 'PRODUCTION', items: ['Photography', 'Videography & short video', 'Live streaming', 'Animation', 'Post-production'] },
+  { k: 'TECH & INTERACTIVE', items: ['AR / VR filters', 'AI chatbot', 'Website development', 'Interactive content'] },
+  { k: 'MEDIA & GROWTH', items: ['Influencer marketing', 'Performance marketing', 'Media pitching', 'Market research'] },
+  { k: 'EVENTS & BEYOND', items: ['Physical events', 'Virtual events', 'OOH extensions', 'Reviews management'] },
 ];
-const productionServices = ['Photography', 'Video production', 'Post-production & animation'];
+
+const platforms = ['Facebook', 'Instagram', 'Threads', 'XHS 小紅書', 'WeChat', '大眾點評', 'Google Maps reviews', 'Forums', 'YouTube'];
 
 const showreel = [
   { title: '郊響樂 - 燕尾蝶', client: 'Greenpeace 綠色和平', href: 'https://www.youtube.com/watch?v=4t17Z7WlU7c' },
@@ -23,38 +24,46 @@ const showreel = [
 
 <Base
   title="Campaign & Production | SSHK"
-  description="Campaign, content and production services by Social Strategy Hong Kong — concept creation, social retainers, photography and video, produced fully in-house."
+  description="Social Appearance Management by SSHK — creative campaigns, photography, video, AR/VR, influencer and performance marketing, events and website development, produced in-house."
 >
   <section class="section">
     <div class="wrap">
-      <p class="num-label" style="font-size:.9rem;">03 · CREATE</p>
+      <p class="num-label" style="font-size:.8rem;">WE INTEGRATE · 重建與防火</p>
       <h1 class="display" style="margin-top:.8rem;">Campaign &amp;<br />Production</h1>
       <p class="lede" style="margin-top:1.5rem;">
-        The best defence is a story worth telling. From key visual to final cut, we make work people
-        share because they want to — campaigns with a beginning, a middle, and a reason to care.
+        The best defence is a story worth telling. This is the appearance side of the desk —
+        <strong>Social Appearance Management</strong>: holistic strategy, community acquisition and a
+        production floor that takes work from key visual to final cut without leaving the building.
       </p>
     </div>
   </section>
 
   <section class="section tinted">
-    <div class="wrap grid cols-2">
-      <div class="card">
-        <p class="num-label">CONTENT</p>
-        <h2 class="h3">Strategy to daily delivery</h2>
-        <ul class="check-list">
-          {contentServices.map((s) => <li>{s}</li>)}
-        </ul>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Solutions · the full board</span>
+          <h2 class="h2">Everything the studio does</h2>
+        </div>
       </div>
-      <div class="card">
-        <p class="num-label">PRODUCTION</p>
-        <h2 class="h3">A production powerhouse in-house</h2>
-        <ul class="check-list">
-          {productionServices.map((s) => <li>{s}</li>)}
-        </ul>
-        <p class="muted" style="margin:0;">
-          Grown out of Photoblog.hk — Hong Kong's most popular photography community — our production
-          team shoots for airlines, universities, government departments and global brands.
-        </p>
+      <div class="grid cols-3 sol-grid">
+        {groups.map((g) => (
+          <div class="card">
+            <span class="num-label">{g.k}</span>
+            <ul class="check-list" style="margin-top:.4rem;">
+              {g.items.map((i) => <li>{i}</li>)}
+            </ul>
+          </div>
+        ))}
+        <div class="card platforms-card">
+          <span class="num-label">PLATFORMS WE PUBLISH TO</span>
+          <div class="chips">
+            {platforms.map((p) => <span class="tag">{p}</span>)}
+          </div>
+          <p class="muted" style="margin:0;font-size:.85rem;">
+            Hong Kong's conversation no longer lives on two platforms — neither does our work.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -63,7 +72,7 @@ const showreel = [
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Showreel</p>
+          <span class="eyebrow">Showreel</span>
           <h2 class="h2">Selected productions</h2>
         </div>
       </div>
@@ -85,7 +94,7 @@ const showreel = [
 
   <section class="section on-dark">
     <div class="wrap">
-      <p class="eyebrow">Next step</p>
+      <span class="eyebrow">Next step</span>
       <h2 class="h2">Your story is waiting<br />to be told properly.</h2>
       <div style="margin-top:2rem;">
         <a class="btn solid" href="/contact">Talk to us</a>
@@ -95,14 +104,17 @@ const showreel = [
 </Base>
 
 <style>
+  .sol-grid .card { gap: .6rem; }
+  .platforms-card .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: .4rem 0 .8rem; }
+
   .reel { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
   .reel a {
     display: grid; grid-template-columns: 3rem 1fr auto; align-items: baseline; gap: 1rem 1.5rem;
-    padding: 1.15rem 0; border-bottom: 1px solid var(--line); text-decoration: none;
+    padding: 1.15rem 0; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink);
   }
   @media (min-width: 760px) { .reel a { grid-template-columns: 3rem 1.4fr 1fr auto; } }
-  .reel-title { font-weight: 700; font-size: 1.05rem; }
+  .reel-title { font-weight: 700; font-size: 1.02rem; }
   .reel-client { font-size: .9rem; }
-  .reel-arrow { font-size: 1.1rem; }
-  .reel a:hover .reel-title { color: var(--signal); }
+  .reel-arrow { font-size: 1.05rem; color: var(--grey-2); }
+  .reel a:hover .reel-title { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
 </style>
