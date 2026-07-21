@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>704 Production 版面五選 — SSHK Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root { --paper:#F4F6F8; --card:#fff; --ink:#16181B; --alert:#F4652F; --link:#2469D4; --line:#E2E8EE; --grey:#535A63; --grey2:#8A93A0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--paper); color:var(--ink); font-family:'Sora',sans-serif; padding:clamp(24px,5vw,64px); }
+  .brand { font:600 11px/1 'IBM Plex Mono',monospace; letter-spacing:.14em; color:var(--link); }
+  h1 { font-size:clamp(1.9rem,4vw,3rem); font-weight:800; letter-spacing:-.022em; margin-top:.6rem; }
+  .lede { color:var(--grey); max-width:60ch; margin-top:1rem; line-height:1.7; font-size:.98rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.2rem; margin-top:2.6rem; }
+  a.card { display:flex; flex-direction:column; gap:.55rem; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:1.7rem 1.8rem; text-decoration:none; color:inherit; transition:transform .25s, box-shadow .25s; }
+  a.card:hover { transform:translateY(-3px); box-shadow:0 18px 50px rgba(22,24,27,.1); }
+  .tag { font:600 10px/1 'IBM Plex Mono',monospace; letter-spacing:.12em; color:var(--alert); }
+  h2 { font-size:1.25rem; font-weight:800; letter-spacing:-.015em; }
+  h2 span { color:var(--grey2); font-weight:600; }
+  p { font-size:.9rem; line-height:1.65; color:var(--grey); }
+  .go { font:600 10.5px/1 'IBM Plex Mono',monospace; letter-spacing:.1em; color:var(--link); margin-top:.5rem; }
+</style>
+</head>
+<body>
+<span class="brand">SSHK LAB · 704 PRODUCTION CREDENTIALS</span>
+<h1>五個版面方向，任你㨂。</h1>
+<p class="lede">同一批內容（117 個 production jobs、真圖真連結），五種完全不同的呈現。每一版都可以即場玩 — 揀中邊個，我就照那個方向重砌正式的 /production 頁。</p>
+<div class="grid">
+  <a class="card" href="a.html">
+    <span class="tag">A · 一鏡到底</span>
+    <h2>The Tracking Shot <span>橫向卷軸</span></h2>
+    <p>你提議的「向右scroll」：滑鼠向下捲，鏡頭向右推軌，一條片帶走畢 117 個 job。有進度條同 001/117 計數器，最有 cinema 感的敘事。</p>
+    <span class="go">開一鏡到底 →</span>
+  </a>
+  <a class="card" href="b.html">
+    <span class="tag">B · 海報牆</span>
+    <h2>The Poster Wall <span>密鋪拼牆</span></h2>
+    <p>黑底、零留白，117 張劇照密鋪成一面牆，大小交錯有節奏。hover 現場記（客戶+片名），頂部 format 篩選。最大視覺量、最快震撼。</p>
+    <span class="go">開海報牆 →</span>
+  </a>
+  <a class="card" href="c.html">
+    <span class="tag">C · 放映室</span>
+    <h2>The Screening Room <span>影院模式</span></h2>
+    <p>全黑放映廳：頂部一個 21:9 大銀幕，撳 ▶ ROLL 直接喺頁內播片；下面一條 filmstrip 揀片，format 做頻道 tab。一次專心睇一條。</p>
+    <span class="go">開放映室 →</span>
+  </a>
+  <a class="card" href="d.html">
+    <span class="tag">D · 節目表</span>
+    <h2>The Programme Guide <span>八條橫向頻道</span></h2>
+    <p>8 個 format = 8 條「頻道」，每條獨立向右scroll（手機一樣好用）。似 Netflix 一行行掃，內容分類一目了然，向右滑的體感每行都有。</p>
+    <span class="go">開節目表 →</span>
+  </a>
+  <a class="card" href="e.html">
+    <span class="tag">E · 通告單</span>
+    <h2>The Call Sheet <span>清單×監視器</span></h2>
+    <p>左邊一條 mono 字體的工作清單（似劇組 call sheet），右邊一個大 monitor：目光行到邊行，畫面即刻跟到邊格。編輯感最強、最「desk」。</p>
+    <span class="go">開通告單 →</span>
+  </a>
+</div>
+</body>
+</html>

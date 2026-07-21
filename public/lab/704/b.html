@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>LAB B · 海報牆 The Poster Wall — 704 Production</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root { --paper:#F4F6F8; --card:#fff; --ink:#16181B; --alert:#F4652F; --link:#2469D4; --line:#E2E8EE; --grey:#535A63; --grey2:#8A93A0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--ink); color:#fff; font-family:'Sora',sans-serif; }
+  header { padding:26px 30px 20px; display:flex; flex-wrap:wrap; gap:1rem 2rem; align-items:end; justify-content:space-between; }
+  .brand { font:600 11px/1 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#9aa4b0; }
+  .brand b { color:#fff; font-weight:600; }
+  h1 { font-size:clamp(1.6rem,3.4vw,2.6rem); font-weight:800; letter-spacing:-.02em; margin-top:.5rem; }
+  h1 em { font-style:normal; color:var(--alert); }
+  .filters { display:flex; flex-wrap:wrap; gap:.4rem; }
+  .chip { font:500 10.5px/1 'IBM Plex Mono',monospace; letter-spacing:.06em; cursor:pointer; color:#c8cfd7; background:transparent; border:1px solid rgba(255,255,255,.22); border-radius:999px; padding:.55em 1em; }
+  .chip:hover { border-color:#fff; color:#fff; }
+  .chip.on { background:#fff; color:var(--ink); border-color:#fff; }
+  .wall { display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:9vw; grid-auto-flow:dense; gap:3px; padding:3px; }
+  .cell { position:relative; overflow:hidden; display:block; background:#22262b; }
+  .cell img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .45s cubic-bezier(.2,.8,.2,1), opacity .3s; }
+  .cell:hover img { transform:scale(1.06); opacity:.35; }
+  .cell .cap { position:absolute; inset:auto 0 0 0; padding:14px; opacity:0; transition:opacity .3s; }
+  .cell:hover .cap { opacity:1; }
+  .cap .c { font:600 9px/1.5 'IBM Plex Mono',monospace; letter-spacing:.12em; text-transform:uppercase; color:var(--alert); }
+  .cap .t { font-weight:700; font-size:.85rem; line-height:1.35; color:#fff; display:block; margin-top:2px; }
+  .cell.w2 { grid-column:span 2; } .cell.h2 { grid-row:span 2; } .cell.w2.h2 { grid-column:span 2; grid-row:span 2; }
+  .cell.hide { display:none; }
+  footer { padding:34px 30px 50px; font:500 10.5px/1.8 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#77808b; }
+  @media (max-width:900px) { .wall { grid-template-columns:repeat(3,1fr); grid-auto-rows:24vw; } }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <span class="brand"><b>704 PRODUCTION</b> · LAB B · 海報牆 THE POSTER WALL</span>
+    <h1>117 posters.<br />Zero white space<em>.</em></h1>
+  </div>
+  <div class="filters" id="filters"></div>
+</header>
+<div class="wall" id="wall"></div>
+<footer>EVERY FRAME IS A JOB SHIPPED · HOVER FOR THE SLATE · CLICK TO SCREEN IT</footer>
+<script src="data.js"></script>
+<script>
+  const FORMATS = ['Campaign','Event Highlight','Reels','Interview','Animation','Variety Show','Drama','Live Streaming'];
+  const wall = document.getElementById('wall');
+  // deterministic size rhythm: every 7th wide, every 5th tall, every 11th large
+  wall.innerHTML = JOBS.filter((j) => j.thumb).map((j, i) => {
+    let cls = 'cell';
+    if (i % 11 === 0) cls += ' w2 h2'; else if (i % 7 === 3) cls += ' w2'; else if (i % 5 === 2) cls += ' h2';
+    return `<a class="${cls}" data-f="${j.formats.join('|')}" href="${j.link}" target="_blank" rel="noopener">
+      <img src="/images/704/${j.slug}.webp" alt="" loading="lazy" />
+      <span class="cap"><span class="c">${j.client}</span><span class="t">${j.title}</span></span></a>`;
+  }).join('');
+  const filters = document.getElementById('filters');
+  filters.innerHTML = `<button class="chip on" data-v="">ALL 117</button>` +
+    FORMATS.map((f) => `<button class="chip" data-v="${f}">${f.toUpperCase()}</button>`).join('');
+  filters.addEventListener('click', (e) => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    filters.querySelectorAll('.chip').forEach((c) => c.classList.toggle('on', c === b));
+    const v = b.dataset.v;
+    wall.querySelectorAll('.cell').forEach((c) => c.classList.toggle('hide', v && !c.dataset.f.split('|').includes(v)));
+  });
+</script>
+</body>
+</html>
