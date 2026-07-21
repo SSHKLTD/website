@@ -355,6 +355,10 @@ const orgLd = JSON.stringify({
         </div>
       </div>
     </div>
+    <div class="wrap studio-line">
+      <span class="num-label">PRODUCED IN-HOUSE ·</span>
+      <a class="arrow-link" href="/production">704 Production — the group's production floor →</a>
+    </div>
   </section>
 
   <section class="section">
@@ -841,6 +845,8 @@ const orgLd = JSON.stringify({
     .m-row:focus-within { animation-play-state: paused; }
   }
   @keyframes m-scroll { to { transform: translateX(calc(-50% - 7px)); } }
+  .studio-line { margin-top: 1.8rem; display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+  .studio-line .arrow-link { font-size: .88rem; }
   @media (prefers-reduced-motion: reduce) {
     .lantern { overflow-x: auto; }
     .m-set[aria-hidden='true'] { display: none; }

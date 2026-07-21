@@ -1,0 +1,230 @@
+---
+import Base from '../layouts/Base.astro';
+import jobs from '../data/production704.json';
+
+const formats = ['Campaign', 'Event Highlight', 'Reels', 'Interview', 'Animation', 'Variety Show', 'Drama', 'Live Streaming'];
+const industries = ['Corporate', 'Finance', 'Institution', 'Government', 'Retail', 'NGO'];
+const fCount = Object.fromEntries(formats.map((f) => [f, jobs.filter((j) => j.formats.includes(f)).length]));
+const iCount = Object.fromEntries(industries.map((i) => [i, jobs.filter((j) => j.industries.includes(i)).length]));
+const clientCount = new Set(jobs.map((j) => j.client)).size;
+---
+
+<Base
+  title="704 Production | SSHK"
+  description={`704 Production is the SSHK group's in-house video studio — ${jobs.length} productions for ${clientCount}+ Hong Kong brands and institutions: campaigns, event highlights, reels, interviews, animation and more.`}
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">SSHK Group · sister studio</p>
+      <h1 class="display">704 Production.<br /><span class="hl">The group's production floor.</span></h1>
+      <p class="lede" style="margin-top:1.5rem;">
+        Founded in 2020 under the Photoblog.hk Group, 704 Production is the studio one floor of the
+        same building — commercial video from social-first short clips to full campaign films, taken
+        from <strong>creative ideation to final cut and motion graphics</strong> without leaving the house.
+      </p>
+      <ul class="contact-chips" aria-label="704 Production contact">
+        <li><a href="https://704production.com" rel="noopener" target="_blank">704production.com ↗</a></li>
+        <li><a href="tel:+85227130008">+852 2713 0008</a></li>
+        <li><a href="mailto:hi@704production.com">hi@704production.com</a></li>
+        <li><span>6/F China Paint Building · Mong Kok</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="stats-band" aria-label="704 Production in numbers">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><p class="v">{jobs.length}</p><p class="k">productions on the log since 2020</p></div>
+        <div class="stat"><p class="v">{clientCount}</p><p class="k">brands, government bodies &amp; institutions</p></div>
+        <div class="stat"><p class="v">8</p><p class="k">formats — campaign film to 15-second reel</p></div>
+        <div class="stat"><p class="v">1</p><p class="k">building — the desk writes it, the floor shoots it</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted" id="log">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">The production log · 片庫</span>
+          <h2 class="h2">Every job on the record.</h2>
+        </div>
+        <p class="readout num-label" id="log-count" aria-live="polite">SHOWING {jobs.length} / {jobs.length}</p>
+      </div>
+
+      <div class="filters" id="log-filters">
+        <div class="f-row" role="group" aria-label="Filter by format">
+          <span class="f-label">FORMAT</span>
+          <button class="f-chip on" data-dim="f" data-val="">All</button>
+          {formats.map((f) => (
+            <button class="f-chip" data-dim="f" data-val={f}>{f} <b>{fCount[f]}</b></button>
+          ))}
+        </div>
+        <div class="f-row" role="group" aria-label="Filter by industry">
+          <span class="f-label">INDUSTRY</span>
+          <button class="f-chip on" data-dim="i" data-val="">All</button>
+          {industries.map((i) => (
+            <button class="f-chip" data-dim="i" data-val={i}>{i} <b>{iCount[i]}</b></button>
+          ))}
+        </div>
+      </div>
+
+      <ul class="log-grid" id="log-grid">
+        {jobs.map((j) => (
+          <li data-f={j.formats.join('|')} data-i={j.industries.join('|')}>
+            <a class="log-card" href={j.link} rel="noopener" target="_blank">
+              <span class="lthumb">
+                {j.thumb ? (
+                  <img src={`/images/704/${j.slug}.webp`} alt={`${j.client} — ${j.title}`} width="480" height="270" loading="lazy" />
+                ) : (
+                  <span class="noimg" aria-hidden="true">704</span>
+                )}
+                <span class="play" aria-hidden="true">▶</span>
+              </span>
+              <span class="lmeta">
+                <span class="lclient">{j.client}</span>
+                <span class="ltitle">{j.title}</span>
+                <span class="ltags">{j.formats.map((f) => <span class="tag">{f}</span>)}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="muted" style="margin-top:1.6rem;font-size:.85rem;">Links open on Vimeo / YouTube. Full studio site: <a href="https://704production.com" rel="noopener" target="_blank">704production.com</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">The floor crew</span>
+          <h2 class="h2">Run by people who hold<br />a camera and a deadline.</h2>
+        </div>
+      </div>
+      <div class="grid crew">
+        <div class="crew-card">
+          <img src="/images/team/rex-wong.webp" alt="Portrait of Rex Wong" width="240" height="240" loading="lazy" />
+          <h3 class="h3">Rex Wong 黃志峰</h3>
+          <p class="num-label" style="letter-spacing:.14em;">Project Director</p>
+          <p class="muted bio">SSHK founding partner for video production — commercial and social video across gadget giants, cosmetics, NGOs, finance, F&amp;B and government bodies.</p>
+        </div>
+        <div class="crew-card">
+          <span class="initials" aria-hidden="true">MK</span>
+          <h3 class="h3">Maggie Kwan</h3>
+          <p class="num-label" style="letter-spacing:.14em;">Production Manager</p>
+          <p class="muted bio">Keeps every shoot on schedule and on budget — from location scouting to the final delivery drive.</p>
+        </div>
+        <div class="crew-card">
+          <span class="initials" aria-hidden="true">+</span>
+          <h3 class="h3">The creative team</h3>
+          <p class="num-label" style="letter-spacing:.14em;">Directors · Editors · Motion</p>
+          <p class="muted bio">Young, experimental, and constantly testing new video ideas on the PBHK YouTube channel before your campaign needs them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section on-dark">
+    <div class="wrap">
+      <span class="eyebrow">One group, two desks</span>
+      <h2 class="h2">The desk writes the story.<br />The floor shoots it.</h2>
+      <div style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap;">
+        <a class="btn solid" href="/contact">Brief the desk</a>
+        <a class="btn" href="/services/campaign-production">Campaign &amp; production</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact-chips { list-style: none; display: flex; flex-wrap: wrap; gap: .55rem; margin: 1.8rem 0 0; padding: 0; }
+  .contact-chips li > * {
+    display: inline-block; font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em;
+    color: var(--ink); text-decoration: none; background: var(--card);
+    border: 1px solid var(--line); border-radius: 999px; padding: .55em 1.1em;
+  }
+  .contact-chips a:hover { border-color: var(--link); color: var(--link); }
+
+  .stats-band { padding-bottom: clamp(3rem, 6vw, 4.5rem); }
+
+  .readout { align-self: end; font-variant-numeric: tabular-nums; }
+
+  .filters { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 2rem; }
+  .f-row { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
+  .f-label { font: 500 .62rem/1 var(--font-mono); letter-spacing: .12em; color: var(--grey-2); min-width: 4.6rem; }
+  .f-chip {
+    font-family: var(--font-mono); font-size: .7rem; letter-spacing: .05em; cursor: pointer;
+    background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 999px;
+    padding: .5em 1em; transition: border-color var(--snap), background var(--snap), color var(--snap);
+  }
+  .f-chip b { font-weight: 500; color: var(--grey-2); margin-left: .15em; }
+  .f-chip:hover { border-color: var(--link); }
+  .f-chip.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .f-chip.on b { color: #9fb3c8; }
+
+  .log-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 1.1rem; }
+  @media (min-width: 620px) { .log-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .log-grid { grid-template-columns: repeat(3, 1fr); } }
+  .log-grid li.hide { display: none; }
+
+  .log-card {
+    display: flex; flex-direction: column; height: 100%; text-decoration: none; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+  }
+  .lthumb { position: relative; aspect-ratio: 16 / 9; background: #e4e9ee; overflow: hidden; }
+  .lthumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .noimg { display: flex; align-items: center; justify-content: center; height: 100%; font: 700 2rem var(--font-mono); color: var(--grey-2); }
+  .play {
+    position: absolute; right: 10px; bottom: 10px; width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(22, 24, 27, 0.78); color: #fff; border-radius: 999px; font-size: .6rem;
+    opacity: 0; transform: translateY(4px); transition: opacity var(--snap), transform var(--snap);
+  }
+  .log-card:hover .play { opacity: 1; transform: none; }
+  .log-card:hover .ltitle { color: var(--link); }
+  .lmeta { display: flex; flex-direction: column; gap: .4rem; padding: .95rem 1.05rem 1.1rem; }
+  .lclient { font: 500 .62rem/1.4 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--grey-2); }
+  .ltitle { font-weight: 700; font-size: .93rem; line-height: 1.45; }
+  .ltags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .15rem; }
+  .ltags .tag { font-size: .58rem; padding: .32em .8em; }
+
+  .crew { grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .crew { grid-template-columns: repeat(3, 1fr); } }
+  .crew-card img, .crew-card .initials {
+    width: 110px; height: 110px; border-radius: var(--radius); border: 1px solid var(--line); object-fit: cover;
+  }
+  .crew-card .initials {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card); font: 700 1.6rem var(--font-mono); color: var(--grey-2);
+  }
+  .crew-card h3 { margin-top: 1.1rem; font-size: 1.02rem; }
+  .crew-card .bio { font-size: .9rem; line-height: 1.65; }
+</style>
+
+<script>
+  const state = { f: '', i: '' };
+  const grid = document.getElementById('log-grid');
+  const count = document.getElementById('log-count');
+  const total = grid ? grid.children.length : 0;
+  const apply = () => {
+    if (!grid) return;
+    let shown = 0;
+    for (const li of grid.children) {
+      const el = li as HTMLElement;
+      const okF = !state.f || (el.dataset.f ?? '').split('|').includes(state.f);
+      const okI = !state.i || (el.dataset.i ?? '').split('|').includes(state.i);
+      el.classList.toggle('hide', !(okF && okI));
+      if (okF && okI) shown++;
+    }
+    if (count) count.textContent = `SHOWING ${shown} / ${total}`;
+  };
+  document.querySelectorAll<HTMLButtonElement>('.f-chip').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dim = btn.dataset.dim as 'f' | 'i';
+      state[dim] = btn.dataset.val ?? '';
+      document.querySelectorAll(`.f-chip[data-dim="${dim}"]`).forEach((b) => b.classList.toggle('on', b === btn));
+      apply();
+    });
+  });
+</script>
