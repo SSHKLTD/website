@@ -15,50 +15,50 @@
   h1 { font-size:clamp(1.9rem,4vw,3rem); font-weight:800; letter-spacing:-.022em; margin-top:.6rem; }
   .lede { color:var(--grey); max-width:60ch; margin-top:1rem; line-height:1.7; font-size:.98rem; }
   .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.2rem; margin-top:2.6rem; }
-  a.card { display:flex; flex-direction:column; gap:.55rem; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:1.7rem 1.8rem; text-decoration:none; color:inherit; transition:transform .25s, box-shadow .25s; }
-  a.card:hover { transform:translateY(-3px); box-shadow:0 18px 50px rgba(22,24,27,.1); }
+  div.card { display:flex; flex-direction:column; gap:.55rem; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:1.7rem 1.8rem; text-decoration:none; color:inherit; transition:transform .25s, box-shadow .25s; }
+  div.card:hover { transform:translateY(-3px); box-shadow:0 18px 50px rgba(22,24,27,.1); }
   .tag { font:600 10px/1 'IBM Plex Mono',monospace; letter-spacing:.12em; color:var(--alert); }
   h2 { font-size:1.25rem; font-weight:800; letter-spacing:-.015em; }
   h2 span { color:var(--grey2); font-weight:600; }
   p { font-size:.9rem; line-height:1.65; color:var(--grey); }
-  .go { font:600 10.5px/1 'IBM Plex Mono',monospace; letter-spacing:.1em; color:var(--link); margin-top:.5rem; }
+  .go { display:flex; gap:1.4rem; flex-wrap:wrap; } .go a { text-decoration:none; font:600 10.5px/1 'IBM Plex Mono',monospace; letter-spacing:.1em; color:var(--link); margin-top:.5rem; } .go a:hover { text-decoration:underline; } .go a.site { color:var(--alert); }
 </style>
 </head>
 <body>
 <span class="brand">SSHK LAB · 704 PRODUCTION CREDENTIALS</span>
 <h1>五個版面方向，任你㨂。</h1>
-<p class="lede">同一批內容（117 個 production jobs、真圖真連結），五種完全不同的呈現。每一版都可以即場玩 — 揀中邊個，我就照那個方向重砌正式的 /production 頁。</p>
+<p class="lede">同一批內容（117 個 production jobs、真圖真連結），五種完全不同的呈現。每格有兩條連結：<b>白盒版</b>係純風格 demo；<b>入站版</b>係放咗入正式網站（SSHK header、hero、數據帶、團隊、CTA 齊備）嘅完整一頁。揀中邊個，我就照那個方向定稿 /production。</p>
 <div class="grid">
-  <a class="card" href="a.html">
+  <div class="card">
     <span class="tag">A · 一鏡到底</span>
     <h2>The Tracking Shot <span>橫向卷軸</span></h2>
     <p>你提議的「向右scroll」：滑鼠向下捲，鏡頭向右推軌，一條片帶走畢 117 個 job。有進度條同 001/117 計數器，最有 cinema 感的敘事。</p>
-    <span class="go">開一鏡到底 →</span>
-  </a>
-  <a class="card" href="b.html">
+    <span class="go"><a href="a.html">白盒版 →</a><a class="site" href="site-a">入站版（連 header/hero/團隊）→</a></span>
+  </div>
+  <div class="card">
     <span class="tag">B · 海報牆</span>
     <h2>The Poster Wall <span>密鋪拼牆</span></h2>
     <p>黑底、零留白，117 張劇照密鋪成一面牆，大小交錯有節奏。hover 現場記（客戶+片名），頂部 format 篩選。最大視覺量、最快震撼。</p>
-    <span class="go">開海報牆 →</span>
-  </a>
-  <a class="card" href="c.html">
+    <span class="go"><a href="b.html">白盒版 →</a><a class="site" href="site-b">入站版（連 header/hero/團隊）→</a></span>
+  </div>
+  <div class="card">
     <span class="tag">C · 放映室</span>
     <h2>The Screening Room <span>影院模式</span></h2>
     <p>全黑放映廳：頂部一個 21:9 大銀幕，撳 ▶ ROLL 直接喺頁內播片；下面一條 filmstrip 揀片，format 做頻道 tab。一次專心睇一條。</p>
-    <span class="go">開放映室 →</span>
-  </a>
-  <a class="card" href="d.html">
+    <span class="go"><a href="c.html">白盒版 →</a><a class="site" href="site-c">入站版（連 header/hero/團隊）→</a></span>
+  </div>
+  <div class="card">
     <span class="tag">D · 節目表</span>
     <h2>The Programme Guide <span>八條橫向頻道</span></h2>
     <p>8 個 format = 8 條「頻道」，每條獨立向右scroll（手機一樣好用）。似 Netflix 一行行掃，內容分類一目了然，向右滑的體感每行都有。</p>
-    <span class="go">開節目表 →</span>
-  </a>
-  <a class="card" href="e.html">
+    <span class="go"><a href="d.html">白盒版 →</a><a class="site" href="site-d">入站版（連 header/hero/團隊）→</a></span>
+  </div>
+  <div class="card">
     <span class="tag">E · 通告單</span>
     <h2>The Call Sheet <span>清單×監視器</span></h2>
     <p>左邊一條 mono 字體的工作清單（似劇組 call sheet），右邊一個大 monitor：目光行到邊行，畫面即刻跟到邊格。編輯感最強、最「desk」。</p>
-    <span class="go">開通告單 →</span>
-  </a>
+    <span class="go"><a href="e.html">白盒版 →</a><a class="site" href="site-e">入站版（連 header/hero/團隊）→</a></span>
+  </div>
 </div>
 </body>
 </html>

@@ -1,0 +1,68 @@
+---
+import Shell from '../../../components/Prod704Shell.astro';
+import jobs from '../../../data/production704.json';
+const FORMATS = ['Campaign', 'Event Highlight', 'Reels', 'Interview', 'Animation', 'Variety Show', 'Drama', 'Live Streaming'];
+const wall = jobs.filter((j) => j.thumb);
+---
+
+<Shell variant="B · 海報牆">
+  <section class="wall-band">
+    <div class="wrap wb-head">
+      <div>
+        <span class="eyebrow">The production log · 海報牆</span>
+        <h2 class="h2" style="color:#fff;">{wall.length} posters.<br />Zero white space<span style="color:var(--alert);">.</span></h2>
+      </div>
+      <div class="wb-filters" id="wb-filters">
+        <button class="chip on" data-v="">ALL {wall.length}</button>
+        {FORMATS.map((f) => <button class="chip" data-v={f}>{f.toUpperCase()}</button>)}
+      </div>
+    </div>
+    <div class="wall" id="wall">
+      {wall.map((j, i) => {
+        const cls = i % 11 === 0 ? 'cell w2 h2' : i % 7 === 3 ? 'cell w2' : i % 5 === 2 ? 'cell h2' : 'cell';
+        return (
+          <a class={cls} data-f={j.formats.join('|')} href={j.link} target="_blank" rel="noopener">
+            <img src={`/images/704/${j.slug}.webp`} alt={`${j.client} — ${j.title}`} loading="lazy" width="480" height="270" />
+            <span class="cap"><span class="c">{j.client}</span><span class="t">{j.title}</span></span>
+          </a>
+        );
+      })}
+    </div>
+    <p class="wrap wb-note num-label">EVERY FRAME IS A JOB SHIPPED · HOVER FOR THE SLATE · CLICK TO SCREEN IT</p>
+  </section>
+</Shell>
+
+<style>
+  .wall-band { background: var(--ink); padding-block: clamp(3rem, 6vw, 5rem) 2.2rem; }
+  .wb-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.4rem 2rem; margin-bottom: 2rem; }
+  .wb-filters { display: flex; flex-wrap: wrap; gap: .4rem; max-width: 560px; justify-content: flex-end; }
+  .chip { font: 500 10.5px/1 var(--font-mono); letter-spacing: .06em; cursor: pointer; color: #c8cfd7; background: transparent; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 999px; padding: .55em 1em; }
+  .chip:hover { border-color: #fff; color: #fff; }
+  .chip.on { background: #fff; color: var(--ink); border-color: #fff; }
+  .wall { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 9vw; grid-auto-flow: dense; gap: 3px; padding: 0 3px; }
+  .cell { position: relative; overflow: hidden; display: block; background: #22262b; }
+  .cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .45s cubic-bezier(.2, .8, .2, 1), opacity .3s; }
+  .cell:hover img { transform: scale(1.06); opacity: .3; }
+  .cell .cap { position: absolute; inset: auto 0 0 0; padding: 14px; opacity: 0; transition: opacity .3s; }
+  .cell:hover .cap { opacity: 1; }
+  .cap .c { font: 600 9px/1.5 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--alert); }
+  .cap .t { font-weight: 700; font-size: .85rem; line-height: 1.35; color: #fff; display: block; margin-top: 2px; }
+  .cell.w2 { grid-column: span 2; } .cell.h2 { grid-row: span 2; }
+  .cell.hide { display: none; }
+  .wb-note { margin-top: 1.6rem; color: #77808b; }
+  @media (max-width: 900px) { .wall { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 24vw; } .wb-filters { justify-content: flex-start; } }
+</style>
+
+<script>
+  const filters = document.getElementById('wb-filters');
+  const wallEl = document.getElementById('wall');
+  filters?.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest('.chip') as HTMLElement | null;
+    if (!b || !wallEl) return;
+    filters.querySelectorAll('.chip').forEach((c) => c.classList.toggle('on', c === b));
+    const v = b.dataset.v ?? '';
+    wallEl.querySelectorAll<HTMLElement>('.cell').forEach((c) => {
+      c.classList.toggle('hide', !!v && !(c.dataset.f ?? '').split('|').includes(v));
+    });
+  });
+</script>

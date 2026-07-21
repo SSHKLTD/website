@@ -1,0 +1,108 @@
+---
+import Shell from '../../../components/Prod704Shell.astro';
+import jobs from '../../../data/production704.json';
+---
+
+<Shell variant="E · 通告單">
+  <section class="callsheet">
+    <div class="cs-layout">
+      <div class="cs-list">
+        <div class="cs-head">
+          <span class="eyebrow">The production log · 通告單</span>
+          <h2 class="h2">The log, read like a call sheet.</h2>
+          <p class="num-label" style="margin-top:.6rem;">MOVE DOWN THE LIST — THE MONITOR FOLLOWS · CLICK TO SCREEN</p>
+        </div>
+        <ul class="cs-rows" id="cs-rows">
+          {jobs.map((j, i) => (
+            <li data-i={i} data-slug={j.slug} data-client={j.client} data-title={j.title} data-tags={j.formats.join('<br />')} data-thumb={j.thumb ? '1' : ''}>
+              <a href={j.link} target="_blank" rel="noopener">
+                <span class="n">{String(i + 1).padStart(3, '0')}</span>
+                <span class="t">{j.title}</span>
+                <span class="c">{j.client}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <aside class="cs-preview" aria-hidden="true">
+        <div class="pv-frame" id="pv"><span class="pv-num" id="pv-num">001</span></div>
+        <div class="pv-meta">
+          <div><div class="pv-client" id="pv-client"></div><div class="pv-title" id="pv-title"></div></div>
+          <div class="pv-tags num-label" id="pv-tags"></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Shell>
+
+<style>
+  .callsheet { background: var(--card); border-block: 1px solid var(--line); }
+  .cs-layout { display: grid; grid-template-columns: minmax(400px, 44%) 1fr; }
+  .cs-list { border-right: 1px solid var(--line); }
+  .cs-head { padding: 40px 34px 22px; position: sticky; top: 72px; background: var(--card); border-bottom: 1px solid var(--line); z-index: 2; }
+  .cs-rows { list-style: none; margin: 0; padding: 0 0 60px; }
+  .cs-rows a { display: grid; grid-template-columns: 3.4rem 1fr auto; gap: 1rem; align-items: baseline; padding: 13px 34px; border-top: 1px solid var(--line); text-decoration: none; color: inherit; }
+  .cs-rows li:first-child a { border-top: none; }
+  .cs-rows .n { font: 500 10.5px/1 var(--font-mono); color: var(--grey-2); }
+  .cs-rows .t { font-weight: 700; font-size: .93rem; line-height: 1.4; }
+  .cs-rows .c { font: 500 9.5px/1.5 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--grey-2); white-space: nowrap; }
+  .cs-rows li.on a { background: var(--paper); }
+  .cs-rows li.on .n { color: var(--alert); }
+  .cs-rows li.on .t { color: var(--link); }
+  .cs-preview { position: sticky; top: 72px; height: calc(100svh - 72px); display: flex; flex-direction: column; justify-content: center; padding: 40px clamp(24px, 4vw, 60px); }
+  .pv-frame { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(22, 24, 27, 0.13); aspect-ratio: 16 / 9; background: #e4e9ee; }
+  .pv-frame :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s ease; }
+  .pv-frame :global(img.show) { opacity: 1; }
+  .pv-num { position: absolute; top: 14px; left: 16px; z-index: 1; font: 600 11px/1 var(--font-mono); letter-spacing: .1em; color: #fff; background: rgba(22, 24, 27, 0.7); border-radius: 999px; padding: 6px 11px; }
+  .pv-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 2rem; margin-top: 18px; }
+  .pv-client { font: 600 10.5px/1.6 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--alert); }
+  .pv-title { font-size: 1.2rem; font-weight: 800; letter-spacing: -.015em; max-width: 30ch; }
+  .pv-tags { text-align: right; }
+  @media (max-width: 900px) {
+    .cs-layout { grid-template-columns: 1fr; }
+    .cs-preview { display: none; }
+    .cs-rows a { grid-template-columns: 2.6rem 1fr; }
+    .cs-rows .c { display: none; }
+  }
+</style>
+
+<script>
+  const rows = document.getElementById('cs-rows');
+  const pv = document.getElementById('pv');
+  const num = document.getElementById('pv-num');
+  const pc = document.getElementById('pv-client');
+  const pt = document.getElementById('pv-title');
+  const pg = document.getElementById('pv-tags');
+  const imgs: Record<number, HTMLImageElement> = {};
+  let active = -1;
+  function show(li: HTMLElement) {
+    const i = +(li.dataset.i ?? -1);
+    if (i === active) return;
+    active = i;
+    rows?.querySelectorAll('li').forEach((x) => x.classList.toggle('on', x === li));
+    if (li.dataset.thumb) {
+      if (!imgs[i]) {
+        const im = document.createElement('img');
+        im.src = `/images/704/${li.dataset.slug}.webp`;
+        pv?.appendChild(im);
+        imgs[i] = im;
+      }
+      Object.values(imgs).forEach((im) => im.classList.remove('show'));
+      imgs[i].classList.add('show');
+    }
+    if (num) num.textContent = String(i + 1).padStart(3, '0');
+    if (pc) pc.textContent = li.dataset.client ?? '';
+    if (pt) pt.textContent = li.dataset.title ?? '';
+    if (pg) pg.innerHTML = li.dataset.tags ?? '';
+  }
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => { if (e.isIntersecting) show(e.target as HTMLElement); });
+  }, { rootMargin: '-46% 0px -46% 0px' });
+  rows?.querySelectorAll('li').forEach((li) => io.observe(li));
+  rows?.addEventListener('mouseover', (e) => {
+    const li = (e.target as HTMLElement).closest('li');
+    if (li) show(li as HTMLElement);
+  });
+  const firstLi = rows?.querySelector('li');
+  if (firstLi) show(firstLi as HTMLElement);
+</script>
