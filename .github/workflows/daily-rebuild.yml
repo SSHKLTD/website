@@ -1,0 +1,25 @@
+# Fallback publishing path while the Notion workspace has no webhook automation:
+# trigger a Cloudflare Pages rebuild once a day so Notion edits go live within 24h.
+# Set the CLOUDFLARE_DEPLOY_HOOK repo secret to the Pages "deploy hook" URL.
+# (When the team upgrades Notion, point a database-automation webhook at the same
+# deploy-hook URL for publish-on-click instead.)
+name: Daily rebuild
+
+on:
+  schedule:
+    - cron: '0 22 * * *' # 06:00 HKT daily
+  workflow_dispatch: {}
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages deploy hook
+        env:
+          HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "CLOUDFLARE_DEPLOY_HOOK secret not set — skipping."
+            exit 0
+          fi
+          curl -fsS -X POST "$HOOK"

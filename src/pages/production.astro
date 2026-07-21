@@ -1,0 +1,337 @@
+---
+import Base from '../layouts/Base.astro';
+import jobs from '../data/production704.json';
+
+const formats = ['Campaign', 'Event Highlight', 'Reels', 'Interview', 'Animation', 'Variety Show', 'Drama', 'Live Streaming'];
+const industries = ['Corporate', 'Finance', 'Institution', 'Government', 'Retail', 'NGO'];
+const fCount = Object.fromEntries(formats.map((f) => [f, jobs.filter((j) => j.formats.includes(f)).length]));
+const iCount = Object.fromEntries(industries.map((i) => [i, jobs.filter((j) => j.industries.includes(i)).length]));
+const clientCount = new Set(jobs.map((j) => j.client)).size;
+---
+
+<Base
+  title="704 Production | SSHK"
+  description={`704 Production is the SSHK group's in-house video studio — ${jobs.length} productions for ${clientCount}+ Hong Kong brands and institutions: campaigns, event highlights, reels, interviews, animation and more.`}
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">SSHK Group · sister studio</p>
+      <h1 class="display">704 Production.<br /><span class="hl">The group's production floor.</span></h1>
+      <p class="lede" style="margin-top:1.5rem;">
+        Founded in 2020 under the Photoblog.hk Group, 704 Production is the studio one floor of the
+        same building — commercial video from social-first short clips to full campaign films, taken
+        from <strong>creative ideation to final cut and motion graphics</strong> without leaving the house.
+      </p>
+      <ul class="contact-chips" aria-label="704 Production contact">
+        <li><a href="https://704production.com" rel="noopener" target="_blank">704production.com ↗</a></li>
+        <li><a href="tel:+85227130008">+852 2713 0008</a></li>
+        <li><a href="mailto:hi@704production.com">hi@704production.com</a></li>
+        <li><span>6/F China Paint Building · Mong Kok</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="stats-band" aria-label="704 Production in numbers">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><p class="v">{jobs.length}</p><p class="k">productions on the log since 2020</p></div>
+        <div class="stat"><p class="v">{clientCount}</p><p class="k">brands, government bodies &amp; institutions</p></div>
+        <div class="stat"><p class="v">8</p><p class="k">formats — campaign film to 15-second reel</p></div>
+        <div class="stat"><p class="v">1</p><p class="k">building — the desk writes it, the floor shoots it</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wall-band" id="log">
+    <div class="wrap wb-head">
+      <div>
+        <span class="eyebrow">The production log · 片庫</span>
+        <h2 class="h2">{jobs.length} posters.<br />Zero white space<span class="dot">.</span></h2>
+      </div>
+      <p class="num-label wb-count" id="wb-count" aria-live="polite">SHOWING {jobs.length} / {jobs.length}</p>
+    </div>
+    <div class="wrap wb-filters" id="wb-filters">
+      <div class="f-row" role="group" aria-label="Filter by format">
+        <span class="f-label">類別 FORMAT</span>
+        <button class="chip on" data-dim="f" data-v="">All</button>
+        {formats.map((f) => <button class="chip" data-dim="f" data-v={f}>{f.toUpperCase()} <b>{fCount[f]}</b></button>)}
+      </div>
+      <div class="f-row" role="group" aria-label="Filter by industry">
+        <span class="f-label">行業 INDUSTRY</span>
+        <button class="chip on" data-dim="i" data-v="">All</button>
+        {industries.map((i) => <button class="chip" data-dim="i" data-v={i}>{i.toUpperCase()} <b>{iCount[i]}</b></button>)}
+      </div>
+    </div>
+    <div class="wall" id="wall">
+      {jobs.map((j, n) => {
+        const cls = n % 11 === 0 ? 'cell w2 h2' : n % 7 === 3 ? 'cell w2' : n % 5 === 2 ? 'cell h2' : 'cell';
+        return (
+          <a
+            class={cls}
+            href={j.link}
+            target="_blank"
+            rel="noopener"
+            data-f={j.formats.join('|')}
+            data-i={j.industries.join('|')}
+            data-slug={j.slug}
+            data-client={j.client}
+            data-title={j.title}
+            data-desc={j.desc}
+            data-credits={j.credits}
+            data-link={j.link}
+            data-thumb={j.thumb ? '1' : ''}
+          >
+            {j.thumb ? (
+              <img src={`/images/704/${j.slug}.webp`} alt={`${j.client} — ${j.title}`} loading="lazy" width="1280" height="720" />
+            ) : (
+              <span class="noimg" aria-hidden="true">704</span>
+            )}
+            <span class="cap"><span class="c">{j.client}</span><span class="t">{j.title}</span></span>
+          </a>
+        );
+      })}
+    </div>
+    <p class="wrap wb-note num-label">EVERY FRAME IS A JOB SHIPPED · CLICK ANY POSTER FOR THE SLATE</p>
+  </section>
+
+  <dialog class="slate-modal" id="slate">
+    <button class="sm-close" id="sm-close" aria-label="Close">✕</button>
+    <div class="sm-screen" id="sm-screen">
+      <img id="sm-still" src="" alt="" />
+      <button class="sm-roll" id="sm-roll">▶ ROLL</button>
+    </div>
+    <div class="sm-body">
+      <p class="sm-client" id="sm-client"></p>
+      <h3 class="sm-title" id="sm-title"></h3>
+      <p class="sm-desc" id="sm-desc"></p>
+      <p class="sm-credits" id="sm-credits"></p>
+      <div class="sm-foot">
+        <p class="sm-tags" id="sm-tags"></p>
+        <a class="sm-watch" id="sm-watch" href="#" target="_blank" rel="noopener">Watch on Vimeo ↗</a>
+      </div>
+    </div>
+  </dialog>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">The floor crew</span>
+          <h2 class="h2">Run by people who hold<br />a camera and a deadline.</h2>
+        </div>
+      </div>
+      <div class="grid crew">
+        <div class="crew-card">
+          <img src="/images/team/rex-wong.webp" alt="Portrait of Rex Wong" width="240" height="240" loading="lazy" />
+          <h3 class="h3">Rex Wong 黃志峰</h3>
+          <p class="num-label" style="letter-spacing:.14em;">Project Director</p>
+          <p class="muted bio">SSHK founding partner for video production — commercial and social video across gadget giants, cosmetics, NGOs, finance, F&amp;B and government bodies.</p>
+        </div>
+        <div class="crew-card">
+          <span class="initials" aria-hidden="true">MK</span>
+          <h3 class="h3">Maggie Kwan</h3>
+          <p class="num-label" style="letter-spacing:.14em;">Production Manager</p>
+          <p class="muted bio">Keeps every shoot on schedule and on budget — from location scouting to the final delivery drive.</p>
+        </div>
+        <div class="crew-card">
+          <span class="initials" aria-hidden="true">+</span>
+          <h3 class="h3">The creative team</h3>
+          <p class="num-label" style="letter-spacing:.14em;">Directors · Editors · Motion</p>
+          <p class="muted bio">Young, experimental, and constantly testing new video ideas on the PBHK YouTube channel before your campaign needs them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section on-dark">
+    <div class="wrap">
+      <span class="eyebrow">One group, two desks</span>
+      <h2 class="h2">The desk writes the story.<br />The floor shoots it.</h2>
+      <div style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap;">
+        <a class="btn solid" href="/contact">Brief the desk</a>
+        <a class="btn" href="/services/campaign-production">Campaign &amp; production</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact-chips { list-style: none; display: flex; flex-wrap: wrap; gap: .55rem; margin: 1.8rem 0 0; padding: 0; }
+  .contact-chips li > * {
+    display: inline-block; font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em;
+    color: var(--ink); text-decoration: none; background: var(--card);
+    border: 1px solid var(--line); border-radius: 999px; padding: .55em 1.1em;
+  }
+  .contact-chips a:hover { border-color: var(--link); color: var(--link); }
+  .stats-band { padding-bottom: clamp(3rem, 6vw, 4.5rem); }
+
+  /* ---------- the poster wall ---------- */
+  .wall-band { background: var(--ink); padding-block: clamp(3rem, 6vw, 5rem) 2.2rem; }
+  .wb-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem 2rem; margin-bottom: 1.6rem; }
+  .wb-head .h2 { color: #fff; }
+  .dot { color: var(--alert); }
+  .wb-count { color: #9aa4b0; font-variant-numeric: tabular-nums; }
+  .wb-filters { display: flex; flex-direction: column; gap: .55rem; margin-bottom: 2rem; }
+  .f-row { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
+  .f-label { font: 500 .62rem/1 var(--font-mono); letter-spacing: .12em; color: #77808b; min-width: 7.2rem; }
+  .chip {
+    font: 500 10.5px/1 var(--font-mono); letter-spacing: .06em; cursor: pointer;
+    color: #c8cfd7; background: transparent; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 999px; padding: .55em 1em;
+    transition: border-color var(--snap), color var(--snap), background var(--snap);
+  }
+  .chip b { font-weight: 500; color: #77808b; margin-left: .1em; }
+  .chip:hover { border-color: #fff; color: #fff; }
+  .chip.on { background: #fff; color: var(--ink); border-color: #fff; }
+  .chip.on b { color: var(--grey); }
+
+  .wall { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 9vw; grid-auto-flow: dense; gap: 3px; padding: 0 3px; }
+  .cell { position: relative; overflow: hidden; display: block; background: #22262b; cursor: pointer; }
+  .cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .45s cubic-bezier(.2, .8, .2, 1), opacity .3s; }
+  .cell:hover img { transform: scale(1.06); opacity: .3; }
+  .cell .noimg { display: flex; align-items: center; justify-content: center; height: 100%; font: 700 1.6rem var(--font-mono); color: #4a5158; }
+  .cell .cap { position: absolute; inset: auto 0 0 0; padding: 14px; opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .cell:hover .cap { opacity: 1; }
+  .cap .c { font: 600 9px/1.5 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--alert); }
+  .cap .t { font-weight: 700; font-size: .85rem; line-height: 1.35; color: #fff; display: block; margin-top: 2px; }
+  .cell.w2 { grid-column: span 2; }
+  .cell.h2 { grid-row: span 2; }
+  .cell.hide { display: none; }
+  .wb-note { margin-top: 1.6rem; color: #77808b; }
+  @media (max-width: 900px) {
+    .wall { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 24vw; }
+    .f-label { min-width: 100%; }
+  }
+
+  /* ---------- the slate (lightbox) ---------- */
+  .slate-modal {
+    width: min(960px, calc(100vw - 32px)); max-height: calc(100svh - 48px);
+    background: #101215; color: #fff; border: 1px solid #2A2E34; border-radius: 18px;
+    padding: 0; overflow: hidden auto;
+  }
+  .slate-modal::backdrop { background: rgba(10, 11, 13, 0.82); backdrop-filter: blur(4px); }
+  .sm-close {
+    position: absolute; top: 12px; right: 12px; z-index: 3;
+    width: 36px; height: 36px; border-radius: 999px; cursor: pointer;
+    background: rgba(22, 24, 27, 0.8); color: #fff; border: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: .8rem;
+  }
+  .sm-close:hover { background: var(--alert); border-color: var(--alert); }
+  .sm-screen { position: relative; aspect-ratio: 16 / 9; background: #000; }
+  .sm-screen img, .sm-screen :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+  .sm-roll {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2;
+    font: 600 12px/1 var(--font-mono); letter-spacing: .1em; cursor: pointer;
+    color: #fff; background: rgba(16, 18, 21, 0.66); border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(6px); border-radius: 999px; padding: 1em 1.9em;
+  }
+  .sm-roll:hover { background: var(--alert); border-color: var(--alert); }
+  .sm-body { padding: 22px 26px 26px; }
+  .sm-client { font: 600 10.5px/1.6 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--alert); margin: 0 0 .35rem; }
+  .sm-title { color: #fff; font-size: clamp(1.15rem, 2.4vw, 1.6rem); font-weight: 800; letter-spacing: -.015em; line-height: 1.3; margin: 0 0 .8rem; }
+  .sm-desc { font-size: .93rem; line-height: 1.75; color: #b9c1c9; margin: 0 0 1rem; white-space: pre-line; max-width: 70ch; }
+  .sm-desc:empty, .sm-credits:empty { display: none; }
+  .sm-credits { font: 400 10.5px/1.7 var(--font-mono); color: #77808b; margin: 0 0 1.1rem; white-space: pre-line; }
+  .sm-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .8rem 2rem; }
+  .sm-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin: 0; }
+  .sm-tags :global(.tg) { font: 500 8.5px/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: .42em .85em; }
+  .sm-tags :global(.tg.f) { color: #7fb0f5; border: 1px solid rgba(75, 141, 240, 0.5); }
+  .sm-tags :global(.tg.i) { color: #b9c1c9; border: 1px solid #2A2E34; }
+  .sm-watch { font: 600 11px/1 var(--font-mono); letter-spacing: .08em; color: #7fb0f5; text-decoration: none; }
+  .sm-watch:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ---------- crew ---------- */
+  .crew { grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .crew { grid-template-columns: repeat(3, 1fr); } }
+  .crew-card img, .crew-card .initials {
+    width: 110px; height: 110px; border-radius: var(--radius); border: 1px solid var(--line); object-fit: cover;
+  }
+  .crew-card .initials {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card); font: 700 1.6rem var(--font-mono); color: var(--grey-2);
+  }
+  .crew-card h3 { margin-top: 1.1rem; font-size: 1.02rem; }
+  .crew-card .bio { font-size: .9rem; line-height: 1.65; }
+</style>
+
+<script>
+  // Dual-axis filtering (format + industry)
+  const state = { f: '', i: '' };
+  const wall = document.getElementById('wall');
+  const count = document.getElementById('wb-count');
+  const total = wall ? wall.children.length : 0;
+  document.getElementById('wb-filters')?.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest('.chip') as HTMLElement | null;
+    if (!b || !wall) return;
+    const dim = b.dataset.dim as 'f' | 'i';
+    state[dim] = b.dataset.v ?? '';
+    document.querySelectorAll(`.chip[data-dim="${dim}"]`).forEach((x) => x.classList.toggle('on', x === b));
+    let shown = 0;
+    for (const el of wall.children) {
+      const c = el as HTMLElement;
+      const okF = !state.f || (c.dataset.f ?? '').split('|').includes(state.f);
+      const okI = !state.i || (c.dataset.i ?? '').split('|').includes(state.i);
+      c.classList.toggle('hide', !(okF && okI));
+      if (okF && okI) shown++;
+    }
+    if (count) count.textContent = `SHOWING ${shown} / ${total}`;
+  });
+
+  // The slate: click a poster → lightbox with player, intro, credits, tags
+  const slate = document.getElementById('slate') as HTMLDialogElement | null;
+  const smStill = document.getElementById('sm-still') as HTMLImageElement | null;
+  const smScreen = document.getElementById('sm-screen');
+  const smRoll = document.getElementById('sm-roll');
+  const smClient = document.getElementById('sm-client');
+  const smTitle = document.getElementById('sm-title');
+  const smDesc = document.getElementById('sm-desc');
+  const smCredits = document.getElementById('sm-credits');
+  const smTags = document.getElementById('sm-tags');
+  const smWatch = document.getElementById('sm-watch') as HTMLAnchorElement | null;
+  let currentLink = '';
+
+  wall?.addEventListener('click', (e) => {
+    const cell = (e.target as HTMLElement).closest('.cell') as HTMLElement | null;
+    if (!cell || !slate) return;
+    e.preventDefault();
+    smScreen?.querySelector('iframe')?.remove();
+    currentLink = cell.dataset.link ?? '';
+    if (smStill) {
+      smStill.hidden = !cell.dataset.thumb;
+      if (cell.dataset.thumb) smStill.src = `/images/704/${cell.dataset.slug}.webp`;
+    }
+    if (smRoll) smRoll.hidden = !/vimeo\.com\/\d+|youtu\.be\//.test(currentLink);
+    if (smClient) smClient.textContent = cell.dataset.client ?? '';
+    if (smTitle) smTitle.textContent = cell.dataset.title ?? '';
+    if (smDesc) smDesc.textContent = cell.dataset.desc ?? '';
+    if (smCredits) smCredits.textContent = cell.dataset.credits ?? '';
+    if (smTags) smTags.innerHTML =
+      (cell.dataset.f ?? '').split('|').filter(Boolean).map((t) => `<span class="tg f">${t}</span>`).join('') +
+      (cell.dataset.i ?? '').split('|').filter(Boolean).map((t) => `<span class="tg i">${t}</span>`).join('');
+    if (smWatch) {
+      smWatch.href = currentLink;
+      smWatch.textContent = currentLink.includes('youtu') ? 'Watch on YouTube ↗' : currentLink.includes('vimeo') ? 'Watch on Vimeo ↗' : 'View on 704production.com ↗';
+    }
+    slate.showModal();
+  });
+
+  smRoll?.addEventListener('click', () => {
+    const m = currentLink.match(/vimeo\.com\/(\d+)/);
+    const yt = currentLink.match(/youtu\.be\/([\w-]+)/);
+    const src = m ? `https://player.vimeo.com/video/${m[1]}?autoplay=1` : yt ? `https://www.youtube.com/embed/${yt[1]}?autoplay=1` : '';
+    if (!src) return;
+    const f = document.createElement('iframe');
+    f.src = src;
+    f.allow = 'autoplay; fullscreen';
+    f.allowFullscreen = true;
+    smScreen?.appendChild(f);
+    if (smRoll) smRoll.hidden = true;
+  });
+
+  const closeSlate = () => {
+    smScreen?.querySelector('iframe')?.remove();
+    slate?.close();
+  };
+  document.getElementById('sm-close')?.addEventListener('click', closeSlate);
+  slate?.addEventListener('click', (e) => { if (e.target === slate) closeSlate(); });
+  slate?.addEventListener('close', () => smScreen?.querySelector('iframe')?.remove());
+</script>

@@ -1,0 +1,111 @@
+---
+import Base from '../../layouts/Base.astro';
+import works from '../../data/works.json';
+import { coverOf, galleryOf } from '../../lib/content.js';
+
+export function getStaticPaths() {
+  return works.map((w) => ({ params: { slug: w.slug }, props: { work: w } }));
+}
+
+const { work } = Astro.props;
+const others = works.filter((w) => w.slug !== work.slug).slice(0, 3);
+const cover = coverOf(work);
+const gallery = galleryOf(work);
+---
+
+<Base
+  title={`${work.client} — ${work.title} | SSHK`}
+  description={work.copy[0]}
+  ogImage={cover}
+>
+  <article>
+    <section class="section case-head">
+      <div class="wrap">
+        <p class="eyebrow">Case study</p>
+        <p class="client-line">{work.client}</p>
+        <h1 class="display">{work.title}</h1>
+        <div class="tags" style="margin-top:1.4rem;">
+          <span class="tag">{work.industry}</span>
+          {work.services.map((s) => <span class="tag">{s}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <img class="cover" src={cover} alt={`${work.client} — key visual`} width="1500" height="900" />
+    </div>
+
+    <section class="section">
+      <div class="wrap grid cols-2">
+        <div>
+          <p class="eyebrow">The story</p>
+          <h2 class="h2" style="font-size:clamp(1.4rem,2.6vw,1.9rem);">{work.tagline}</h2>
+        </div>
+        <div class="body-max">
+          {work.copy.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+    </section>
+
+    {work.results.length > 0 && (
+      <section class="section on-dark">
+        <div class="wrap">
+          <p class="eyebrow">Results</p>
+          <ul class="results-list">
+            {work.results.map((r) => <li>{r}</li>)}
+          </ul>
+        </div>
+      </section>
+    )}
+
+    {gallery.length > 0 && (
+      <section class="section tinted">
+        <div class="wrap">
+          <p class="eyebrow">In the wild</p>
+          <div class="gallery">
+            {gallery.map((src, i) => (
+              <img src={src} alt={`${work.client} campaign content ${i + 1}`} loading="lazy" width="800" height="800" />
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Keep exploring</p>
+            <h2 class="h2">More works</h2>
+          </div>
+          <a class="arrow-link" href="/works">All case studies →</a>
+        </div>
+        <div class="grid cols-3">
+          {others.map((w) => (
+            <a class="work-card" href={`/works/${w.slug}`}>
+              <span class="thumb"><img src={coverOf(w)} alt={`${w.client} — ${w.title}`} loading="lazy" width="640" height="400" /></span>
+              <span class="meta">
+                <span class="client">{w.client}</span>
+                <span class="title">{w.title}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .case-head { padding-bottom: 2.5rem; }
+  .client-line { font-family: var(--font-mono); font-size: .85rem; letter-spacing: .2em; text-transform: uppercase; color: var(--grey); margin: 0 0 .8rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .cover { width: 100%; border: var(--frame); }
+  .results-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; }
+  @media (min-width: 760px) { .results-list { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); } }
+  .results-list li { font-size: clamp(1.05rem, 1.8vw, 1.3rem); font-weight: 700; line-height: 1.5; padding-top: 1.1rem; border-top: 3px solid var(--signal); }
+  .gallery { columns: 1; column-gap: 1.5rem; }
+  @media (min-width: 640px) { .gallery { columns: 2; } }
+  @media (min-width: 1000px) { .gallery { columns: 3; } }
+  .gallery img { width: 100%; height: auto; margin-bottom: 1.5rem; border: 1px solid var(--line); background: var(--paper); break-inside: avoid; }
+</style>

@@ -1,0 +1,95 @@
+---
+const nav = [
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/works', label: 'Works' },
+  { href: '/production', label: 'Production' },
+  { href: '/clients', label: 'Clients' },
+  { href: '/careers', label: 'Careers' },
+];
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a href="/" class="logo-link" aria-label="Social Strategy Hong Kong — home">
+      <img src="/brand/sshk-logo-black.png" alt="SSHK — Social Strategy Hong Kong" width="108" height="46" loading="eager" />
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="site-nav">
+      <span aria-hidden="true">≡</span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul>
+        {nav.map((item) => (
+          <li>
+            <a href={item.href} aria-current={path === item.href || path.startsWith(item.href + '/') ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <a class="header-cta" href="/contact">Brief the desk</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(244, 246, 248, 0.92);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar { display: flex; align-items: center; gap: 1.75rem; height: 72px; }
+  .logo-link { display: flex; align-items: center; flex-shrink: 0; }
+  .logo-link img { height: 44px; width: auto; }
+
+  .site-nav { margin-left: auto; }
+  .site-nav ul { list-style: none; display: flex; gap: 1.6rem; margin: 0; padding: 0; }
+  .site-nav a {
+    color: var(--ink); text-decoration: none;
+    font-weight: 600; font-size: .82rem; letter-spacing: .01em;
+    padding: .5rem .1rem; border-bottom: 2px solid transparent;
+  }
+  .site-nav a:hover { color: var(--link); border-bottom-color: var(--link); }
+  .site-nav a[aria-current='page'] { color: var(--link); border-bottom-color: var(--link); }
+
+  .header-cta {
+    flex-shrink: 0; background: var(--ink); color: #fff; text-decoration: none;
+    font-weight: 600; font-size: .78rem; line-height: 1;
+    padding: .7rem 1.15rem; border-radius: 999px; border: 1px solid var(--ink);
+    transition: background var(--snap), border-color var(--snap);
+  }
+  .header-cta:hover { background: var(--link); border-color: var(--link); }
+
+  .menu-btn {
+    display: none; margin-left: auto;
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    width: 42px; height: 38px; cursor: pointer; color: var(--ink);
+    font-family: var(--font-mono); font-weight: 600; font-size: .95rem;
+  }
+
+  @media (max-width: 900px) {
+    .menu-btn { display: block; }
+    .header-cta { display: none; }
+    .site-nav {
+      display: none; position: absolute; left: 16px; right: 16px; top: 78px; margin: 0;
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      box-shadow: 0 18px 50px rgba(22, 24, 27, 0.12); padding: 10px;
+    }
+    .site-nav.open { display: block; }
+    .site-nav ul { flex-direction: column; gap: 0; }
+    .site-nav a { display: block; padding: .85rem .9rem; border-bottom: none; border-radius: 10px; font-size: .95rem; }
+    .site-nav a:hover { background: var(--paper); }
+  }
+</style>
+
+<script>
+  const btn = document.querySelector('.menu-btn');
+  const nav = document.getElementById('site-nav');
+  btn?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(!!open));
+  });
+</script>

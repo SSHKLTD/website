@@ -1,0 +1,14 @@
+{
+  "works": {
+    "dataSourceId": "e402825d-2e4a-4408-8179-d4c9fa6a7f01",
+    "note": "Campaign Case Study 庫 (跨客戶案例)"
+  },
+  "clients": {
+    "dataSourceId": "525d24d2-8566-4c6e-bd60-92e9d741a98a",
+    "note": "客戶索引 (Client Index)"
+  },
+  "careers": {
+    "dataSourceId": "c07a5c24-c98f-4327-85a2-a6112edda4d0",
+    "note": "招聘庫 (Careers)"
+  }
+}

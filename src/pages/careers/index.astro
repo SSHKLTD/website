@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import jobs from '../../data/jobs.json';
+---
+
+<Base
+  title="Careers | SSHK"
+  description="Join Social Strategy Hong Kong — openings in social media strategy, public affairs and research at Hong Kong's crisis-management specialists."
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Careers</p>
+      <h1 class="display">Help us hold<br /><span class="hl">the pen.</span></h1>
+      <p class="lede" style="margin-top:1.5rem;">
+        We are 50+ strategists, former journalists, producers and analysts who care about how Hong Kong
+        talks. If you read the comments section for fun, you might be one of us.
+      </p>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Open positions</p>
+          <h2 class="h2">{jobs.length} openings</h2>
+        </div>
+      </div>
+      <ul class="job-list">
+        {jobs.map((job) => (
+          <li>
+            <a class="job-row" href={`/careers/${job.slug}`}>
+              <span class="job-main">
+                <span class="job-title">{job.title}</span>
+                <span class="muted job-summary">{job.summary}</span>
+              </span>
+              <span class="tag">{job.type}</span>
+              <span class="reel-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="muted" style="margin-top:2rem;">
+        Nothing that fits? We are always happy to hear from good people —
+        <a href="mailto:info@sshk.ltd">send your CV to info@sshk.ltd</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .job-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .job-row {
+    display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 1.5rem;
+    padding: 1.5rem 0; border-bottom: 1px solid var(--line); text-decoration: none;
+  }
+  .job-main { display: flex; flex-direction: column; gap: .3rem; }
+  .job-title { font-weight: 750; font-size: 1.15rem; }
+  .job-summary { font-size: .92rem; max-width: 52ch; }
+  .job-row:hover .job-title { color: var(--signal); }
+  .reel-arrow { font-size: 1.2rem; }
+</style>

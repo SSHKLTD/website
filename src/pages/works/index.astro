@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import works from '../../data/works.json';
+import { coverOf } from '../../lib/content.js';
+
+const industries = [...new Set(works.map((w) => w.industry))];
+---
+
+<Base
+  title="Works | SSHK"
+  description="Case studies by Social Strategy Hong Kong — social retainers, campaigns and productions for MTR, HKIA, OCBC, UNICEF and more."
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Works</p>
+      <h1 class="display">Work worth<br /><span class="hl">the front page.</span></h1>
+      <p class="lede" style="margin-top:1.5rem;">
+        {works.length} stories across transport, finance, education, government and community — a race
+        down a runway, a sticker that raised donations, a city that changed its mind.
+      </p>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap">
+      <div class="filter-bar" role="group" aria-label="Filter case studies by industry">
+        <button class="tag filter-btn active" data-filter="all">All</button>
+        {industries.map((ind) => (
+          <button class="tag filter-btn" data-filter={ind}>{ind}</button>
+        ))}
+      </div>
+      <div class="grid cols-3 works-grid">
+        {works.map((w) => (
+          <a class="work-card" href={`/works/${w.slug}`} data-industry={w.industry}>
+            <span class="thumb"><img src={coverOf(w)} alt={`${w.client} — ${w.title}`} loading="lazy" width="640" height="400" /></span>
+            <span class="meta">
+              <span class="client">{w.client}</span>
+              <span class="title">{w.title}</span>
+              <span class="tags">
+                {w.services.map((s) => <span class="tag">{s}</span>)}
+              </span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .filter-bar { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2.5rem; }
+  .filter-btn { background: var(--paper); cursor: pointer; font-family: var(--font-mono); }
+  .filter-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .filter-btn:hover:not(.active) { border-color: var(--ink); color: var(--ink); }
+  .works-grid .work-card.hidden { display: none; }
+  .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.works-grid .work-card');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      buttons.forEach((b) => b.classList.toggle('active', b === btn));
+      const f = btn.dataset.filter;
+      cards.forEach((c) => c.classList.toggle('hidden', f !== 'all' && c.dataset.industry !== f));
+    });
+  });
+</script>

@@ -1,0 +1,185 @@
+---
+import Base from '../layouts/Base.astro';
+
+const founders = [
+  {
+    slug: 'alex-lo',
+    name: 'Alex Lo 盧勁業',
+    role: 'Social Media Strategy',
+    bio: 'An award-winning investigative newspaper journalist before co-founding Photoblog Group and Jervois One Group — an entrepreneur with deep skills in social media strategy and crisis management, across both traditional and digital landscapes.',
+  },
+  {
+    slug: 'nok-chan',
+    name: 'Nok Chan 陳偉諾',
+    role: 'Public Affairs',
+    bio: 'A veteran social media content creator with over 15 years of experience and solid involvement in public affairs and issue management — providing professional training and consultancy for MTR, SCB, HKIA, PolyU and UNICEF.',
+  },
+  {
+    slug: 'rex-wong',
+    name: 'Rex Wong 黃志峰',
+    role: 'Video Production',
+    bio: 'Specialises in commercial and social media video production, serving clients across gadget giants, cosmetics, NGOs, finance, F&B and government bodies.',
+  },
+  {
+    slug: 'kenneth-yung',
+    name: 'Kenneth Yung 容匡彝',
+    role: 'Photography & Design',
+    bio: 'Co-founder of Photoblog.hk, with a path running from production and media to digital marketing and e-commerce. Leads the company’s business development, with a vision of connecting passionate partners across APAC.',
+  },
+];
+
+const why = [
+  { k: 'Brand', d: 'We translate your brand into Hong Kong stories' },
+  { k: 'Insight', d: 'Journalist background to catch the next trend and potential crisis' },
+  { k: 'Strategy', d: 'Full-depth planning team embedded' },
+  { k: 'Content', d: 'Small expert teams in full gear' },
+  { k: 'Production', d: 'Comprehensive production powerhouse' },
+  { k: 'Media', d: 'Extensive KOL, media and cross-promotion networks' },
+  { k: 'Social PR', d: 'Manage media point of view from offline to online' },
+];
+---
+
+<Base
+  title="About Us | SSHK"
+  description="Social Strategy Hong Kong (SSHK) is an integrated creative communication agency — 50+ professionals grown out of Photoblog.hk, led by media veterans with deep political and public-relations acumen."
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">About us</p>
+      <h1 class="display">We started as readers,<br /><span class="hl">not marketers.</span></h1>
+      <p class="lede" style="margin-top:1.5rem;">
+        Attention is the scarcest currency in this city, and a reputation is the easiest thing to
+        spend. We built our practice the way an editor builds a paper.
+      </p>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap grid cols-2">
+      <div>
+        <p class="eyebrow">Our story</p>
+        <h2 class="h2">From Photoblog.hk<br />to full-service agency</h2>
+      </div>
+      <div class="body-max">
+        <p>
+          We began, as all good stories do, with an audience. In <strong>2010</strong>, <strong>Photoblog.hk</strong> became
+          Hong Kong's top photography portal — half a million fans, over a million views a month —
+          readers who came for the photographs and stayed for the telling.
+        </p>
+        <p>
+          By <strong>2014</strong> the platform had become a place where brands told their stories too —
+          photography and video production, social platforms, influencer management. And from
+          <strong>2017</strong>, that instinct became an <strong>ePR-led creative communication agency</strong>, growing into
+          cross-sector ventures — AI-tool development among them — with more than <strong>fifty of us</strong> on
+          the desk today.
+        </p>
+        <p>
+          That is why we built our practice the way an editor builds a paper: <strong>a listening desk that
+          never closes, a crisis team that has sat on both sides of the press release, and a studio
+          that believes the best defence a brand can have is a story worth telling.</strong>
+        </p>
+        <p style="margin-top:1.6rem;">
+          <img src="/images/photoblog-logo.webp" alt="Photoblog.hk" width="200" style="opacity:.75;" loading="lazy" />
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Our methodologies</p>
+          <h2 class="h2">Three ways we think</h2>
+        </div>
+      </div>
+      <div class="grid cols-3">
+        <div class="card">
+          <span class="num-label">01</span>
+          <h3 class="h3">Bomb Remover</h3>
+          <p class="muted">Identify brand opportunities from current affairs and crisis.</p>
+        </div>
+        <div class="card">
+          <span class="num-label">02</span>
+          <h3 class="h3">Buzz Planner</h3>
+          <p class="muted">Set the agenda for your campaigns with a forward-looking mindset.</p>
+        </div>
+        <div class="card">
+          <span class="num-label">03</span>
+          <h3 class="h3">Brand Storyteller</h3>
+          <p class="muted">Tell your brand story creatively and effectively.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Why us</p>
+          <h2 class="h2">Seven reasons brands stay</h2>
+        </div>
+      </div>
+      <dl class="why-grid">
+        {why.map((item, i) => (
+          <div class="why-item">
+            <dt><span class="num-label">{String(i + 1).padStart(2, '0')}</span> {item.k}</dt>
+            <dd class="muted">{item.d}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Meet the team</p>
+          <h2 class="h2">Founding partners</h2>
+        </div>
+      </div>
+      <p class="body-max muted" style="margin-bottom:2.5rem;">
+        Written by people who have held a deadline: public affairs, social strategy, film and visual
+        design — four specialisms, one desk.
+      </p>
+      <div class="grid founders">
+        {founders.map((f) => (
+          <div class="founder">
+            <img src={`/images/team/${f.slug}.webp`} alt={`Portrait of ${f.name}`} width="240" height="240" loading="lazy" />
+            <h3 class="h3">{f.name}</h3>
+            <p class="num-label" style="letter-spacing:.14em;">{f.role}</p>
+            <p class="muted bio">{f.bio}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section on-dark">
+    <div class="wrap">
+      <p class="eyebrow">Work with us</p>
+      <h2 class="h2">A crisis is just a story that got ahead of you.<br />Our job is to make sure nothing ever does.</h2>
+      <div style="margin-top:2rem;">
+        <a class="btn solid" href="/contact">Talk to us</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .why-grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin: 0; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .why-grid { grid-template-columns: repeat(2, 1fr); } .why-item:last-child { grid-column: 1 / -1; } }
+  @media (min-width: 1000px) { .why-grid { grid-template-columns: repeat(3, 1fr); } }
+  .why-item { background: var(--card); padding: 1.6rem 1.7rem; margin: 0; transition: background var(--snap); }
+  .why-item:hover { background: var(--paper); }
+  .why-item dt { font-weight: 800; text-transform: uppercase; letter-spacing: .04em; display: flex; gap: .8rem; align-items: baseline; }
+  .why-item dd { margin: .5rem 0 0; }
+
+  .founders { grid-template-columns: 1fr 1fr; }
+  @media (min-width: 900px) { .founders { grid-template-columns: repeat(4, 1fr); } }
+  .founder img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 1px solid var(--line); border-radius: var(--radius); }
+  .founder h3 { margin-top: 1.2rem; font-size: 1.05rem; }
+  .founder .bio { font-size: .9rem; line-height: 1.65; }
+</style>

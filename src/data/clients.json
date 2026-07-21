@@ -1,0 +1,98 @@
+[
+  {
+    "group": "Property & Conglomerates",
+    "clients": [
+      { "slug": "shkp", "name": "Sun Hung Kai Properties" },
+      { "slug": "swire", "name": "Swire" },
+      { "slug": "new-world", "name": "New World Development" },
+      { "slug": "link-reit", "name": "Link REIT" }
+    ]
+  },
+  {
+    "group": "Banking, Finance & Insurance",
+    "clients": [
+      { "slug": "standard-chartered", "name": "Standard Chartered" },
+      { "slug": "hang-seng", "name": "Hang Seng Bank" },
+      { "slug": "manulife", "name": "Manulife" },
+      { "slug": "blue-cross", "name": "Blue Cross" },
+      { "slug": "futu", "name": "Futu Securities" },
+      { "slug": "airstar", "name": "Airstar Bank" },
+      { "slug": "bct", "name": "BCT Group" }
+    ]
+  },
+  {
+    "group": "Government & Public Bodies",
+    "clients": [
+      { "slug": "hkma", "name": "Hong Kong Monetary Authority" },
+      { "slug": "sfc", "name": "Securities and Futures Commission" },
+      { "slug": "mpfa", "name": "Mandatory Provident Fund Schemes Authority" },
+      { "slug": "cyberport", "name": "Cyberport" },
+      { "slug": "hko", "name": "Hong Kong Observatory" },
+      { "slug": "cedd", "name": "Civil Engineering and Development Department" },
+      { "slug": "hktb", "name": "Hong Kong Tourism Board" },
+      { "slug": "hktdc", "name": "Hong Kong Trade Development Council" },
+      { "slug": "cic", "name": "Construction Industry Council" }
+    ]
+  },
+  {
+    "group": "Transport & Aviation",
+    "clients": [
+      { "slug": "mtr", "name": "MTR Corporation" },
+      { "slug": "cathay-pacific", "name": "Cathay Pacific" },
+      { "slug": "aahk", "name": "Airport Authority Hong Kong" }
+    ]
+  },
+  {
+    "group": "Education",
+    "clients": [
+      { "slug": "hku", "name": "The University of Hong Kong" },
+      { "slug": "cuhk", "name": "The Chinese University of Hong Kong" },
+      { "slug": "hkust", "name": "HKUST" },
+      { "slug": "cityu", "name": "City University of Hong Kong" },
+      { "slug": "hkbu", "name": "Hong Kong Baptist University" },
+      { "slug": "vtc", "name": "Vocational Training Council" },
+      { "slug": "hkiaa", "name": "Hong Kong International Aviation Academy" }
+    ]
+  },
+  {
+    "group": "NGO & Community",
+    "clients": [
+      { "slug": "hkjc", "name": "The Hong Kong Jockey Club" },
+      { "slug": "greenpeace", "name": "Greenpeace" },
+      { "slug": "unicef", "name": "UNICEF" },
+      { "slug": "community-chest", "name": "The Community Chest" }
+    ]
+  },
+  {
+    "group": "Consumer, Tech & Lifestyle",
+    "clients": [
+      { "slug": "alibaba", "name": "Alibaba" },
+      { "slug": "tesla", "name": "Tesla" },
+      { "slug": "casetify", "name": "CASETiFY" },
+      { "slug": "foodpanda", "name": "foodpanda" },
+      { "slug": "fortress", "name": "Fortress" },
+      { "slug": "dairy-farm", "name": "Dairy Farm" },
+      { "slug": "tsl", "name": "TSL Jewellery" },
+      { "slug": "lecole", "name": "L'ECOLE School of Jewelry Arts" },
+      { "slug": "smartone", "name": "SmarTone" },
+      { "slug": "sony", "name": "Sony" },
+      { "slug": "samsung", "name": "Samsung" },
+      { "slug": "nikon", "name": "Nikon" },
+      { "slug": "canon", "name": "Canon" },
+      { "slug": "hkhc", "name": "Hong Kong Health Check" },
+      { "slug": "yahoo", "name": "Yahoo" },
+      { "slug": "ap", "name": "Advance Pharmaceutical" },
+      { "slug": "groupe-seb", "name": "Groupe SEB" },
+      { "slug": "resolve", "name": "RESOLVE" },
+      { "slug": "nokia", "name": "Nokia" }
+    ]
+  },
+  {
+    "group": "Events & Campaigns",
+    "clients": [
+      { "slug": "sc-marathon", "name": "Standard Chartered Hong Kong Marathon" },
+      { "slug": "nw-harbour-race", "name": "New World Harbour Race" },
+      { "slug": "john-tsang", "name": "John Tsang 2017 Campaign" }
+    ]
+  }
+]

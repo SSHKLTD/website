@@ -1,34 +1,85 @@
-# sshk.ltd — Social Strategy Hong Kong
+# SSHK Website
 
-Modern, minimal redesign of [www.sshk.ltd](https://www.sshk.ltd/), replacing the
-previous Wix build with a fast, dependency-free static site.
+Company website for **Social Strategy Hong Kong Limited** (sshk.ltd) — a static
+[Astro](https://astro.build) site whose changing content (case studies, client wall,
+job openings) is managed in **Notion** and pulled in at build time.
 
-## Design
-
-- **Brand colour kept**: the original theme red `#AF1B08` drives all accents,
-  on a warm-paper background (`#FAF9F7`) with near-black ink (`#141412`).
-- **Typography**: Space Grotesk (display) + Inter (body), via Google Fonts.
-- **Editorial minimal layout**: numbered sections, hairline rules, a
-  works index list, client marquee, and a dark contact section.
-- **Accessible & responsive**: semantic HTML, skip link, keyboard-friendly
-  mobile nav, `prefers-reduced-motion` support, WCAG AA colour contrast.
-- **No build step, no framework**: plain HTML/CSS/JS. Deploy anywhere
-  (GitHub Pages, Netlify, any static host).
-
-## Structure
+## Architecture
 
 ```
-index.html          Single-page site (Home, About, Services, Works, Clients, Team, Contact)
-assets/css/style.css
-assets/js/main.js   Header state, mobile nav, reveal-on-scroll
-favicon.svg
+Notion databases ──(official API, build-time)──► Astro build ──► Cloudflare Pages (CDN)
+  案例庫 / 客戶索引 / 招聘庫                        images mirrored locally
 ```
 
-## Local preview
+- **Coded pages** (home, about, services, contact) live in `src/pages/` — full design control.
+- **Content collections** live in Notion. `npm run sync` (see below) regenerates
+  `src/data/works.json`, `src/data/clients.json` and `src/data/jobs.json` and mirrors
+  Notion-hosted images into `public/images/notion/` (Notion file URLs expire after
+  ~1 hour, so they must be downloaded at build time).
+- Without `NOTION_TOKEN`, the build simply uses the committed JSON — the site never
+  breaks because Notion is unreachable.
 
-Any static server works:
+## Editing content (for the team — no code needed)
 
-```sh
-python3 -m http.server 8000
-# open http://localhost:8000
+| To change…       | Edit in Notion…                                   | Gate to publish                          |
+| ---------------- | ------------------------------------------------- | ---------------------------------------- |
+| Case studies     | Campaign Case Study 庫 → view「網站內容」         | 網站顯示 ✓ **and** 可否引用 = 可公開引用 |
+| Client wall      | 客戶索引 → view「網站內容」                       | 網站顯示 ✓ (+ upload Logo)               |
+| Job openings     | 招聘庫 (Careers)                                  | 網站顯示 ✓ **and** 狀態 = Open           |
+
+Required fields for a case study to appear: `Slug`, `網站標題 (EN)`, `網站文案 (EN)`.
+Optional: `成效數據 (EN)` (separate multiple stats with `|`), `封面圖`, `圖庫`, `精選`
+(featured on the homepage), `網站排序`.
+
+**Confidentiality by design:** the sync script only reads whitelisted fields. Internal
+columns (目標, Learnings, 摘要, 負責同事, 報價 …) are never queried and can never reach
+the website.
+
+## Local development
+
+```bash
+npm install
+npm run dev        # http://localhost:4321
+npm run build      # static build into dist/
+npm run sync       # pull content from Notion (needs NOTION_TOKEN)
+npm run build:cms  # sync + build (use as the CI build command once token is set)
+```
+
+## Deployment (Cloudflare Pages)
+
+1. Create a Pages project connected to this repo.
+   - Build command: `npm run build` (later: `npm run build:cms`)
+   - Output directory: `dist`
+2. Environment variables (Pages dashboard):
+   - `NOTION_TOKEN` — internal integration token; share the three Notion databases
+     with the integration first (Database ⋯ menu → Connections).
+   - `RESEND_API_KEY`, `CONTACT_TO` — contact-form delivery (`functions/api/contact.ts`).
+     Until set, the form shows a mailto fallback.
+3. Publishing flow:
+   - Now: the **Daily rebuild** GitHub Action (`.github/workflows/daily-rebuild.yml`)
+     hits a Pages deploy hook once a day — set the `CLOUDFLARE_DEPLOY_HOOK` secret.
+   - Later (paid Notion plan): add a Notion database-automation webhook pointing at the
+     same deploy-hook URL for publish-on-click.
+
+## Domain migration checklist (leaving Wix) — ⚠️ read before switching DNS
+
+1. **Email first:** MX records point to Google Workspace but live on Wix DNS today.
+   Re-create ALL MX/TXT (SPF, DKIM) records in Cloudflare DNS **before** switching
+   nameservers, or company email stops.
+2. Confirm the domain registrar (if registered via Wix: EPP code + 60-day lock rules).
+3. Keep `public/_redirects` — it maps all 16 legacy Wix paths (Wix cannot 301 after
+   cancellation). Verify each one after go-live.
+4. Register the site in Google Search Console before and after the switch.
+5. Only cancel the Wix subscription after a ~2-week observation period.
+
+## Repo map
+
+```
+src/pages/          all routes (index, about, services/*, works/*, clients, careers/*, contact, 404)
+src/data/           content JSON — regenerated by scripts/sync-notion.mjs
+src/lib/content.js  image-path helpers (seed JSON vs Notion-synced data)
+scripts/            Notion sync + database IDs (scripts/notion.config.json)
+functions/          Cloudflare Pages Functions (contact form)
+public/_redirects   legacy Wix URL → new URL 301 map
+public/images/      pre-optimised assets (originals archived separately)
 ```

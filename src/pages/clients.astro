@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import clientGroups from '../data/clients.json';
+import { logoOf } from '../lib/content.js';
+
+const total = clientGroups.reduce((n, g) => n + g.clients.length, 0);
+---
+
+<Base
+  title="Our Clients | SSHK"
+  description={`${total} institutions and brands trust Social Strategy Hong Kong — from MTR and Cathay Pacific to universities, government bodies and NGOs.`}
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Our clients</p>
+      <h1 class="display">The company<br /><span class="hl">we keep.</span></h1>
+      <p class="lede" style="margin-top:1.5rem;">
+        {total} leading organisations keep this channel open — railways, airlines, banks, universities
+        and charities, the kind of names that can't afford a bad day.
+      </p>
+    </div>
+  </section>
+
+  {clientGroups.map((group) => (
+    <section class="section group-section">
+      <div class="wrap">
+        <h2 class="group-title"><span class="num-label">{group.clients.length}</span> {group.group}</h2>
+        <ul class="logo-grid">
+          {group.clients.map((c) => (
+            <li><img src={logoOf(c)} alt={c.name} loading="lazy" title={c.name} /></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  ))}
+
+  <section class="section on-dark">
+    <div class="wrap">
+      <p class="eyebrow">Join them</p>
+      <h2 class="h2">And the next name on this wall<br />could be the one we listen for.</h2>
+      <div style="margin-top:2rem;">
+        <a class="btn solid" href="/contact">Talk to us</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .group-section { padding-block: clamp(2rem, 4vw, 3rem); }
+  .group-title {
+    font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em;
+    display: flex; align-items: baseline; gap: .9rem; margin-bottom: 1.4rem;
+  }
+  .logo-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  @media (min-width: 560px) { .logo-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 900px) { .logo-grid { grid-template-columns: repeat(4, 1fr); } }
+  .logo-grid li { background: var(--card); display: flex; align-items: center; justify-content: center; padding: 2.1rem 1.6rem; min-height: 9rem; }
+  .logo-grid img { max-height: 4.8rem; width: auto; max-width: 100%; filter: grayscale(1); opacity: .8; transition: filter .2s ease, opacity .2s ease; }
+  .logo-grid li:hover img { filter: none; opacity: 1; }
+</style>

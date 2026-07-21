@@ -1,0 +1,892 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site.js';
+import works from '../data/works.json';
+import clientGroups from '../data/clients.json';
+import { coverOf } from '../lib/content.js';
+
+const featured = works.filter((w) => w.featured).slice(0, 3);
+
+// Creative lantern 走馬燈 — every campaign on the reel, two counter-scrolling rows
+const lanternA = works.filter((_, i) => i % 2 === 0);
+const lanternB = works.filter((_, i) => i % 2 === 1);
+const logoStrip = ['mtr', 'cathay-pacific', 'standard-chartered', 'hkjc', 'alibaba', 'unicef', 'hku', 'tesla', 'hang-seng', 'foodpanda', 'hktb', 'samsung'];
+
+// Triage band — the hero's posts, pinned and worked: read → score → flag → respond
+const tposts = [
+  { u: '@foodie852', t: '2m', p: '呢間新餐廳排隊兩粒鐘，值唔值？', f: '♥ 689 · ↻ 76', s: 'READ ✓ 0.4s', score: '+0.62', neg: false, x: '1%', y: '4%', r: '-1.5deg', i: 0 },
+  { u: '熱門', t: '5m', p: '機場新跑道 好正 ✈️', f: '♥ 3.8k · ↻ 1.4k', s: 'READ ✓ 0.7s', score: '+0.81', neg: false, x: '35%', y: '0%', r: '1deg', i: 1 },
+  { u: '@user2081', t: '7m', p: '個 brand 道歉聲明寫得幾好，respect', f: '♥ 954 · ↻ 218', s: 'READ ✓ 1.1s', score: '+0.55', neg: false, x: '69%', y: '6%', r: '-1deg', i: 2 },
+  { u: '@user432', t: '4m', p: '今次公關災難⋯⋯點收科 🙈', f: '♥ 1.2k · ↻ 340', s: 'READ ✓ 0.3s', score: '−0.78', neg: true, act: '→ LINE-TO-TAKE ISSUED', x: '5%', y: '52%', r: '1.4deg', i: 3 },
+  { u: '討論區', t: '11m', p: '客服三日冇覆，開 post 鬧爆 😤', f: '♥ 2.1k · ↻ 690', s: 'READ ✓ 0.6s', score: '−0.66', neg: true, act: '→ COUNTER-STORY LIVE', x: '38%', y: '56%', r: '-1.2deg', i: 4 },
+  { u: '@hk_daily', t: '9m', p: '個 campaign 係咪抄嘢？有圖', f: '♥ 840 · ↻ 152', s: 'READ ✓ 0.9s', score: '−0.41', neg: true, act: '→ STATEMENT DRAFTED', x: '71%', y: '50%', r: '.8deg', i: 5 },
+];
+const logoNames = Object.fromEntries(
+  clientGroups.flatMap((g) => g.clients.map((c) => [c.slug, c.name]))
+);
+
+// Anonymised, invented posts for the ambient stream (decorative only).
+// mk = keeps showing on mobile · rk/rl = shown in the reduced-motion static sample
+const posts = [
+  // right lane (sharp)
+  { u: '@user432', t: '4m', p: '今次公關災難…點收科 🙈', f: '♥ 1.2k · ↻ 340', cls: 'mk rk read', vars: '--x:76%;--d:28s;--dl:-4s;--mx:52%;--sx:74%;--st:10%', s: 'READ ✓ 0.4s' },
+  { u: '熱門', t: '2m', p: '機場新跑道 好正 ✈️', f: '♥ 3.8k · ↻ 1.4k', cls: 'mk rk read', vars: '--x:86%;--d:34s;--dl:-18s;--mx:8%;--sx:74%;--st:44%', s: 'READ ✓ 0.3s' },
+  { u: '熱門', t: '33s', p: '兩餸飯評測 thread 🍱 越寫越長', f: '♥ 2.1k · ↻ 690', cls: '', vars: '--x:80%;--d:30s;--dl:-2s', s: 'READ ✓ 0.5s' },
+  { u: '@user660', t: '9m', p: '個 campaign 條片幾好笑，已 share', f: '♥ 1.5k · ↻ 412', cls: '', vars: '--x:72%;--d:42s;--dl:-33s', s: 'READ ✓ 0.3s' },
+  // left lane (sharp)
+  { u: '@foodie852', t: '11m', p: '呢間新餐廳排隊兩粒鐘，值唔值?', f: '♥ 689 · ↻ 76', cls: 'mk rk read', vars: '--x:8%;--d:30s;--dl:-12s;--mx:30%;--sx:7%;--st:24%', s: 'READ ✓ 0.6s' },
+  { u: '#週末好去處', t: '26m', p: '西九自由約 📷 影唔停', f: '♥ 2.6k · ↻ 3.4k', cls: 'mk rk', vars: '--x:2%;--d:26s;--dl:-22s;--mx:58%;--sx:7%;--st:62%', s: 'READ ✓ 0.4s' },
+  { u: '@user2081', t: '7m', p: '個 brand 道歉聲明寫得幾好，respect', f: '♥ 954 · ↻ 218', cls: '', vars: '--x:14%;--d:38s;--dl:-8s', s: 'READ ✓ 0.2s' },
+  { u: '@nightowl852', t: '18m', p: '深夜茶餐廳 recommendations please 🥚', f: '♥ 212 · ↻ 31', cls: 'mk', vars: '--x:5%;--d:36s;--dl:-27s;--mx:16%', s: 'READ ✓ 0.4s' },
+  // blurred edge lanes (both sides)
+  { u: '#天文台', t: '1m', p: '黃雨定紅雨? ☔ 帶遮先', f: '♥ 5.2k · ↻ 2.0k', cls: 'edge rk rl read', vars: '--x:1%;--d:46s;--dl:-6s;--sx:1%;--st:82%', s: 'READ ✓ 0.4s' },
+  { u: '@user917', t: '41m', p: '客服半個鐘內覆 IG DM，加分', f: '♥ 178 · ↻ 12', cls: 'edge', vars: '--x:20%;--d:50s;--dl:-24s', s: 'READ ✓ 0.5s' },
+  { u: '熱門', t: '3h', p: '渡輪夜航 加開班次', f: '♥ 820 · ↻ 145', cls: 'edge', vars: '--x:26%;--d:44s;--dl:-38s', s: 'READ ✓ 0.4s' },
+  { u: '@mk_walker', t: '55m', p: '旺角新壁畫 打卡位 📍', f: '♥ 645 · ↻ 88', cls: 'edge rk rl', vars: '--x:91%;--d:46s;--dl:-15s;--sx:90%;--st:66%', s: 'READ ✓ 0.6s' },
+  { u: '#跑步', t: '2h', p: '10km 初馬 有咩 tips? 🏃', f: '♥ 356 · ↻ 44', cls: 'edge', vars: '--x:64%;--d:40s;--dl:-30s', s: 'READ ✓ 0.4s' },
+  { u: '@user333', t: '12m', p: '睇完個 statement，印象改觀', f: '♥ 508 · ↻ 96', cls: 'edge', vars: '--x:88%;--d:52s;--dl:-11s', s: 'READ ✓ 0.3s' },
+];
+
+const modules = [
+  {
+    tag: 'DESK/LISTEN',
+    key: 'LISTEN',
+    zh: '聆聽',
+    svc: 'Social Listening',
+    href: '/services/social-listening',
+    body: 'Every crisis is a whisper before it is a headline. Our desk reads Hong Kong the way an editor reads the wires — around the clock, across every platform, in both languages the city argues in — so you hear the murmur while it is still a murmur.',
+    meta: 'coverage: <b>24/7</b> · languages: <b>2</b> · first read: <b>&lt; 2 hrs</b>',
+  },
+  {
+    tag: 'DESK/MANAGE',
+    key: 'MANAGE',
+    zh: '應變',
+    svc: 'Issue & Crisis Management',
+    href: '/services/issue-management',
+    body: 'When the story turns, the worst place to draft your reply is the middle of the storm. We have sat on the other side of the press release — so we write the statement, brief the room, and steady the narrative while it can still be steadied.',
+    meta: 'first read: <b>&lt; 2 hrs</b> · escalation: <b>one call</b> · debrief: <b>full report</b>',
+  },
+  {
+    tag: 'DESK/CREATE',
+    key: 'CREATE',
+    zh: '創作',
+    svc: 'Campaign & Production',
+    href: '/services/campaign-production',
+    body: 'The best defence is a story worth telling. From key visual to final cut, our studio makes work people share because they want to — campaigns with a beginning, a middle, and a reason to care.',
+    meta: 'studio: <b>in-house</b> · format: <b>KV → final cut</b> · since: <b>2010</b>',
+  },
+];
+
+const orgLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.legalName,
+  alternateName: site.shortName,
+  url: site.url,
+  logo: `${site.url}/brand/sshk-logo-black.png`,
+  email: site.email,
+  telephone: site.phone,
+  foundingDate: String(site.foundedYear),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '6/F, China Paint Building, No. 1163 Canton Road',
+    addressLocality: 'Mong Kok',
+    addressRegion: 'Kowloon',
+    addressCountry: 'HK',
+  },
+  sameAs: [site.facebook, site.linkedin],
+});
+---
+
+<Base title="Social Strategy Hong Kong | Crisis Management Expert">
+  <script slot="head" type="application/ld+json" set:html={orgLd} />
+
+  <section class="hero">
+    <div class="stream" aria-hidden="true">
+      {posts.map((post) => (
+        <article class={`post ${post.cls}`} style={post.vars}>
+          <header><span class="u">{post.u}</span><span class="t">{post.t}</span></header>
+          <p>{post.p}</p>
+          <footer>{post.f}</footer>
+          <span class="rstamp">{post.s}</span>
+        </article>
+      ))}
+    </div>
+
+    <div class="veil" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <div class="hero-panel">
+        <p class="hero-kicker">Social Strategy Hong Kong · Crisis Management Expert · 危機管理</p>
+        <h1 class="display">Every brand is one headline away from becoming the story.</h1>
+        <p class="hero-sub">
+          We are the newsroom on your side of it — fifty storytellers and former journalists, reading
+          Hong Kong around the clock, so the next chapter is written by you, not about you.
+        </p>
+        <div class="hero-actions">
+          <a class="btn solid" href="/contact">Brief the desk</a>
+          <a class="btn" href="/works">Read our stories</a>
+        </div>
+        <p class="hero-note">MONG KOK DESK · UTC+8 · EVERY BRIEF READ WITHIN 2H</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-wrap" aria-label="Monitoring summary">
+    <div class="wrap">
+      <div class="stats-panel">
+        <div class="stats-head">
+          <span><span class="k">MONITORING SUMMARY</span> · MONG KOK DESK</span>
+          <span>SHIFT: ALWAYS · LOG CONTINUOUS SINCE 2010</span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-cell"><span class="key">since</span><p class="num">2010</p><p class="lbl">roots in Photoblog.hk</p></div>
+          <div class="stat-cell"><span class="key">headcount</span><p class="num">50+</p><p class="lbl">storytellers, producers &amp; former journalists</p></div>
+          <div class="stat-cell"><span class="key">coverage</span><p class="num">24/7</p><p class="lbl">the desk never closes</p></div>
+          <div class="stat-cell"><span class="key">reading for</span><p class="num">55+</p><p class="lbl">leading organisations</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="chapter" role="presentation" aria-hidden="true">
+    <div class="wrap ch-line"><span class="ch-label">CH 01 · SOCIAL SENTIMENT MANAGEMENT · 守</span></div>
+  </div>
+
+  <section class="triage" id="triage" aria-label="From read to response">
+    <div class="t-track">
+      <div class="t-stick">
+        <div class="wrap t-grid">
+          <div class="t-rail">
+            <p class="eyebrow">The triage · 讀完之後</p>
+            <h2 class="h2">Read. Scored.<br />Flagged. Handled.</h2>
+            <ol class="t-steps">
+              <li class="s0">
+                <span class="t-num">00</span>
+                <div><h3>Read 讀</h3><p>Every mention is read by the desk — 1M+ channels, five-minute crawls, nothing skimmed.</p></div>
+              </li>
+              <li class="s1">
+                <span class="t-num">01</span>
+                <div><h3>Score 評分</h3><p>Each post gets a number. Green can wait. Red cannot.</p></div>
+              </li>
+              <li class="s2">
+                <span class="t-num">02</span>
+                <div><h3>Flag 掛旗</h3><p>Whatever can hurt the brand goes on the watchlist — graded on five dimensions, not gut feel.</p></div>
+              </li>
+              <li class="s3">
+                <span class="t-num">03</span>
+                <div>
+                  <h3>Respond 處理</h3>
+                  <p>Flagged means handled — a line-to-take, a counter-story, a quiet fix, before the post becomes the story.</p>
+                  <a class="arrow-link" href="#playbook">See how we fight the fire ↓</a>
+                </div>
+              </li>
+            </ol>
+          </div>
+          <div class="t-stage" aria-hidden="true">
+            <span class="t-count">FLAGGED <b>3 / 6</b></span>
+            {tposts.map((post) => (
+              <article class={`tcard ${post.neg ? 'neg' : 'pos'}`} style={`--tx:${post.x};--ty:${post.y};--tr:${post.r};--i:${post.i}`}>
+                <header><span class="u">{post.u}</span><span class="t">{post.t}</span></header>
+                <p>{post.p}</p>
+                <footer>{post.f}</footer>
+                <span class="tstamp">{post.s}</span>
+                <span class="score">{post.score}</span>
+                {post.neg && <span class="tflag">⚑ WATCHLIST</span>}
+                {post.neg && <span class="thandle">{post.act}</span>}
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted" id="playbook">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">The playbook · 由觀天到救火</span>
+          <h2 class="h2">From forecast to fire-out</h2>
+        </div>
+        <a class="arrow-link" href="/services/issue-management">The full crisis cycle →</a>
+      </div>
+      <p class="lede" style="margin-bottom:2.5rem;">
+        Hong Kong reads weather signals; we read sentiment the same way. Every crisis follows a
+        cycle — and at every stage of it, there is a right move.
+      </p>
+      <ol class="process">
+        <li>
+          <div class="scene" aria-hidden="true">
+            <svg viewBox="0 0 220 96" class="scene-svg">
+              <circle cx="110" cy="50" r="14" fill="none" stroke="#C9D4DE" stroke-width="1" />
+              <circle cx="110" cy="50" r="28" fill="none" stroke="#C9D4DE" stroke-width="1" />
+              <circle cx="110" cy="50" r="42" fill="none" stroke="#C9D4DE" stroke-width="1" />
+              <line class="sweep" x1="110" y1="50" x2="152" y2="50" stroke="var(--link)" stroke-width="2" stroke-linecap="round" />
+              <circle cx="110" cy="50" r="2.5" fill="var(--ink)" />
+              <circle class="blip b1" cx="134" cy="32" r="3.5" fill="var(--link)" />
+              <circle class="blip b2" cx="86" cy="64" r="3.5" fill="var(--alert)" />
+            </svg>
+          </div>
+          <span class="p-tag">01 · 觀天 FORECAST</span>
+          <h3 class="p-title">Watch the sky</h3>
+          <p>AI monitoring across 1M+ channels, five-minute crawl intervals, trend prediction — the whisper is caught while it is still a whisper.</p>
+        </li>
+        <li>
+          <div class="scene" aria-hidden="true">
+            <svg viewBox="0 0 220 96" class="scene-svg">
+              <line x1="86" y1="10" x2="86" y2="86" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" />
+              <line x1="86" y1="12" x2="112" y2="12" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" />
+              <line x1="112" y1="12" x2="112" y2="22" stroke="#C9D4DE" stroke-width="1.5" />
+              <polygon class="t8" points="112,22 128,50 96,50" fill="var(--ink)" />
+              <text class="t8-tag" x="140" y="46" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--alert)" font-weight="600">T·8</text>
+              <line x1="60" y1="86" x2="160" y2="86" stroke="#C9D4DE" stroke-width="1.5" />
+            </svg>
+          </div>
+          <span class="p-tag">02 · 掛波 HOIST THE SIGNAL</span>
+          <h3 class="p-title">Raise the signal early</h3>
+          <p>Risk assessment, emergency plans and lines-to-take prepared before the storm makes landfall — so nobody drafts in the rain.</p>
+        </li>
+        <li>
+          <div class="scene" aria-hidden="true">
+            <svg viewBox="0 0 220 96" class="scene-svg">
+              <line x1="8" y1="74" x2="212" y2="74" stroke="#C9D4DE" stroke-width="1" stroke-dasharray="3 4" />
+              <path class="spike" pathLength="100" d="M8,70 L56,64 L92,22" fill="none" stroke="var(--alert)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path class="calmed" pathLength="100" d="M92,22 L122,58 L154,50 L212,46" fill="none" stroke="var(--link)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path class="flame" d="M92,20 C88,14 90,9 92,5 C94,9 97,11 96,15 C99,13 99,11 99,9 C101,13 100,18 96,20 Z" fill="var(--alert)" />
+            </svg>
+          </div>
+          <span class="p-tag">03 · 救火 FIGHT THE FIRE</span>
+          <h3 class="p-title">Contain and steady</h3>
+          <p>Press-release optimisation, alternative-opinion development, correct-information penetration and sentiment management — stage by stage of the crisis cycle.</p>
+        </li>
+        <li>
+          <div class="scene" aria-hidden="true">
+            <svg viewBox="0 0 220 96" class="scene-svg">
+              <line x1="8" y1="84" x2="212" y2="84" stroke="#C9D4DE" stroke-width="1.5" />
+              <rect class="bar r1" x="34" y="66" width="22" height="18" rx="2" fill="#C9D4DE" />
+              <rect class="bar r2" x="72" y="54" width="22" height="30" rx="2" fill="#AFC4D6" />
+              <rect class="bar r3" x="110" y="40" width="22" height="44" rx="2" fill="var(--link)" opacity=".55" />
+              <rect class="bar r4" x="148" y="26" width="22" height="58" rx="2" fill="var(--link)" />
+              <path class="rise" pathLength="100" d="M45,60 L83,48 L121,32 L159,20 L196,14" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" />
+              <circle class="rise-dot" cx="196" cy="14" r="3.5" fill="var(--ink)" />
+            </svg>
+          </div>
+          <span class="p-tag">04 · 重建 REBUILD</span>
+          <h3 class="p-title">Rebuild, then fireproof</h3>
+          <p>The best defence is a story worth telling: creative campaigns and community acquisition that leave the brand stronger than before the smoke.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Works · from the archive</span>
+          <h2 class="h2">Stories we turned around</h2>
+        </div>
+        <a class="arrow-link" href="/works">All case studies →</a>
+      </div>
+      <div class="grid cols-3">
+        {featured.map((w) => (
+          <a class="work-card" href={`/works/${w.slug}`}>
+            <span class="thumb"><img src={coverOf(w)} alt={`${w.client} — ${w.title}`} loading="lazy" width="640" height="400" /></span>
+            <span class="meta">
+              <span class="client">{w.client} · {w.services[0]}</span>
+              <span class="title">{w.title}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="chapter" role="presentation" aria-hidden="true">
+    <div class="wrap ch-line"><span class="ch-label">CH 02 · SOCIAL APPEARANCE MANAGEMENT · 創</span></div>
+  </div>
+
+  <section class="section tinted creative" id="creative">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">The creative desk · 走馬燈</span>
+          <h2 class="h2">The best defence is a story<br />worth telling.</h2>
+        </div>
+        <a class="arrow-link" href="/services/campaign-production">Campaign &amp; production →</a>
+      </div>
+    </div>
+    <div class="lantern" aria-label="Creative campaign showreel">
+      <div class="m-row m-left">
+        <div class="m-set">
+          {lanternA.map((w) => (
+            <a class="m-item" href={`/works/${w.slug}`}>
+              <img src={coverOf(w)} alt={`${w.client} — ${w.title}`} loading="lazy" width="320" height="200" />
+              <span class="m-cap">{w.client}</span>
+            </a>
+          ))}
+        </div>
+        <div class="m-set" aria-hidden="true">
+          {lanternA.map((w) => (
+            <a class="m-item" href={`/works/${w.slug}`} tabindex="-1">
+              <img src={coverOf(w)} alt="" loading="lazy" width="320" height="200" />
+              <span class="m-cap">{w.client}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="m-row m-right">
+        <div class="m-set">
+          {lanternB.map((w) => (
+            <a class="m-item" href={`/works/${w.slug}`}>
+              <img src={coverOf(w)} alt={`${w.client} — ${w.title}`} loading="lazy" width="320" height="200" />
+              <span class="m-cap">{w.client}</span>
+            </a>
+          ))}
+        </div>
+        <div class="m-set" aria-hidden="true">
+          {lanternB.map((w) => (
+            <a class="m-item" href={`/works/${w.slug}`} tabindex="-1">
+              <img src={coverOf(w)} alt="" loading="lazy" width="320" height="200" />
+              <span class="m-cap">{w.client}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+    <div class="wrap studio-line">
+      <span class="num-label">PRODUCED IN-HOUSE ·</span>
+      <a class="arrow-link" href="/production">704 Production — the group's production floor →</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Services · the desk, three ways</span>
+          <h2 class="h2">One desk. Three shifts of work.</h2>
+        </div>
+        <a class="arrow-link" href="/services">All services →</a>
+      </div>
+      <div class="grid cols-3">
+        {modules.map((m) => (
+          <a class="module" href={m.href}>
+            <p class="module-tag">{m.tag}</p>
+            <h3>{m.key} <span class="zh" lang="zh-Hant">{m.zh}</span></h3>
+            <p class="svc">{m.svc}</p>
+            <p class="mbody">{m.body}</p>
+            <p class="meta-row" set:html={m.meta} />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Clients</span>
+          <h2 class="h2">Names we read for</h2>
+        </div>
+        <a class="arrow-link" href="/clients">All clients →</a>
+      </div>
+      <ul class="logo-strip" aria-label="Selected clients">
+        {logoStrip.map((slug) => (
+          <li><img src={`/images/clients/${slug}.webp`} alt={logoNames[slug] ?? slug} loading="lazy" /></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cta-panel">
+        <div class="cta-copy">
+          <span class="eyebrow">File a brief</span>
+          <h2 class="h2">The next chapter is unwritten. Let's decide who holds the pen.</h2>
+          <p class="muted">
+            Whether the story is turning against you or simply waiting to be told — tell us where it
+            stands. The desk reads every brief within two hours.
+          </p>
+          <div class="hero-actions">
+            <a class="btn solid" href="/contact">Brief the desk</a>
+            <a class="btn" href={site.phoneHref}>Call {site.phone}</a>
+          </div>
+          <p class="cta-contacts">
+            BRIEFS → <a href={`mailto:${site.email}`}>{site.email}</a><br />
+            HOTLINE → <a href={site.phoneHref}>{site.phone}</a>
+          </p>
+        </div>
+        <figure class="cta-photo">
+          <img src="/images/studio.webp" alt="The SSHK team on the rooftop of China Paint Building, Mong Kok" loading="lazy" />
+          <figcaption>THE DESK · CHINA PAINT BUILDING · MONG KOK</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ---------- hero + stream ---------- */
+  .hero {
+    position: relative; overflow: clip;
+    min-height: max(640px, calc(100svh - 72px));
+    display: flex; align-items: center;
+    padding: 64px 0 96px;
+  }
+  .stream {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  }
+  .post {
+    position: absolute; left: var(--x); top: 110%; width: 216px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 11px 13px 10px; box-shadow: 0 10px 26px rgba(22, 24, 27, 0.07);
+    pointer-events: auto;
+    animation: drift var(--d) linear var(--dl) infinite;
+  }
+  .post header { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 5px; font: 500 10.5px/1 var(--font-mono); }
+  .post header .u { color: var(--link); }
+  .post header .t { color: var(--grey-2); }
+  .post p { font: 400 12px/1.5 var(--font-sans); color: var(--ink); margin: 0; }
+  .post footer { margin-top: 7px; font: 400 10px/1 var(--font-mono); color: var(--grey-2); }
+  .post:hover { animation-play-state: paused; }
+  .post:hover .rstamp { animation-play-state: paused; }
+  .post.edge { filter: blur(1.7px); opacity: .55; }
+
+  .rstamp {
+    position: absolute; top: -10px; right: -9px;
+    font: 600 9.5px/1 var(--font-mono); letter-spacing: .05em; white-space: nowrap;
+    color: var(--alert); background: var(--card); border: 1px solid var(--alert);
+    border-radius: 999px; padding: 4px 8px;
+    opacity: 0; transform: rotate(-4deg) scale(.5);
+    animation: stampIn var(--d) linear var(--dl) infinite;
+  }
+  @keyframes drift { from { top: 110%; } to { top: -34%; } }
+  /* desk line at 60% → cards cross at (110−60)/144 ≈ 34.7% of the loop */
+  @keyframes stampIn {
+    0%, 34.5% { opacity: 0; transform: rotate(-4deg) scale(.5); }
+    36.2% { opacity: 1; transform: rotate(-4deg) scale(1.14); }
+    38% { transform: rotate(-4deg) scale(1); }
+    100% { opacity: 1; transform: rotate(-4deg) scale(1); }
+  }
+  @keyframes stampInM {
+    0%, 16.4% { opacity: 0; transform: rotate(-4deg) scale(.5); }
+    18.2% { opacity: 1; transform: rotate(-4deg) scale(1.14); }
+    20% { transform: rotate(-4deg) scale(1); }
+    100% { opacity: 1; transform: rotate(-4deg) scale(1); }
+  }
+
+  .stream { z-index: 1; }
+
+  /* readability veil: copy is centred, cards run clear lanes both sides;
+     anything drifting behind the centre column fades under this glow */
+  .veil {
+    position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background: radial-gradient(ellipse 46% 72% at 50% 46%,
+      var(--paper) 34%,
+      color-mix(in srgb, var(--paper) 72%, transparent) 62%,
+      transparent 82%);
+  }
+  @media (max-width: 900px) {
+    .veil { background: linear-gradient(180deg,
+      color-mix(in srgb, var(--paper) 92%, transparent) 0%,
+      color-mix(in srgb, var(--paper) 78%, transparent) 55%,
+      transparent 85%); }
+  }
+
+  .hero-panel {
+    position: relative; z-index: 3;
+    width: min(760px, 92vw);
+    margin-inline: auto;
+    text-align: center;
+  }
+  .hero-panel .hero-sub { margin-inline: auto; }
+  .hero-actions { justify-content: center; }
+  @media (max-width: 900px) { .hero-panel { width: 100%; text-align: left; } .hero-actions { justify-content: flex-start; } .hero-panel .hero-sub { margin-inline: 0; } }
+  .hero-kicker {
+    font: 500 11px/1.5 var(--font-mono); letter-spacing: .12em; color: var(--link);
+    text-transform: uppercase; margin: 0 0 22px;
+  }
+  .hero-panel h1 { margin-bottom: 20px; }
+  .hero-sub { font-size: 1.03rem; line-height: 1.7; color: var(--grey); max-width: 56ch; margin: 0 0 32px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .hero-note { margin: 24px 0 0; font: 400 10.5px/1.6 var(--font-mono); color: var(--grey-2); letter-spacing: .04em; }
+
+  /* ---------- monitoring summary ---------- */
+  .stats-wrap { padding: 0 0 clamp(64px, 8vw, 100px); }
+  .stats-panel {
+    background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+    margin-top: -54px; position: relative; z-index: 4;
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  .stats-head {
+    display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; align-items: center;
+    padding: 14px 26px; border-bottom: 1px solid var(--line);
+    font: 500 10px/1.5 var(--font-mono); letter-spacing: .11em; color: var(--grey-2);
+    text-transform: uppercase;
+  }
+  .stats-head .k { color: var(--link); }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat-cell { padding: 26px 26px 28px; border-left: 1px solid var(--line); }
+  .stat-cell:first-child { border-left: none; }
+  .stat-cell .key { font: 500 10px/1 var(--font-mono); letter-spacing: .1em; color: var(--grey-2); text-transform: uppercase; display: block; margin-bottom: 12px; }
+  .stat-cell .num { font: 800 clamp(1.9rem, 3vw, 2.4rem)/1 var(--font-sans); letter-spacing: -.02em; margin: 0 0 9px; }
+  .stat-cell .lbl { font: 400 13px/1.5 var(--font-sans); color: var(--grey); max-width: 22ch; margin: 0; }
+  @media (max-width: 900px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .stat-cell:nth-child(3) { border-left: none; }
+    .stat-cell:nth-child(n+3) { border-top: 1px solid var(--line); }
+  }
+  @media (max-width: 520px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat-cell { border-left: none; }
+    .stat-cell:nth-child(n+2) { border-top: 1px solid var(--line); }
+  }
+
+  /* ---------- service modules ---------- */
+  .module {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px 28px 0; display: flex; flex-direction: column;
+    text-decoration: none; color: var(--ink);
+    transition: border-color var(--snap);
+  }
+  .module:hover { border-color: var(--link); }
+  .module-tag { font: 500 10px/1 var(--font-mono); letter-spacing: .12em; color: var(--grey-2); text-transform: uppercase; margin: 0 0 20px; }
+  .module h3 { font: 800 1.45rem/1.1 var(--font-sans); letter-spacing: -.01em; margin: 0 0 4px; display: flex; align-items: baseline; gap: 10px; }
+  .module h3 .zh { font-weight: 400; font-size: 1.05rem; color: var(--grey-2); }
+  .module .svc { font: 500 11px/1.5 var(--font-mono); letter-spacing: .08em; color: var(--link); text-transform: uppercase; margin: 0 0 18px; }
+  .module .mbody { font-size: .9rem; line-height: 1.72; color: var(--grey); flex-grow: 1; margin: 0; }
+  .module .meta-row {
+    margin: 24px 0 0; padding: 15px 0 17px; border-top: 1px solid var(--line);
+    font: 400 11px/1.7 var(--font-mono); color: var(--grey-2); letter-spacing: .02em;
+  }
+  .module .meta-row :global(b) { font-weight: 500; color: var(--ink); }
+
+  /* ---------- playbook process ---------- */
+  .process {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+  }
+  @media (min-width: 900px) { .process { grid-template-columns: repeat(4, 1fr); } }
+  .process li {
+    position: relative;
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 1.5rem 1.5rem 1.6rem;
+  }
+  @media (min-width: 900px) {
+    .process li:not(:last-child)::after {
+      content: '→'; position: absolute; right: -1.05rem; top: 50%; transform: translateY(-50%);
+      color: var(--grey-2); font-weight: 600; z-index: 1;
+    }
+  }
+  .p-tag { font: 500 10px/1.5 var(--font-mono); letter-spacing: .12em; color: var(--link); text-transform: uppercase; display: block; margin-bottom: .8rem; }
+  .p-title { font-weight: 700; font-size: 1.05rem; margin-bottom: .5rem; }
+  .process li p { font-size: .86rem; line-height: 1.65; color: var(--grey); margin: 0; }
+
+  /* ---------- animated stage scenes ---------- */
+  .scene { margin: -.2rem 0 1rem; border-bottom: 1px solid var(--line); padding-bottom: .8rem; }
+  .scene-svg { width: 100%; height: auto; display: block; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* stage 1 — radar: ambient sweep + blips ping as the beam passes */
+    .sweep { transform-origin: 110px 50px; animation: sweep 5.5s linear infinite; }
+    @keyframes sweep { to { transform: rotate(360deg); } }
+    .blip { opacity: .15; animation: blip 5.5s linear infinite; }
+    .blip.b1 { animation-delay: -4.45s; }
+    .blip.b2 { animation-delay: -2.1s; }
+    @keyframes blip {
+      0%, 6% { opacity: 1; }
+      30%, 100% { opacity: .15; }
+    }
+
+    /* stage 2 — the T8 hoists up the mast once the card scrolls into view */
+    .go .t8 { animation: hoist 1.1s cubic-bezier(.2, .8, .3, 1) both; }
+    @keyframes hoist { from { transform: translateY(34px); } to { transform: translateY(0); } }
+    .go .t8-tag { animation: fadein .5s ease 1.1s both; }
+    @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+    /* stage 3 — spike draws, flame flickers, response line calms it */
+    .go .spike { animation: draw 0.8s ease-out both; }
+    .go .calmed { animation: draw 1s ease-out .9s both; }
+    @keyframes draw { from { stroke-dasharray: 100; stroke-dashoffset: 100; } to { stroke-dasharray: 100; stroke-dashoffset: 0; } }
+    .flame { transform-box: fill-box; transform-origin: 50% 100%; animation: flicker 1.6s ease-in-out infinite; }
+    .go .flame { animation: flamein .4s ease .7s both, flicker 1.6s ease-in-out 1.1s infinite; }
+    @keyframes flamein { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: scale(1); } }
+    @keyframes flicker {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+      35% { transform: scale(.9) rotate(-2deg); opacity: .85; }
+      70% { transform: scale(1.06) rotate(1.5deg); opacity: .95; }
+    }
+
+    /* stage 4 — recovery bars grow, trend line redraws, endpoint pulses */
+    .bar { transform-box: fill-box; transform-origin: 50% 100%; }
+    .go .bar { animation: grow .7s cubic-bezier(.2, .8, .3, 1) both; }
+    .go .bar.r2 { animation-delay: .12s; }
+    .go .bar.r3 { animation-delay: .24s; }
+    .go .bar.r4 { animation-delay: .36s; }
+    @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+    .go .rise { animation: draw 1s ease-out .5s both; }
+    .go .rise-dot { animation: fadein .4s ease 1.4s both, pulse-dot 2.2s ease-in-out 1.8s infinite; }
+    @keyframes pulse-dot {
+      0%, 100% { r: 3.5; }
+      50% { r: 5; }
+    }
+  }
+
+  /* ---------- client logos ---------- */
+  .logo-strip { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 30px; align-items: center; }
+  @media (min-width: 720px) { .logo-strip { grid-template-columns: repeat(6, 1fr); } }
+  .logo-strip li { display: flex; justify-content: center; padding: 22px 8px; }
+  .logo-strip img { height: 56px; width: auto; max-width: 100%; object-fit: contain; filter: grayscale(1); opacity: .75; transition: filter var(--snap), opacity var(--snap); }
+  .logo-strip li:hover img { filter: none; opacity: 1; }
+
+  /* ---------- CTA panel ---------- */
+  .cta-panel {
+    background: var(--card); border: 1px solid var(--line); border-radius: 22px;
+    overflow: hidden; display: grid; grid-template-columns: 1.15fr .85fr;
+    box-shadow: 0 24px 70px rgba(22, 24, 27, 0.08);
+  }
+  @media (max-width: 900px) { .cta-panel { grid-template-columns: 1fr; } }
+  .cta-copy { padding: clamp(30px, 4.5vw, 56px); }
+  .cta-copy h2 { margin-bottom: 18px; }
+  .cta-copy .muted { font-size: .96rem; max-width: 52ch; margin: 0 0 30px; }
+  .cta-contacts { margin: 26px 0 0; font: 400 11px/2 var(--font-mono); color: var(--grey-2); letter-spacing: .05em; }
+  .cta-contacts a { color: var(--link); text-decoration: none; }
+  .cta-contacts a:hover { text-decoration: underline; }
+  .cta-photo { position: relative; min-height: 280px; border-left: 1px solid var(--line); margin: 0; }
+  @media (max-width: 900px) { .cta-photo { border-left: none; border-top: 1px solid var(--line); } }
+  .cta-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cta-photo figcaption {
+    position: absolute; left: 14px; bottom: 14px;
+    background: rgba(22, 24, 27, 0.82); color: #fff; border-radius: 999px;
+    font: 500 9.5px/1 var(--font-mono); letter-spacing: .1em; padding: 7px 13px; text-transform: uppercase;
+  }
+
+  /* ---------- mobile stream tuning ---------- */
+  @media (max-width: 900px) {
+    .hero { padding-bottom: 190px; }
+    .post { width: 168px; display: none; }
+    .post p { font-size: 11px; }
+    .post.mk { display: block; left: var(--mx, var(--x)); }
+    .post .rstamp { animation-name: stampInM; }
+  }
+
+  /* ---------- reduced motion: static desk sample ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    .stream .post { display: none; filter: none; opacity: 1; animation: none; }
+    .stream .post.rk { display: block; top: var(--st); left: var(--sx); }
+    .stream .rstamp { animation: none; opacity: 0; transform: rotate(-4deg) scale(1); }
+    .stream .post.read .rstamp { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) and (max-width: 1359px) {
+    .stream .post.rl { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) and (max-width: 900px) {
+    .stream .post { display: none !important; }
+  }
+
+  /* ---------- chapter markers ---------- */
+  .chapter { padding-block: clamp(1rem, 2vw, 1.75rem) 0; }
+  .ch-line { display: flex; align-items: center; gap: 1.2rem; }
+  .ch-line::before, .ch-line::after { content: ''; flex: 1; border-top: 1px solid var(--line); }
+  .ch-label { font: 600 10px/1 var(--font-mono); letter-spacing: .14em; color: var(--grey-2); white-space: nowrap; }
+
+  /* ---------- triage: read → score → flag → respond ---------- */
+  .triage { --pos: #1E9455; --neg: #D6453D; }
+  .t-stick { padding-block: clamp(3.5rem, 7vw, 5.5rem); }
+  .triage.scrub .t-track { height: 320vh; }
+  .triage.scrub .t-stick {
+    position: sticky; top: 72px; height: calc(100svh - 72px);
+    display: flex; align-items: center; padding-block: 0; overflow: clip;
+  }
+
+  .t-grid { display: grid; grid-template-columns: minmax(300px, 380px) 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; width: 100%; }
+  .t-rail .h2 { margin-top: .6rem; }
+  .t-steps { list-style: none; margin: 1.9rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 1.15rem; }
+  .t-steps li { display: flex; align-items: flex-start; gap: .9rem; transition: opacity .45s ease; }
+  .t-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 30px; height: 19px; padding: 0 6px; margin-top: .1rem;
+    border-radius: 999px; background: var(--card); border: 1px solid var(--line);
+    font: 600 9.5px/1 var(--font-mono); color: var(--grey); letter-spacing: .08em;
+    transition: background .35s ease, color .35s ease, border-color .35s ease;
+  }
+  .t-steps h3 { font-size: .95rem; font-weight: 700; margin: 0 0 .25rem; }
+  .t-steps p { margin: 0; font-size: .88rem; line-height: 1.6; color: var(--grey); max-width: 34ch; }
+  .t-steps .arrow-link { margin-top: .5rem; display: inline-block; font-size: .85rem; }
+  /* NB: keep this base rule lower-specificity than the .p0–.p3 overrides —
+     Astro's scope attributes count toward specificity on every compound */
+  .scrub .t-steps li { opacity: .25; }
+  .triage.scrub.p0 .s0 { opacity: 1; }
+  .triage.scrub.p1 .s0 { opacity: .25; }
+  .triage.scrub.p1 .s1 { opacity: 1; }
+  .triage.scrub.p2 .s1 { opacity: .25; }
+  .triage.scrub.p2 .s2 { opacity: 1; }
+  .triage.scrub.p3 .s2 { opacity: .25; }
+  .triage.scrub.p3 .s3 { opacity: 1; }
+  .triage.scrub.p0 .s0 .t-num { background: var(--link); border-color: var(--link); color: #fff; }
+  .triage.scrub.p1 .s0 .t-num { background: var(--card); border-color: var(--line); color: var(--grey); }
+  .triage.scrub.p1 .s1 .t-num { background: var(--link); border-color: var(--link); color: #fff; }
+  .triage.scrub.p2 .s1 .t-num { background: var(--card); border-color: var(--line); color: var(--grey); }
+  .triage.scrub.p2 .s2 .t-num { background: var(--link); border-color: var(--link); color: #fff; }
+  .triage.scrub.p3 .s2 .t-num { background: var(--card); border-color: var(--line); color: var(--grey); }
+  .triage.scrub.p3 .s3 .t-num { background: var(--link); border-color: var(--link); color: #fff; }
+
+  .t-stage { position: relative; height: clamp(400px, 52vh, 520px); }
+  .t-count { position: absolute; right: 0; top: -28px; font: 500 10px/1 var(--font-mono); letter-spacing: .09em; color: var(--grey-2); opacity: 0; transition: opacity .4s ease; }
+  .t-count b { color: var(--alert); font-weight: 600; }
+
+  .tcard {
+    position: absolute; left: var(--tx); top: var(--ty); width: clamp(190px, 30%, 240px);
+    background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--line); border-radius: 14px;
+    padding: 11px 13px 10px; box-shadow: 0 10px 26px rgba(22, 24, 27, 0.07);
+    transform: rotate(var(--tr));
+    transition: opacity .5s ease, transform .5s ease, border-color .5s ease, box-shadow .5s ease, filter .5s ease;
+  }
+  .tcard header { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 5px; font: 500 10.5px/1 var(--font-mono); }
+  .tcard header .u { color: var(--link); }
+  .tcard header .t { color: var(--grey-2); }
+  .tcard p { font: 400 12px/1.5 var(--font-sans); color: var(--ink); margin: 0; }
+  .tcard footer { margin-top: 7px; font: 400 10px/1 var(--font-mono); color: var(--grey-2); }
+
+  .tstamp {
+    position: absolute; top: -10px; right: -9px;
+    font: 600 9.5px/1 var(--font-mono); letter-spacing: .05em; white-space: nowrap;
+    color: var(--alert); background: var(--card); border: 1px solid var(--alert);
+    border-radius: 999px; padding: 4px 8px;
+    opacity: 0; transform: rotate(-4deg) scale(.5);
+    transition: opacity .3s ease, transform .3s cubic-bezier(.2, 1.6, .4, 1);
+    transition-delay: calc(var(--i) * 90ms);
+  }
+  .score {
+    position: absolute; right: -8px; bottom: -10px;
+    font: 600 10px/1 var(--font-mono); letter-spacing: .05em;
+    background: var(--card); border: 1px solid; border-radius: 999px; padding: 4px 8px;
+    opacity: 0; transform: translateY(6px);
+    transition: opacity .4s ease, transform .4s ease;
+    transition-delay: calc(var(--i) * 70ms);
+  }
+  .tcard.pos .score { color: var(--pos); border-color: var(--pos); }
+  .tcard.neg .score { color: var(--neg); border-color: var(--neg); }
+  .tflag {
+    position: absolute; top: -10px; left: 10px;
+    font: 600 9.5px/1 var(--font-mono); letter-spacing: .06em; white-space: nowrap;
+    color: #fff; background: var(--alert); border-radius: 999px; padding: 4px 8px;
+    opacity: 0; transform: scale(.6) rotate(-3deg);
+    transition: opacity .35s ease, transform .35s cubic-bezier(.2, 1.5, .4, 1), background-color .4s ease;
+    transition-delay: calc((var(--i) - 3) * 80ms);
+  }
+  .thandle {
+    display: block; margin-top: 0; padding-top: 0; border-top: 1px dashed transparent;
+    font: 600 9.5px/1.4 var(--font-mono); letter-spacing: .07em; color: var(--link); white-space: nowrap;
+    opacity: 0; max-height: 0; overflow: hidden;
+    transition: opacity .45s ease, max-height .45s ease, margin-top .45s ease, padding-top .45s ease, border-color .45s ease;
+    transition-delay: calc((var(--i) - 3) * 90ms + 80ms);
+  }
+
+  .triage.p0 .tstamp { opacity: 1; transform: rotate(-4deg) scale(1); }
+  .triage.p1 .score { opacity: 1; transform: none; }
+  .triage.p1 .tcard.pos { border-left-color: var(--pos); }
+  .triage.p1 .tcard.neg { border-left-color: var(--neg); }
+  .triage.p2 .tcard.pos { opacity: .35; filter: grayscale(1); transform: rotate(var(--tr)) scale(.96); }
+  .triage.p2 .tcard.neg { transform: rotate(0deg) scale(1.04); box-shadow: 0 18px 44px rgba(22, 24, 27, 0.13); }
+  .triage.p2 .tflag { opacity: 1; transform: none; }
+  .triage.p2 .t-count { opacity: 1; }
+  .triage.p3 .tcard.neg { border-color: var(--link); border-left-color: var(--link); box-shadow: 0 12px 30px rgba(36, 105, 212, 0.14); }
+  .triage.p3 .tflag { background: var(--link); }
+  .triage.p3 .thandle { opacity: 1; max-height: 24px; margin-top: 9px; padding-top: 8px; border-top-color: var(--line); }
+
+  /* no JS / reduced motion: everything in its worked, final state */
+  .triage:not(.scrub) .tstamp { opacity: 1; transform: rotate(-4deg) scale(1); }
+  .triage:not(.scrub) .score { opacity: 1; transform: none; }
+  .triage:not(.scrub) .tcard.pos { border-left-color: var(--pos); }
+  .triage:not(.scrub) .tcard.neg { border-left-color: var(--neg); border-color: var(--link); border-left-color: var(--link); }
+  .triage:not(.scrub) .tflag { opacity: 1; transform: none; background: var(--link); }
+  .triage:not(.scrub) .thandle { opacity: 1; max-height: 24px; margin-top: 9px; padding-top: 8px; border-top-color: var(--line); }
+  .triage:not(.scrub) .t-count { opacity: 1; }
+
+  @media (max-width: 860px) {
+    .t-grid { grid-template-columns: 1fr; gap: 1.4rem; align-items: start; }
+    .t-rail .h2 { font-size: 1.45rem; }
+    .triage.scrub .t-stick { align-items: flex-start; padding-top: 1.1rem; }
+    .triage.scrub .t-steps { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem .9rem; margin-top: 1.1rem; }
+    .triage.scrub .t-steps p, .triage.scrub .t-steps .arrow-link { display: none; }
+    .t-stage { height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .t-count { position: static; grid-column: 1 / -1; text-align: right; }
+    .tcard { position: static; width: auto; }
+    /* narrow cards: the flag replaces the read stamp instead of colliding with it */
+    .triage.p2 .tcard.neg .tstamp, .triage:not(.scrub) .tcard.neg .tstamp { opacity: 0; }
+  }
+
+  /* ---------- creative lantern 走馬燈 ---------- */
+  .creative .section-head { margin-bottom: clamp(1.6rem, 3vw, 2.4rem); }
+  .lantern { display: flex; flex-direction: column; gap: 14px; overflow: hidden; }
+  .m-row { display: flex; gap: 14px; width: max-content; }
+  .m-set { display: flex; gap: 14px; }
+  .m-item {
+    position: relative; flex: 0 0 auto; width: clamp(240px, 24vw, 320px); aspect-ratio: 8 / 5;
+    border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--paper);
+  }
+  .m-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .m-cap {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 26px 12px 9px;
+    font: 600 10px/1.2 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: #fff;
+    background: linear-gradient(180deg, transparent, rgba(22, 24, 27, 0.62));
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .m-left { animation: m-scroll 70s linear infinite; }
+    .m-right { animation: m-scroll 84s linear infinite reverse; }
+    .m-row:hover { animation-play-state: paused; }
+    .m-row:focus-within { animation-play-state: paused; }
+  }
+  @keyframes m-scroll { to { transform: translateX(calc(-50% - 7px)); } }
+  .studio-line { margin-top: 1.8rem; display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+  .studio-line .arrow-link { font-size: .88rem; }
+  @media (prefers-reduced-motion: reduce) {
+    .lantern { overflow-x: auto; }
+    .m-set[aria-hidden='true'] { display: none; }
+  }
+</style>
+
+<script>
+  // Playbook scenes: fire each card's entrance animation once when scrolled into view
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('go'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('.process li').forEach((li) => io.observe(li));
+  }
+
+  // Triage band: scroll position drives the pipeline phase (read → score → flag → respond)
+  const triage = document.querySelector('.triage');
+  if (triage && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    triage.classList.add('scrub');
+    const track = triage.querySelector('.t-track');
+    if (track) {
+      let ticking = false;
+      const update = () => {
+        ticking = false;
+        const rect = track.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const total = rect.height - vh;
+        const p = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 1;
+        const inView = rect.top < vh && rect.bottom > 0;
+        triage.classList.toggle('p0', inView || p > 0);
+        triage.classList.toggle('p1', p >= 0.3);
+        triage.classList.toggle('p2', p >= 0.55);
+        triage.classList.toggle('p3', p >= 0.8);
+      };
+      const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+      addEventListener('scroll', onScroll, { passive: true });
+      addEventListener('resize', onScroll, { passive: true });
+      update();
+    }
+  }
+</script>

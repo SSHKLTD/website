@@ -1,0 +1,123 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const groups = [
+  { k: 'CONTENT & CREATIVE', items: ['Copywriting', 'Graphic design', 'Wow creative campaigns', 'Key visual development', 'Social retainers'] },
+  { k: 'PRODUCTION', items: ['Photography', 'Videography & short video', 'Live streaming', 'Animation', 'Post-production'] },
+  { k: 'TECH & INTERACTIVE', items: ['AR / VR filters', 'AI chatbot', 'Website development', 'Interactive content'] },
+  { k: 'MEDIA & GROWTH', items: ['Influencer marketing', 'Performance marketing', 'Media pitching', 'Market research'] },
+  { k: 'EVENTS & BEYOND', items: ['Physical events', 'Virtual events', 'OOH extensions', 'Reviews management'] },
+];
+
+const platforms = ['Facebook', 'Instagram', 'Threads', 'XHS 小紅書', 'WeChat', '大眾點評', 'Google Maps reviews', 'Forums', 'YouTube'];
+
+const showreel = [
+  { title: '郊響樂 - 燕尾蝶', client: 'Greenpeace 綠色和平', href: 'https://www.youtube.com/watch?v=4t17Z7WlU7c' },
+  { title: '十七歲，決定自己的路', client: 'HKU School of Nursing', href: 'https://www.facebook.com/hkuson/videos/527158800979879/' },
+  { title: '又睇你識唔識Law：員工優惠', client: 'ICAC 廉政公署', href: 'https://www.facebook.com/watch/?v=131722891538284' },
+  { title: '【城大人の科學】透明茶大揭秘', client: 'City University of Hong Kong', href: 'https://www.facebook.com/182053561695/videos/10155266370101696' },
+  { title: '大腸癌篩查 321 Action!', client: 'Department of Health 衛生署', href: 'https://www.youtube.com/watch?v=0dz9h6o0Ex8' },
+  { title: '香港國際機場職業博覽會 2019', client: 'Hong Kong International Airport', href: 'https://www.facebook.com/watch/?v=803519493366575' },
+  { title: '我們承載夢想 成就暖意團圓', client: 'Cathay Pacific 國泰航空', href: 'https://www.facebook.com/watch/?v=1274745022669198' },
+];
+---
+
+<Base
+  title="Campaign & Production | SSHK"
+  description="Social Appearance Management by SSHK — creative campaigns, photography, video, AR/VR, influencer and performance marketing, events and website development, produced in-house."
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="num-label" style="font-size:.8rem;">WE INTEGRATE · 重建與防火</p>
+      <h1 class="display" style="margin-top:.8rem;">Campaign &amp;<br />Production</h1>
+      <p class="lede" style="margin-top:1.5rem;">
+        The best defence is a story worth telling. This is the appearance side of the desk —
+        <strong>Social Appearance Management</strong>: holistic strategy, community acquisition and a
+        production floor that takes work from key visual to final cut without leaving the building.
+      </p>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Solutions · the full board</span>
+          <h2 class="h2">Everything the studio does</h2>
+        </div>
+      </div>
+      <div class="grid cols-3 sol-grid">
+        {groups.map((g) => (
+          <div class="card">
+            <span class="num-label">{g.k}</span>
+            <ul class="check-list" style="margin-top:.4rem;">
+              {g.items.map((i) => <li>{i}</li>)}
+            </ul>
+          </div>
+        ))}
+        <div class="card platforms-card">
+          <span class="num-label">PLATFORMS WE PUBLISH TO</span>
+          <div class="chips">
+            {platforms.map((p) => <span class="tag">{p}</span>)}
+          </div>
+          <p class="muted" style="margin:0;font-size:.85rem;">
+            Hong Kong's conversation no longer lives on two platforms — neither does our work.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Showreel</span>
+          <h2 class="h2">Selected productions</h2>
+        </div>
+      </div>
+      <ul class="reel">
+        {showreel.map((v, i) => (
+          <li>
+            <a href={v.href} rel="noopener" target="_blank">
+              <span class="num-label">{String(i + 1).padStart(2, '0')}</span>
+              <span class="reel-title">{v.title}</span>
+              <span class="reel-client muted">{v.client}</span>
+              <span class="reel-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="muted" style="margin-top:1.5rem;font-size:.85rem;">Links open on YouTube / Facebook.</p>
+      <p style="margin-top:2rem;">
+        <a class="arrow-link" href="/production">Shot in-house by 704 Production — the full production log →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section on-dark">
+    <div class="wrap">
+      <span class="eyebrow">Next step</span>
+      <h2 class="h2">Your story is waiting<br />to be told properly.</h2>
+      <div style="margin-top:2rem;">
+        <a class="btn solid" href="/contact">Talk to us</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .sol-grid .card { gap: .6rem; }
+  .platforms-card .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: .4rem 0 .8rem; }
+
+  .reel { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .reel a {
+    display: grid; grid-template-columns: 3rem 1fr auto; align-items: baseline; gap: 1rem 1.5rem;
+    padding: 1.15rem 0; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink);
+  }
+  @media (min-width: 760px) { .reel a { grid-template-columns: 3rem 1.4fr 1fr auto; } }
+  .reel-title { font-weight: 700; font-size: 1.02rem; }
+  .reel-client { font-size: .9rem; }
+  .reel-arrow { font-size: 1.05rem; color: var(--grey-2); }
+  .reel a:hover .reel-title { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+</style>
