@@ -42,57 +42,75 @@ const clientCount = new Set(jobs.map((j) => j.client)).size;
     </div>
   </section>
 
-  <section class="section tinted" id="log">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">The production log · 片庫</span>
-          <h2 class="h2">Every job on the record.</h2>
-        </div>
-        <p class="readout num-label" id="log-count" aria-live="polite">SHOWING {jobs.length} / {jobs.length}</p>
+  <section class="wall-band" id="log">
+    <div class="wrap wb-head">
+      <div>
+        <span class="eyebrow">The production log · 片庫</span>
+        <h2 class="h2">{jobs.length} posters.<br />Zero white space<span class="dot">.</span></h2>
       </div>
-
-      <div class="filters" id="log-filters">
-        <div class="f-row" role="group" aria-label="Filter by format">
-          <span class="f-label">FORMAT</span>
-          <button class="f-chip on" data-dim="f" data-val="">All</button>
-          {formats.map((f) => (
-            <button class="f-chip" data-dim="f" data-val={f}>{f} <b>{fCount[f]}</b></button>
-          ))}
-        </div>
-        <div class="f-row" role="group" aria-label="Filter by industry">
-          <span class="f-label">INDUSTRY</span>
-          <button class="f-chip on" data-dim="i" data-val="">All</button>
-          {industries.map((i) => (
-            <button class="f-chip" data-dim="i" data-val={i}>{i} <b>{iCount[i]}</b></button>
-          ))}
-        </div>
-      </div>
-
-      <ul class="log-grid" id="log-grid">
-        {jobs.map((j) => (
-          <li data-f={j.formats.join('|')} data-i={j.industries.join('|')}>
-            <a class="log-card" href={j.link} rel="noopener" target="_blank">
-              <span class="lthumb">
-                {j.thumb ? (
-                  <img src={`/images/704/${j.slug}.webp`} alt={`${j.client} — ${j.title}`} width="480" height="270" loading="lazy" />
-                ) : (
-                  <span class="noimg" aria-hidden="true">704</span>
-                )}
-                <span class="play" aria-hidden="true">▶</span>
-              </span>
-              <span class="lmeta">
-                <span class="lclient">{j.client}</span>
-                <span class="ltitle">{j.title}</span>
-                <span class="ltags">{j.formats.map((f) => <span class="tag">{f}</span>)}</span>
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
-      <p class="muted" style="margin-top:1.6rem;font-size:.85rem;">Links open on Vimeo / YouTube. Full studio site: <a href="https://704production.com" rel="noopener" target="_blank">704production.com</a></p>
+      <p class="num-label wb-count" id="wb-count" aria-live="polite">SHOWING {jobs.length} / {jobs.length}</p>
     </div>
+    <div class="wrap wb-filters" id="wb-filters">
+      <div class="f-row" role="group" aria-label="Filter by format">
+        <span class="f-label">類別 FORMAT</span>
+        <button class="chip on" data-dim="f" data-v="">All</button>
+        {formats.map((f) => <button class="chip" data-dim="f" data-v={f}>{f.toUpperCase()} <b>{fCount[f]}</b></button>)}
+      </div>
+      <div class="f-row" role="group" aria-label="Filter by industry">
+        <span class="f-label">行業 INDUSTRY</span>
+        <button class="chip on" data-dim="i" data-v="">All</button>
+        {industries.map((i) => <button class="chip" data-dim="i" data-v={i}>{i.toUpperCase()} <b>{iCount[i]}</b></button>)}
+      </div>
+    </div>
+    <div class="wall" id="wall">
+      {jobs.map((j, n) => {
+        const cls = n % 11 === 0 ? 'cell w2 h2' : n % 7 === 3 ? 'cell w2' : n % 5 === 2 ? 'cell h2' : 'cell';
+        return (
+          <a
+            class={cls}
+            href={j.link}
+            target="_blank"
+            rel="noopener"
+            data-f={j.formats.join('|')}
+            data-i={j.industries.join('|')}
+            data-slug={j.slug}
+            data-client={j.client}
+            data-title={j.title}
+            data-desc={j.desc}
+            data-credits={j.credits}
+            data-link={j.link}
+            data-thumb={j.thumb ? '1' : ''}
+          >
+            {j.thumb ? (
+              <img src={`/images/704/${j.slug}.webp`} alt={`${j.client} — ${j.title}`} loading="lazy" width="1280" height="720" />
+            ) : (
+              <span class="noimg" aria-hidden="true">704</span>
+            )}
+            <span class="cap"><span class="c">{j.client}</span><span class="t">{j.title}</span></span>
+          </a>
+        );
+      })}
+    </div>
+    <p class="wrap wb-note num-label">EVERY FRAME IS A JOB SHIPPED · CLICK ANY POSTER FOR THE SLATE</p>
   </section>
+
+  <dialog class="slate-modal" id="slate">
+    <button class="sm-close" id="sm-close" aria-label="Close">✕</button>
+    <div class="sm-screen" id="sm-screen">
+      <img id="sm-still" src="" alt="" />
+      <button class="sm-roll" id="sm-roll">▶ ROLL</button>
+    </div>
+    <div class="sm-body">
+      <p class="sm-client" id="sm-client"></p>
+      <h3 class="sm-title" id="sm-title"></h3>
+      <p class="sm-desc" id="sm-desc"></p>
+      <p class="sm-credits" id="sm-credits"></p>
+      <div class="sm-foot">
+        <p class="sm-tags" id="sm-tags"></p>
+        <a class="sm-watch" id="sm-watch" href="#" target="_blank" rel="noopener">Watch on Vimeo ↗</a>
+      </div>
+    </div>
+  </dialog>
 
   <section class="section">
     <div class="wrap">
@@ -145,50 +163,83 @@ const clientCount = new Set(jobs.map((j) => j.client)).size;
     border: 1px solid var(--line); border-radius: 999px; padding: .55em 1.1em;
   }
   .contact-chips a:hover { border-color: var(--link); color: var(--link); }
-
   .stats-band { padding-bottom: clamp(3rem, 6vw, 4.5rem); }
 
-  .readout { align-self: end; font-variant-numeric: tabular-nums; }
-
-  .filters { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 2rem; }
-  .f-row { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
-  .f-label { font: 500 .62rem/1 var(--font-mono); letter-spacing: .12em; color: var(--grey-2); min-width: 4.6rem; }
-  .f-chip {
-    font-family: var(--font-mono); font-size: .7rem; letter-spacing: .05em; cursor: pointer;
-    background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 999px;
-    padding: .5em 1em; transition: border-color var(--snap), background var(--snap), color var(--snap);
+  /* ---------- the poster wall ---------- */
+  .wall-band { background: var(--ink); padding-block: clamp(3rem, 6vw, 5rem) 2.2rem; }
+  .wb-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem 2rem; margin-bottom: 1.6rem; }
+  .wb-head .h2 { color: #fff; }
+  .dot { color: var(--alert); }
+  .wb-count { color: #9aa4b0; font-variant-numeric: tabular-nums; }
+  .wb-filters { display: flex; flex-direction: column; gap: .55rem; margin-bottom: 2rem; }
+  .f-row { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
+  .f-label { font: 500 .62rem/1 var(--font-mono); letter-spacing: .12em; color: #77808b; min-width: 7.2rem; }
+  .chip {
+    font: 500 10.5px/1 var(--font-mono); letter-spacing: .06em; cursor: pointer;
+    color: #c8cfd7; background: transparent; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 999px; padding: .55em 1em;
+    transition: border-color var(--snap), color var(--snap), background var(--snap);
   }
-  .f-chip b { font-weight: 500; color: var(--grey-2); margin-left: .15em; }
-  .f-chip:hover { border-color: var(--link); }
-  .f-chip.on { background: var(--ink); color: #fff; border-color: var(--ink); }
-  .f-chip.on b { color: #9fb3c8; }
+  .chip b { font-weight: 500; color: #77808b; margin-left: .1em; }
+  .chip:hover { border-color: #fff; color: #fff; }
+  .chip.on { background: #fff; color: var(--ink); border-color: #fff; }
+  .chip.on b { color: var(--grey); }
 
-  .log-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 1.1rem; }
-  @media (min-width: 620px) { .log-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 980px) { .log-grid { grid-template-columns: repeat(3, 1fr); } }
-  .log-grid li.hide { display: none; }
-
-  .log-card {
-    display: flex; flex-direction: column; height: 100%; text-decoration: none; color: var(--ink);
-    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+  .wall { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 9vw; grid-auto-flow: dense; gap: 3px; padding: 0 3px; }
+  .cell { position: relative; overflow: hidden; display: block; background: #22262b; cursor: pointer; }
+  .cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .45s cubic-bezier(.2, .8, .2, 1), opacity .3s; }
+  .cell:hover img { transform: scale(1.06); opacity: .3; }
+  .cell .noimg { display: flex; align-items: center; justify-content: center; height: 100%; font: 700 1.6rem var(--font-mono); color: #4a5158; }
+  .cell .cap { position: absolute; inset: auto 0 0 0; padding: 14px; opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .cell:hover .cap { opacity: 1; }
+  .cap .c { font: 600 9px/1.5 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--alert); }
+  .cap .t { font-weight: 700; font-size: .85rem; line-height: 1.35; color: #fff; display: block; margin-top: 2px; }
+  .cell.w2 { grid-column: span 2; }
+  .cell.h2 { grid-row: span 2; }
+  .cell.hide { display: none; }
+  .wb-note { margin-top: 1.6rem; color: #77808b; }
+  @media (max-width: 900px) {
+    .wall { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 24vw; }
+    .f-label { min-width: 100%; }
   }
-  .lthumb { position: relative; aspect-ratio: 16 / 9; background: #e4e9ee; overflow: hidden; }
-  .lthumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .noimg { display: flex; align-items: center; justify-content: center; height: 100%; font: 700 2rem var(--font-mono); color: var(--grey-2); }
-  .play {
-    position: absolute; right: 10px; bottom: 10px; width: 30px; height: 30px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(22, 24, 27, 0.78); color: #fff; border-radius: 999px; font-size: .6rem;
-    opacity: 0; transform: translateY(4px); transition: opacity var(--snap), transform var(--snap);
-  }
-  .log-card:hover .play { opacity: 1; transform: none; }
-  .log-card:hover .ltitle { color: var(--link); }
-  .lmeta { display: flex; flex-direction: column; gap: .4rem; padding: .95rem 1.05rem 1.1rem; }
-  .lclient { font: 500 .62rem/1.4 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--grey-2); }
-  .ltitle { font-weight: 700; font-size: .93rem; line-height: 1.45; }
-  .ltags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .15rem; }
-  .ltags .tag { font-size: .58rem; padding: .32em .8em; }
 
+  /* ---------- the slate (lightbox) ---------- */
+  .slate-modal {
+    width: min(960px, calc(100vw - 32px)); max-height: calc(100svh - 48px);
+    background: #101215; color: #fff; border: 1px solid #2A2E34; border-radius: 18px;
+    padding: 0; overflow: hidden auto;
+  }
+  .slate-modal::backdrop { background: rgba(10, 11, 13, 0.82); backdrop-filter: blur(4px); }
+  .sm-close {
+    position: absolute; top: 12px; right: 12px; z-index: 3;
+    width: 36px; height: 36px; border-radius: 999px; cursor: pointer;
+    background: rgba(22, 24, 27, 0.8); color: #fff; border: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: .8rem;
+  }
+  .sm-close:hover { background: var(--alert); border-color: var(--alert); }
+  .sm-screen { position: relative; aspect-ratio: 16 / 9; background: #000; }
+  .sm-screen img, .sm-screen :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+  .sm-roll {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2;
+    font: 600 12px/1 var(--font-mono); letter-spacing: .1em; cursor: pointer;
+    color: #fff; background: rgba(16, 18, 21, 0.66); border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(6px); border-radius: 999px; padding: 1em 1.9em;
+  }
+  .sm-roll:hover { background: var(--alert); border-color: var(--alert); }
+  .sm-body { padding: 22px 26px 26px; }
+  .sm-client { font: 600 10.5px/1.6 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--alert); margin: 0 0 .35rem; }
+  .sm-title { color: #fff; font-size: clamp(1.15rem, 2.4vw, 1.6rem); font-weight: 800; letter-spacing: -.015em; line-height: 1.3; margin: 0 0 .8rem; }
+  .sm-desc { font-size: .93rem; line-height: 1.75; color: #b9c1c9; margin: 0 0 1rem; white-space: pre-line; max-width: 70ch; }
+  .sm-desc:empty, .sm-credits:empty { display: none; }
+  .sm-credits { font: 400 10.5px/1.7 var(--font-mono); color: #77808b; margin: 0 0 1.1rem; white-space: pre-line; }
+  .sm-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .8rem 2rem; }
+  .sm-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin: 0; }
+  .sm-tags :global(.tg) { font: 500 8.5px/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: .42em .85em; }
+  .sm-tags :global(.tg.f) { color: #7fb0f5; border: 1px solid rgba(75, 141, 240, 0.5); }
+  .sm-tags :global(.tg.i) { color: #b9c1c9; border: 1px solid #2A2E34; }
+  .sm-watch { font: 600 11px/1 var(--font-mono); letter-spacing: .08em; color: #7fb0f5; text-decoration: none; }
+  .sm-watch:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ---------- crew ---------- */
   .crew { grid-template-columns: 1fr; }
   @media (min-width: 760px) { .crew { grid-template-columns: repeat(3, 1fr); } }
   .crew-card img, .crew-card .initials {
@@ -203,28 +254,84 @@ const clientCount = new Set(jobs.map((j) => j.client)).size;
 </style>
 
 <script>
+  // Dual-axis filtering (format + industry)
   const state = { f: '', i: '' };
-  const grid = document.getElementById('log-grid');
-  const count = document.getElementById('log-count');
-  const total = grid ? grid.children.length : 0;
-  const apply = () => {
-    if (!grid) return;
+  const wall = document.getElementById('wall');
+  const count = document.getElementById('wb-count');
+  const total = wall ? wall.children.length : 0;
+  document.getElementById('wb-filters')?.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest('.chip') as HTMLElement | null;
+    if (!b || !wall) return;
+    const dim = b.dataset.dim as 'f' | 'i';
+    state[dim] = b.dataset.v ?? '';
+    document.querySelectorAll(`.chip[data-dim="${dim}"]`).forEach((x) => x.classList.toggle('on', x === b));
     let shown = 0;
-    for (const li of grid.children) {
-      const el = li as HTMLElement;
-      const okF = !state.f || (el.dataset.f ?? '').split('|').includes(state.f);
-      const okI = !state.i || (el.dataset.i ?? '').split('|').includes(state.i);
-      el.classList.toggle('hide', !(okF && okI));
+    for (const el of wall.children) {
+      const c = el as HTMLElement;
+      const okF = !state.f || (c.dataset.f ?? '').split('|').includes(state.f);
+      const okI = !state.i || (c.dataset.i ?? '').split('|').includes(state.i);
+      c.classList.toggle('hide', !(okF && okI));
       if (okF && okI) shown++;
     }
     if (count) count.textContent = `SHOWING ${shown} / ${total}`;
-  };
-  document.querySelectorAll<HTMLButtonElement>('.f-chip').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const dim = btn.dataset.dim as 'f' | 'i';
-      state[dim] = btn.dataset.val ?? '';
-      document.querySelectorAll(`.f-chip[data-dim="${dim}"]`).forEach((b) => b.classList.toggle('on', b === btn));
-      apply();
-    });
   });
+
+  // The slate: click a poster → lightbox with player, intro, credits, tags
+  const slate = document.getElementById('slate') as HTMLDialogElement | null;
+  const smStill = document.getElementById('sm-still') as HTMLImageElement | null;
+  const smScreen = document.getElementById('sm-screen');
+  const smRoll = document.getElementById('sm-roll');
+  const smClient = document.getElementById('sm-client');
+  const smTitle = document.getElementById('sm-title');
+  const smDesc = document.getElementById('sm-desc');
+  const smCredits = document.getElementById('sm-credits');
+  const smTags = document.getElementById('sm-tags');
+  const smWatch = document.getElementById('sm-watch') as HTMLAnchorElement | null;
+  let currentLink = '';
+
+  wall?.addEventListener('click', (e) => {
+    const cell = (e.target as HTMLElement).closest('.cell') as HTMLElement | null;
+    if (!cell || !slate) return;
+    e.preventDefault();
+    smScreen?.querySelector('iframe')?.remove();
+    currentLink = cell.dataset.link ?? '';
+    if (smStill) {
+      smStill.hidden = !cell.dataset.thumb;
+      if (cell.dataset.thumb) smStill.src = `/images/704/${cell.dataset.slug}.webp`;
+    }
+    if (smRoll) smRoll.hidden = !/vimeo\.com\/\d+|youtu\.be\//.test(currentLink);
+    if (smClient) smClient.textContent = cell.dataset.client ?? '';
+    if (smTitle) smTitle.textContent = cell.dataset.title ?? '';
+    if (smDesc) smDesc.textContent = cell.dataset.desc ?? '';
+    if (smCredits) smCredits.textContent = cell.dataset.credits ?? '';
+    if (smTags) smTags.innerHTML =
+      (cell.dataset.f ?? '').split('|').filter(Boolean).map((t) => `<span class="tg f">${t}</span>`).join('') +
+      (cell.dataset.i ?? '').split('|').filter(Boolean).map((t) => `<span class="tg i">${t}</span>`).join('');
+    if (smWatch) {
+      smWatch.href = currentLink;
+      smWatch.textContent = currentLink.includes('youtu') ? 'Watch on YouTube ↗' : currentLink.includes('vimeo') ? 'Watch on Vimeo ↗' : 'View on 704production.com ↗';
+    }
+    slate.showModal();
+  });
+
+  smRoll?.addEventListener('click', () => {
+    const m = currentLink.match(/vimeo\.com\/(\d+)/);
+    const yt = currentLink.match(/youtu\.be\/([\w-]+)/);
+    const src = m ? `https://player.vimeo.com/video/${m[1]}?autoplay=1` : yt ? `https://www.youtube.com/embed/${yt[1]}?autoplay=1` : '';
+    if (!src) return;
+    const f = document.createElement('iframe');
+    f.src = src;
+    f.allow = 'autoplay; fullscreen';
+    f.allowFullscreen = true;
+    smScreen?.appendChild(f);
+    if (smRoll) smRoll.hidden = true;
+  });
+
+  const closeSlate = () => {
+    smScreen?.querySelector('iframe')?.remove();
+    slate?.close();
+  };
+  document.getElementById('sm-close')?.addEventListener('click', closeSlate);
+  slate?.addEventListener('click', (e) => { if (e.target === slate) closeSlate(); });
+  slate?.addEventListener('close', () => smScreen?.querySelector('iframe')?.remove());
 </script>
