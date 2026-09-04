@@ -1,356 +1,483 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Social Strategy Hong Kong — Social Strategy &amp; Crisis Management</title>
-  <meta name="description" content="Social Strategy Hong Kong is a social media strategy and crisis management firm. Content, production and ePR for Hong Kong's leading brands — with 24/7 crisis monitoring.">
-  <link rel="canonical" href="https://www.sshk.ltd/">
-  <link rel="icon" href="favicon.ico" sizes="32x32">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social Strategy Hong Kong | Make noise. Kill noise.</title>
+<link rel="canonical" href="https://www.sshk.ltd/">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Social Strategy Hong Kong">
+<meta property="og:title" content="Social Strategy Hong Kong | Make noise. Kill noise.">
+<meta property="og:description" content="Social Strategy Hong Kong (SSHK) — social content, production and 24/7 crisis management. Loud when you launch, silent-fast when it burns.">
+<meta property="og:url" content="https://www.sshk.ltd/">
+<meta property="og:image" content="https://www.sshk.ltd/assets/SSHK_Logo-01.png">
+<meta name="twitter:card" content="summary">
+<meta name="description" content="Social Strategy Hong Kong (SSHK) — social content, production and 24/7 crisis management. Loud when you launch, silent-fast when it burns.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0F1D2B;--azure:#1CA3E8;--tint:#E3F4FD;--tint2:#F6FBFE;--muted:#4a5d70}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Helvetica Neue',Helvetica,Arial,'Noto Sans TC',sans-serif;color:var(--ink);background:#fff}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+/* Nav */
+.nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:2px solid var(--ink)}
+.nav-in{position:relative}
+.nav-in{display:flex;justify-content:space-between;align-items:center;padding:12px 48px;max-width:1200px;margin:0 auto}
+.nav img{height:72px;width:auto;max-width:min(58vw,320px);object-fit:contain;object-position:left center;transition:transform .2s}
+.nav img:hover{transform:rotate(-2deg) scale(1.05)}
+.nav-links{display:flex;gap:36px;align-items:center;font-size:14px;font-weight:700}
+.nav-links a{transition:all .15s;display:inline-block}
+.nav-links a:not(.btn):hover{color:var(--azure);transform:rotate(-3deg)}
+.nav-links a:not(.btn):nth-child(even):hover{transform:rotate(3deg)}
+.btn{display:inline-block;font-weight:700;transition:all .15s;white-space:nowrap;cursor:pointer}
+.btn-azure{background:var(--azure);color:#fff;padding:11px 22px;box-shadow:3px 3px 0 var(--ink)}
+.btn-azure:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);color:var(--ink)}
+/* Hero */
+.hero{background:var(--tint);position:relative;overflow:hidden;padding:84px 0 92px}
+.hero-blob{position:absolute;left:-90px;bottom:-90px;width:320px;height:320px;border-radius:50%;background:rgba(28,163,232,.18)}
+.bubble{position:absolute;font-weight:700;padding:16px 22px;border-radius:24px 24px 24px 4px;font-size:15px;box-shadow:4px 4px 0 var(--ink);animation:float 3s ease-in-out infinite;transition:transform .2s;cursor:default}
+.bubble:hover{transform:scale(1.15) rotate(3deg)}
+.b1{right:64px;top:64px;background:#fff}
+.b2{right:150px;top:148px;background:var(--azure);color:#fff;border-radius:24px 24px 4px 24px;animation-delay:.6s}
+.b2:hover{transform:scale(1.15) rotate(-3deg)}
+.b3{right:88px;top:236px;background:var(--ink);color:#fff;font-size:14px;padding:14px 20px;box-shadow:4px 4px 0 var(--azure);animation-delay:1.2s}
+.bolt{position:absolute;right:290px;top:328px;width:150px;height:42px;background:var(--azure);clip-path:polygon(0 6%,100% 0,100% 42%,74% 40%,50% 100%,60% 42%,0 48%);animation:wiggle 1.8s ease-in-out infinite}
+.eyebrow{font-size:13px;letter-spacing:2.5px;color:var(--azure);font-weight:700}
+h1{font-size:96px;line-height:1.04;font-weight:700;letter-spacing:-4px;margin:26px 0 0}
+h1 .w{display:inline-block;transition:all .2s;cursor:default}
+h1 .w:hover{transform:rotate(-3deg) scale(1.06);color:var(--azure)}
+h1 .w2:hover{transform:rotate(2deg) scale(1.06)}
+h1 .pill{background:var(--azure);color:#fff;padding:0 26px;box-shadow:6px 6px 0 var(--ink)}
+h1 .pill:hover{transform:rotate(2deg) scale(1.05) translate(-2px,-2px);box-shadow:10px 10px 0 var(--ink);color:#fff}
+h1 .ring{border:2px solid var(--ink);padding:0 26px}
+h1 .ring:hover{background:var(--ink);color:#fff;transform:rotate(-2deg) scale(1.05)}
+.hero .wrap{display:flex;flex-direction:column;align-items:flex-start;text-align:left;position:relative;z-index:2}
+.hero p{font-size:17px;line-height:1.65;color:var(--muted);max-width:520px;margin:28px 0 0}
+.hero-ctas{display:flex;gap:16px;margin-top:36px}
+.btn-ink{background:var(--ink);color:#fff;padding:17px 34px;font-size:15.5px;box-shadow:4px 4px 0 var(--azure)}
+.btn-ink:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--ink);background:var(--azure);color:var(--ink)}
+.btn-ghost{border:2px solid var(--ink);padding:17px 34px;font-size:15.5px}
+.btn-ghost:hover{background:var(--ink);color:#fff;transform:rotate(-2deg)}
+/* Marquee */
+.marquee{background:var(--ink);overflow:hidden;padding:18px 0;white-space:nowrap}
+.marquee-in{display:inline-flex;gap:48px;animation:marquee 18s linear infinite;font-size:16px;font-weight:700;color:#fff}
+.marquee-in .z{color:var(--azure)}
+/* Sections */
+.sec{padding:72px 0}
+.sec-hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:32px}
+.sec-hd h2{font-size:38px;font-weight:700;letter-spacing:-1.2px;margin:0;line-height:1.15}
+.sec-hd .hint{font-size:13.5px;font-weight:700;color:var(--azure)}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+.card{background:#fff;border:2px solid var(--ink);padding:28px;transition:all .18s}
+.card:hover{transform:translateY(-8px) rotate(-1.5deg);box-shadow:8px 8px 0 var(--azure)}
+.card:nth-child(2):hover{transform:translateY(-8px) rotate(1.5deg)}
+.card .ico{width:44px;height:44px;background:var(--tint);display:flex;align-items:center;justify-content:center;font-size:22px}
+.card h3{font-size:20px;font-weight:700;margin:0}
+.card p{font-size:14px;line-height:1.75;color:var(--muted);margin:0}
+.card.dark{background:var(--ink);color:#fff}
+.card.dark .ico{background:var(--azure)}
+.card.dark p{color:#9fc2d8}
+.svc-tag{font-size:10.5px;font-weight:700;letter-spacing:1.5px;color:#9db0c0;margin-bottom:14px;font-family:ui-monospace,monospace}
+.ico-glass{height:140px;display:flex;align-items:center;margin-bottom:34px}
+.card:hover .ico-glass svg{transform:rotate(-4deg) scale(1.08)}
+.ico-glass svg{transition:transform .25s}
+.svc-zh{font-size:16px;font-weight:500;color:var(--muted)}
+.card.dark .svc-zh{color:#9fc2d8}
+.svc-kicker{font-size:11.5px;font-weight:700;letter-spacing:1.5px;color:var(--azure);margin:8px 0 16px}
+.svc-list{margin-top:22px;padding-top:16px;border-top:2px solid #e3edf4;font-size:12px;font-weight:700;color:#9db0c0;letter-spacing:.5px}
+.card.dark .svc-list{border-top-color:#2a3d52}
+.work{height:200px;position:relative;overflow:hidden;transition:transform .2s;background-size:cover;background-position:center;border:2px solid var(--ink)}
+.work:hover{transform:scale(1.03) rotate(-1deg)}
+.work:nth-child(even):hover{transform:scale(1.03) rotate(1deg)}
+.work .tag{position:absolute;bottom:12px;left:12px;right:12px;background:#fff;padding:8px 14px;font-size:12px;font-weight:700;line-height:1.35}
+.work .tag.dark{background:var(--ink);color:#fff}
+.wk2-removed{}
+.ic{vertical-align:-3px;display:inline-block}
+.card .ico .ic{vertical-align:0}
+.ico{color:var(--azure)}
+.card.dark .ico{color:#fff}
+.marquee .z .ic{vertical-align:-2.5px}
+/* Clients */
+.logo-track{overflow:hidden;white-space:nowrap;display:flex;margin-bottom:28px}
+.logo-track:last-of-type{margin-bottom:0}
+.logo-set{display:inline-flex;gap:56px;align-items:center;padding-right:56px;animation:logoslide 80s linear infinite}
+.rtl .logo-set{animation-direction:reverse}
+.logo-track:hover .logo-set{animation-play-state:paused}
+.logo-slot{flex:none;height:80px;width:150px;display:flex;align-items:center;justify-content:center}
+.logo-slot img{max-width:100%;max-height:64px;width:auto;height:auto;object-fit:contain;filter:grayscale(1) opacity(.6);transition:filter .25s,transform .25s}
+.logo-slot:hover img{filter:none;transform:scale(1.1)}
+@keyframes logoslide{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Social Strategy Hong Kong — Crisis Management Experts">
-  <meta property="og:description" content="Digital ideas that leave a lasting impression. Social strategy, content, production and 24/7 crisis monitoring for Hong Kong's leading brands.">
-  <meta property="og:url" content="https://www.sshk.ltd/">
+/* Triage scrollytelling */
+.triage{background:var(--tint2);position:relative}
+.triage-track{height:300vh}
+.triage-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center}
+.triage-grid{display:grid;grid-template-columns:400px 1fr;gap:48px;width:100%;max-width:1200px;margin:0 auto;padding:0 48px;align-items:center}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+.triage h2{font-size:48px;line-height:1.08;font-weight:700;letter-spacing:-1.8px;margin:14px 0 32px;color:var(--ink)}
+.tstep{display:grid;grid-template-columns:34px 1fr;gap:14px;margin-bottom:22px;opacity:.28;transition:opacity .35s}
+.tstep.on{opacity:1}
+.tstep .num{width:30px;height:30px;background:#d7e4ee;color:#7d95ab;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .35s}
+.tstep.on .num{background:var(--azure);color:#fff;box-shadow:2px 2px 0 var(--ink)}
+.tstep h3{font-size:18px;font-weight:700;margin:4px 0 6px;color:var(--ink)}
+.tstep p{font-size:14px;line-height:1.7;color:var(--muted);margin:0}
+.triage-link{font-size:14px;font-weight:700;color:var(--azure);display:inline-block;margin-top:6px}
+.triage-link:hover{color:var(--ink)}
+.tcards{position:relative;height:520px}
+.tcard{position:absolute;background:#fff;border:2px solid var(--ink);border-radius:16px;padding:16px 18px 14px;width:250px;box-shadow:5px 5px 0 rgba(15,29,43,.12);opacity:0;transform:translateY(36px) rotate(0deg);transition:opacity .45s,transform .45s;font-size:13.5px}
+.tcard.show{opacity:1}
+.tcard .badge{position:absolute;top:-12px;right:14px;background:#fff;border:2px solid var(--azure);color:var(--azure);border-radius:999px;padding:3px 10px;font-size:10.5px;font-weight:700;letter-spacing:1px;transform:rotate(-4deg)}
+.tcard .who{font-size:12px;font-weight:700;color:var(--azure);display:flex;align-items:center;gap:6px}
+.tcard .who .t{color:#9db0c0;font-weight:500;margin-left:auto}
+.tcard .txt{margin:7px 0 9px;line-height:1.5;color:var(--ink);font-weight:500}
+.tcard .meta{font-size:11.5px;color:#9db0c0;font-weight:700}
+.tc1{left:0;top:30px}.tc1.show{transform:translateY(0) rotate(-2deg)}
+.tc2{left:230px;top:0}.tc2.show{transform:translateY(0) rotate(1.5deg)}
+.tc3{left:460px;top:56px}.tc3.show{transform:translateY(0) rotate(-1deg)}
+.tc4{left:30px;top:290px}.tc4.show{transform:translateY(0) rotate(1.5deg)}
+.tc5{left:270px;top:330px}.tc5.show{transform:translateY(0) rotate(-2deg)}
+.tc6{left:490px;top:280px}.tc6.show{transform:translateY(0) rotate(2deg)}
+.tcard .score{position:absolute;bottom:-13px;right:14px;background:#fff;border:2px solid #15803d;color:#15803d;border-radius:999px;padding:3px 10px;font-size:10.5px;font-weight:700;letter-spacing:.5px;opacity:0;transform:scale(.4);transition:all .3s}
+.tcard .score.neg{border-color:#ea7317;color:#ea7317}
+.triage.p1 .tcard .score{opacity:1;transform:scale(1)}
+.tcard .wl{position:absolute;top:-13px;left:14px;background:#ea7317;color:#fff;border-radius:999px;padding:4px 11px;font-size:10px;font-weight:700;letter-spacing:1px;opacity:0;transform:scale(.4) rotate(-4deg);transition:all .3s}
+.triage.p2 .tcard.flag .wl{opacity:1;transform:scale(1) rotate(-4deg)}
+.triage.p2 .tcard{transition:opacity .45s,transform .45s,border-color .3s,filter .45s}
+.triage.p2 .tcard:not(.flag){opacity:.3;filter:grayscale(1)}
+.triage.p2 .tcard.flag{border-color:#ea7317}
+.tcard .act{opacity:0;max-height:0;overflow:hidden;border-top:2px dashed #dbe6ee;margin-top:0;padding-top:0;font-size:11px;font-weight:700;color:#ea7317;letter-spacing:1px;transition:all .4s}
+.triage.p3 .tcard.flag .act{opacity:1;max-height:40px;margin-top:10px;padding-top:9px}
+.tcount{position:absolute;top:36px;right:48px;font-size:12px;font-weight:700;letter-spacing:2px;color:#9db0c0;opacity:0;transition:opacity .4s}
+.tcount b{color:#ea7317}
+.triage.p2 .tcount{opacity:1}
+/* Playbook */
+.playbook{padding:72px 0 80px;background:#fff}
+.playbook .intro{font-size:17px;line-height:1.65;color:var(--muted);max-width:none;margin:24px 0 40px}
+.pb-grid{display:grid;grid-template-columns:1fr 24px 1fr 24px 1fr 24px 1fr;gap:10px;align-items:stretch}
+.pb-arrow{display:flex;align-items:center;justify-content:center;color:#9db0c0;font-size:18px;font-weight:700}
+.pb-card{background:var(--tint2);border:2px solid var(--ink);padding:28px;display:flex;flex-direction:column;transition:all .18s}
+.pb-card:hover{transform:translateY(-6px);box-shadow:6px 6px 0 var(--azure)}
+.pb-ill{height:96px;display:flex;align-items:center;justify-content:center;border-bottom:2px solid #dbe6ee;margin-bottom:18px;padding-bottom:14px}
+.pb-tag{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--azure);margin-bottom:8px}
+.pb-card h3{font-size:20px;font-weight:700;color:var(--ink);margin:0 0 8px}
+.pb-card p{font-size:14px;line-height:1.7;color:var(--muted);margin:0}
+.radar-sweep{transform-origin:50px 50px;animation:pbsweep 3.2s linear infinite}
+.flag-wave{transform-origin:44px 22px;animation:pbwave 1.6s ease-in-out infinite}
+.flame-flick{transform-origin:58px 22px;animation:pbflick .9s ease-in-out infinite}
+.pb-bar{transform:scaleY(.15);transform-origin:bottom;transition:transform .7s cubic-bezier(.2,.8,.3,1.2)}
+.pb-card.in .pb-bar{transform:scaleY(1)}
+@keyframes pbsweep{to{transform:rotate(360deg)}}
+@keyframes pbwave{0%,100%{transform:skewY(0)}50%{transform:skewY(-7deg)}}
+@keyframes pbflick{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.2) rotate(4deg)}}
+@media(max-width:900px){.pb-grid{grid-template-columns:1fr}.pb-arrow{display:none}}
+.cta-bottom{display:flex;justify-content:flex-start;margin-top:28px}
+/* CTA band */
+.cta{background:var(--azure);padding:72px 0}
+.cta-in{display:flex;justify-content:space-between;align-items:center;gap:32px}
+.cta h2{font-size:40px;font-weight:700;letter-spacing:-1.4px;color:#fff;line-height:1.12;margin:0}
+.btn-cta{background:var(--ink);color:#fff;padding:18px 38px;font-size:16px;box-shadow:4px 4px 0 #fff}
+.btn-cta:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 #fff;background:#fff;color:var(--ink)}
+/* Contact details + chatbox */
+.cta .cta-in{margin-bottom:44px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:32px;align-items:stretch}
+.contact-info{display:flex;flex-direction:column;gap:18px}
+.ci-row{display:flex;gap:14px;align-items:flex-start;color:#fff;font-size:15px;line-height:1.55;font-weight:500}
+.ci-row .ic{flex:none;margin-top:2px;color:var(--ink)}
+.ci-row a{color:#fff;border-bottom:2px solid rgba(255,255,255,.4);transition:border-color .15s}
+.ci-row a:hover{border-color:var(--ink);color:#fff}
+.chatbox{background:#fff;border:2px solid var(--ink);overflow:hidden;box-shadow:6px 6px 0 var(--ink);display:flex;flex-direction:column}
+.chat-head{display:flex;align-items:center;gap:9px;padding:14px 20px;background:var(--ink);color:#fff;font-size:13.5px;font-weight:700}
+.chat-head .dot{width:9px;height:9px;border-radius:50%;background:#4ade80;flex:none}
+.chat-log{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1;min-height:150px;max-height:260px;overflow-y:auto}
+.msg{max-width:80%;padding:11px 16px;font-size:14px;line-height:1.5;font-weight:500}
+.msg.them{background:var(--tint);color:var(--ink);border-radius:18px 18px 18px 4px;align-self:flex-start}
+.msg.me{background:var(--azure);color:#fff;border-radius:18px 18px 4px 18px;align-self:flex-end}
+.chat-form{display:flex;gap:10px;padding:14px;border-top:2px solid var(--ink)}
+.chat-form input{flex:1;border:2px solid #cfdfe9;padding:11px 18px;font-size:14px;font-family:inherit;outline:none;transition:border-color .15s}
+.chat-form input:focus{border-color:var(--azure)}
+.chat-form button{flex:none;width:44px;height:44px;border:none;background:var(--azure);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s}
+.chat-form button:hover{background:var(--ink);transform:rotate(-10deg) scale(1.08)}
+/* Footer word-play */
+.footer-word{background:var(--tint2);padding:64px 48px 56px;display:flex;justify-content:center;align-items:flex-end;gap:10px;overflow:hidden;position:relative}
+.fw-letter{font-size:200px;font-weight:700;line-height:.82;letter-spacing:-8px;-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;transition:transform .25s;cursor:default}
+.fw-letter:hover{transform:translateY(-14px) rotate(-3deg)}
+.fw-letter:nth-child(even):hover{transform:translateY(-14px) rotate(3deg)}
+.fw-s1{background-image:linear-gradient(90deg,#ea7317 50%,#1CA3E8 50%)}
+.fw-s2{background-image:linear-gradient(180deg,#0F1D2B 52%,#1CA3E8 52%)}
+.fw-h{background-image:linear-gradient(90deg,#1CA3E8 38%,#0F1D2B 38%,#0F1D2B 62%,#ea7317 62%)}
+.fw-k{background-image:linear-gradient(180deg,#ea7317 50%,#0F1D2B 50%)}
+.fw-dot{position:absolute;left:calc(50% - 210px);top:64px;width:44px;height:44px;border-radius:50%;background:#0F1D2B;animation:float 3.4s ease-in-out infinite}
+.fw-bolt{position:absolute;right:calc(50% - 250px);bottom:40px;width:74px;height:38px;background:#1CA3E8;clip-path:polygon(0 45%,62% 40%,55% 55%,100% 48%,38% 100%,48% 62%,0 68%);animation:wiggle 1.8s ease-in-out infinite}
+@media(max-width:900px){.fw-letter{font-size:90px;letter-spacing:-4px}.fw-dot,.fw-bolt{display:none}}
+/* Footer */
+.footer{background:var(--ink);color:#7d95ab;font-size:12.5px}
+.footer-map{max-width:1200px;margin:0 auto;padding:56px 48px 40px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;border-bottom:1px solid #22364d}
+.footer-map .fm-brand img{height:110px;width:auto;max-width:100%;object-fit:contain;object-position:left center;filter:brightness(0) invert(1)}
+.fm-col h4{font-size:11.5px;font-weight:700;letter-spacing:2px;color:#fff;margin:0 0 16px}
+.fm-col{display:flex;flex-direction:column;gap:10px}
+.fm-col a{font-size:13.5px;color:#9fb2d8;transition:color .15s}
+.fm-col a:hover{color:var(--azure)}
+@media(max-width:900px){.footer-map{grid-template-columns:1fr 1fr;padding:40px 24px 32px}}
+.footer-in{display:flex;justify-content:space-between;align-items:center;padding:26px 48px;max-width:1200px;margin:0 auto;gap:20px;flex-wrap:wrap}
+.footer .brand{color:#fff;font-weight:700;font-size:16px}
+.footer a:hover{color:#fff}
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes wiggle{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:1100px){.hero .bubble,.hero .bolt{display:none}.tcards{display:none}.triage-grid{grid-template-columns:1fr}.triage-track{height:auto}.triage-sticky{position:static;height:auto;padding:56px 0}.tstep{opacity:1}}
+@media(max-width:900px){
+h1{font-size:52px;letter-spacing:-2px}
+.grid3{grid-template-columns:1fr}
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Social Strategy Hong Kong Limited",
-    "url": "https://www.sshk.ltd/",
-    "email": "info@sshk.ltd",
-    "telephone": "+852 2713 0008",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "6/F, China Paint Building, No. 1163 Canton Road",
-      "addressLocality": "Mong Kok",
-      "addressRegion": "Kowloon",
-      "addressCountry": "HK"
-    },
-    "sameAs": [
-      "https://www.facebook.com/SocialStrategyHongKong",
-      "https://www.linkedin.com/company/socialstrategyhk"
-    ]
-  }
-  </script>
+.hero .bubble,.hero .bolt{display:none}
+.cta-in{flex-direction:column;align-items:flex-start}
+.contact-grid{grid-template-columns:1fr}
+.wrap{padding:0 24px}
+.nav-in,.footer-in{padding-left:24px;padding-right:24px}
+}
+/* Live comment feed — floating bubbles */
+.feed{position:absolute;inset:0;z-index:0;pointer-events:none}
+.fgroup{position:absolute;inset:0;opacity:0;transition:opacity .4s}
+.fgroup.on{opacity:1}
+.fb-card{position:absolute;width:250px;background:#fff;border:2px solid var(--ink);border-radius:16px;padding:15px 17px 13px;box-shadow:5px 5px 0 rgba(15,29,43,.14);font-size:13.5px;text-align:left;opacity:0;transition:opacity .5s;animation:fbfloat 3.6s ease-in-out infinite}
+.fgroup.on .fb-card{opacity:.95}
+.fgroup.on .fb-card:nth-child(2){transition-delay:.22s;animation-delay:-1.2s}
+.fgroup.on .fb-card:nth-child(3){transition-delay:.44s;animation-delay:-2.2s}
+.fgroup.on .fb-card:nth-child(4){transition-delay:.66s;animation-delay:-.6s}
+.fb-card:nth-child(1){right:21%;top:5%}
+.fb-card:nth-child(2){right:2.5%;top:16%}
+.fb-card:nth-child(3){right:17%;top:44%}
+.fb-card:nth-child(4){right:4%;top:68%}
+.fb-card:only-child{left:auto;right:12%;top:34%}
+@keyframes fbfloat{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-8px) rotate(var(--r,0deg))}}
+.fb-who{font-size:12px;font-weight:700;color:var(--azure);display:flex;justify-content:space-between;gap:10px}
+.fb-who .t{color:#9db0c0;font-weight:500}
+.fb-txt{margin:7px 0 9px;line-height:1.5;color:var(--ink);font-weight:500}
+.fb-meta{font-size:11.5px;color:#9db0c0;font-weight:700}
+.fb-badge{position:absolute;top:-12px;left:14px;background:#ea7317;color:#fff;border-radius:999px;padding:3px 10px;font-size:10px;font-weight:700;letter-spacing:1px;transform:rotate(-3deg)}
+.fb-badge.rd{background:#fff;border:2px solid var(--azure);color:var(--azure);transform:rotate(-3deg)}
+.fb-score{position:absolute;bottom:-12px;right:14px;background:#fff;border:2px solid #ea7317;color:#ea7317;border-radius:999px;padding:2px 9px;font-size:10.5px;font-weight:700}
+.fb-card.pos .fb-score{border-color:#15803d;color:#15803d}
+.fb-card.sshk{background:var(--ink);border-color:var(--ink);box-shadow:5px 5px 0 var(--azure)}
+.fb-card.sshk .fb-txt{color:#fff;font-weight:700;font-size:15px}
+.fb-card.sshk .fb-meta{color:#7ecbf5}
+@media(prefers-reduced-motion:reduce){.fb-card{animation:none}}
+@media(max-width:1100px){.feed{display:none}}
+
+.nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:0 8px;background:#fff;border:0;cursor:pointer}
+.nav-burger span{display:block;height:3px;background:var(--ink);transition:transform .2s,opacity .2s}
+.nav-burger.on span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.nav-burger.on span:nth-child(2){opacity:0}
+.nav-burger.on span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+@media(max-width:900px){
+.nav-burger{display:flex}
+.nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:2px solid var(--ink);flex-direction:column;align-items:stretch;gap:0;padding:6px 0 10px;box-shadow:0 14px 30px rgba(15,29,43,.12)}
+.nav-links.open{display:flex}
+.nav-links.open a{display:block;padding:20px 24px;font-size:30px;line-height:1.3}
+.nav-links.open a.btn{margin:10px 24px 6px;text-align:center}
+}
+
+@media(max-width:900px){
+p,li,dd,dt,figcaption,blockquote,td,th,label,input,textarea,button,a,span,b,strong,em,i,small,h5,h6{font-size:max(1em,20px)!important}
+.nav-links.open a{font-size:30px!important}
+}
+</style>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Social Strategy Hong Kong","alternateName":"SSHK","url":"https://www.sshk.ltd/","logo":"https://www.sshk.ltd/assets/SSHK_Logo-01.png","description":"Hong Kong social-first PR agency: 24/7 social listening, crisis management, ePR and creative campaigns.","address":{"@type":"PostalAddress","streetAddress":"6/F, China Paint Building, 1163 Canton Road","addressLocality":"Mong Kok","addressRegion":"Kowloon","addressCountry":"HK"},"telephone":"+852-2713-0997","email":"info@sshk.ltd","areaServed":"Hong Kong","knowsAbout":["social listening","crisis management","ePR","public relations","social media marketing","video production"]}
+</script>
 </head>
-<body id="top">
-  <a class="skip-link" href="#main">Skip to content</a>
+<body>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" fill="#1CA3E8"/><text x="60" y="74" font-family="Helvetica,Arial,sans-serif" font-size="36" font-weight="700" fill="#fff" text-anchor="middle">SS</text></svg></template>
+<nav class="nav">
+<div class="nav-in">
+<a href="index.html"><img src="assets/SSHK_Logo-01.png" alt="Social Strategy HK"></a>
+<button class="nav-burger" aria-label="Menu" aria-expanded="false" onclick="var l=this.closest('.nav').querySelector('.nav-links');var o=l.classList.toggle('open');this.classList.toggle('on',o);this.setAttribute('aria-expanded',o)"><span></span><span></span><span></span></button><div class="nav-links">
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="works.html">Works</a>
+<a href="production.html">Production</a>
+<a href="training.html">Training</a>
+<a href="clients.html">Clients</a>
+<a href="careers.html">Careers</a>
+<a class="btn btn-azure" href="contact.html">Brief the team</a>
+</div>
+</div>
+</nav>
 
-  <header class="site-header" data-header>
-    <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="Social Strategy Hong Kong — home">
-        SSHK<span class="brand-dot">.</span>
-      </a>
-      <nav class="site-nav" id="site-nav" aria-label="Primary">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#works">Works</a></li>
-          <li><a href="#clients">Clients</a></li>
-          <li><a href="#team">Team</a></li>
-        </ul>
-        <a class="btn btn-primary nav-cta" href="#contact">Talk to us</a>
-      </nav>
-      <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
-        <span></span><span></span>
-      </button>
-    </div>
-  </header>
+<header class="hero">
+<div class="hero-blob"></div>
+</div>
+<div class="wrap">
+<div class="eyebrow">SOCIAL STRATEGY HK</div>
+<h1><span class="w">Make</span> <span class="w pill">waves.</span><br><span class="w w2">Calm</span> <span class="w ring">waves.</span></h1>
+<p>Loud when you launch, silent-fast when it burns. Content, production &amp; 24/7 crisis watch from Hong Kong's playfully serious social team.</p>
+<div class="hero-ctas">
+<a class="btn btn-ink" href="#contact">Start a project <svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></a>
+<a class="btn btn-ghost" href="#works">See works →</a>
+</div>
+</div>
+<div class="feed" aria-hidden="true">
+<div class="fgroup"><div class="fb-card" style="--r:-2deg"><span class="fb-badge">WATCHLIST</span><div class="fb-who">@user432 <span class="t">4m</span></div><div class="fb-txt">打去CS永遠冇人聽</div><div class="fb-meta">♥ 1.2k · ↺ 340</div><span class="fb-score">−0.78</span></div><div class="fb-card" style="--r:1deg"><div class="fb-who">@milktea.hk <span class="t">5m</span></div><div class="fb-txt">回覆咁慢嘅？</div><div class="fb-meta">♥ 540 · ↺ 77</div><span class="fb-score">−0.52</span></div><div class="fb-card" style="--r:1.5deg"><div class="fb-who">@kayan.c <span class="t">6m</span></div><div class="fb-txt">道歉都冇誠意</div><div class="fb-meta">♥ 890 · ↺ 210</div><span class="fb-score">−0.85</span></div><div class="fb-card" style="--r:-1deg"><span class="fb-badge">WATCHLIST</span><div class="fb-who">@hk_auntie <span class="t">9m</span></div><div class="fb-txt">加完價服務仲差咗</div><div class="fb-meta">♥ 2.3k · ↺ 512</div><span class="fb-score">−0.66</span></div></div>
+<div class="fgroup"><div class="fb-card" style="--r:1deg"><span class="fb-badge">WATCHLIST</span><div class="fb-who">@ben_trades <span class="t">12m</span></div><div class="fb-txt">而家全城鬧緊呀</div><div class="fb-meta">♥ 3.1k · ↺ 780</div><span class="fb-score">−0.91</span></div><div class="fb-card" style="--r:-1.5deg"><div class="fb-who">@tuesday.wong <span class="t">15m</span></div><div class="fb-txt">睇下今次點拆</div><div class="fb-meta">♥ 671 · ↺ 98</div><span class="fb-score">−0.42</span></div><div class="fb-card" style="--r:2deg"><div class="fb-who">@gary_9up <span class="t">17m</span></div><div class="fb-txt">個app又hang咗</div><div class="fb-meta">♥ 1.1k · ↺ 190</div><span class="fb-score">−0.61</span></div><div class="fb-card" style="--r:-1deg"><div class="fb-who">@cha_chaan_teng <span class="t">18m</span></div><div class="fb-txt">食花生等睇戲</div><div class="fb-meta">♥ 1.8k · ↺ 264</div><span class="fb-score">−0.30</span></div></div>
+<div class="fgroup"><div class="fb-card sshk" style="--r:0deg"><span class="fb-badge rd">READ ✓ 0.3s</span><div class="fb-who">@SSHK <span class="t">now</span></div><div class="fb-txt">We’re on it. <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div><div class="fb-meta">Crisis desk · monitoring 24/7</div></div></div>
+<div class="fgroup"><div class="fb-card pos" style="--r:-1.5deg"><div class="fb-who">@user432 <span class="t">2h</span></div><div class="fb-txt">呢個回應好得體</div><div class="fb-meta">♥ 4.2k · ↺ 1.1k</div><span class="fb-score">+0.92</span></div><div class="fb-card pos" style="--r:2deg"><div class="fb-who">@milktea.hk <span class="t">2h</span></div><div class="fb-txt">小編加人工！</div><div class="fb-meta">♥ 2.1k · ↺ 410</div><span class="fb-score">+0.90</span></div><div class="fb-card pos" style="--r:1deg"><div class="fb-who">@kayan.c <span class="t">2h</span></div><div class="fb-txt">OK this is actually good</div><div class="fb-meta">♥ 2.8k · ↺ 640</div><span class="fb-score">+0.87</span></div><div class="fb-card pos" style="--r:-2deg"><div class="fb-who">@hk_auntie <span class="t">3h</span></div><div class="fb-txt">唔係啩，咁都得？</div><div class="fb-meta">♥ 1.5k · ↺ 322</div><span class="fb-score">+0.61</span></div></div>
+<div class="fgroup"><div class="fb-card pos" style="--r:2deg"><div class="fb-who">@ben_trades <span class="t">3h</span></div><div class="fb-txt">全香港都講緊</div><div class="fb-meta">♥ 5.6k · ↺ 2.3k</div><span class="fb-score">+0.95</span></div><div class="fb-card pos" style="--r:-1deg"><div class="fb-who">@tuesday.wong <span class="t">4h</span></div><div class="fb-txt">邊度買到？求link</div><div class="fb-meta">♥ 980 · ↺ 156</div><span class="fb-score">+0.88</span></div><div class="fb-card pos" style="--r:1.5deg"><div class="fb-who">@gary_9up <span class="t">5h</span></div><div class="fb-txt">已share</div><div class="fb-meta">♥ 760 · ↺ 132</div><span class="fb-score">+0.83</span></div><div class="fb-card pos" style="--r:-1.5deg"><div class="fb-who">@cha_chaan_teng <span class="t">5h</span></div><div class="fb-txt">學到嘢</div><div class="fb-meta">♥ 1.3k · ↺ 245</div><span class="fb-score">+0.79</span></div></div>
+</div>
+</header>
 
-  <main id="main">
+<div class="marquee" aria-hidden="true">
+<div class="marquee-in"><span>HOLISTIC STRATEGY</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>CRISIS HANDLING</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>CONTENT &amp; COPYWRITING</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>SOCIAL MONITORING</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>VIDEO &amp; PHOTOGRAPHY</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>ePR &amp; AMPLIFICATION</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>COMMUNITY ACQUISITION</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>RISK ASSESSMENT</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>INFLUENCER &amp; PERFORMANCE</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>24/7 CRISIS WATCH</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>HOLISTIC STRATEGY</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>CRISIS HANDLING</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>CONTENT &amp; COPYWRITING</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>SOCIAL MONITORING</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>VIDEO &amp; PHOTOGRAPHY</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>ePR &amp; AMPLIFICATION</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>COMMUNITY ACQUISITION</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>RISK ASSESSMENT</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>INFLUENCER &amp; PERFORMANCE</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><span>24/7 CRISIS WATCH</span><span class="z"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span></div>
+</div>
 
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <div class="container">
-        <p class="hero-status reveal">
-          <span class="pulse" aria-hidden="true"></span>
-          24/7 crisis monitoring &amp; alert — live
-        </p>
-        <h1 class="hero-title reveal">
-          Digital ideas that leave a<br>
-          <em>lasting impression.</em>
-        </h1>
-        <p class="hero-sub reveal">
-          We are Social Strategy Hong Kong — a social strategy and crisis
-          management firm helping the city's leading brands stay heard,
-          trusted and ready. In the era of shrinking attention spans,
-          narrative is everything.
-        </p>
-        <div class="hero-actions reveal">
-          <a class="btn btn-primary" href="#contact">Start a conversation</a>
-          <a class="btn btn-ghost" href="#services">What we do</a>
-        </div>
-      </div>
-      <div class="hero-stats">
-        <div class="container stats-grid">
-          <div class="stat reveal">
-            <span class="stat-num">2010</span>
-            <span class="stat-label">Founded as Photoblog.hk</span>
-          </div>
-          <div class="stat reveal">
-            <span class="stat-num">400K+</span>
-            <span class="stat-label">Community followers</span>
-          </div>
-          <div class="stat reveal">
-            <span class="stat-num">40+</span>
-            <span class="stat-label">Brands &amp; institutions served</span>
-          </div>
-          <div class="stat reveal">
-            <span class="stat-num">24/7</span>
-            <span class="stat-label">Crisis monitoring &amp; alert</span>
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="sec" id="services">
+<div class="wrap">
+<div class="sec-hd reveal"><div><div class="eyebrow">SERVICES · THE TEAM, THREE WAYS</div><h2 style="margin:12px 0 0">One team. Three shifts of work.</h2></div><a class="hint" href="services.html">All services →</a></div>
+<div class="grid3">
+<div class="card reveal"><div class="ico-glass"><svg width="132" height="132" viewBox="0 0 66 66" fill="none" aria-hidden="true"><defs><linearGradient id="gl1a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f7ee0"/><stop offset="1" stop-color="#1CA3E8"/></linearGradient><linearGradient id="gl1b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".95"/><stop offset="1" stop-color="#cfe7fb" stop-opacity=".8"/></linearGradient><filter id="gl1f" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5"/></filter></defs><path d="M22 8h30a6 6 0 0 1 6 6v18a6 6 0 0 1-6 6h-6l2 9-11-9H22a6 6 0 0 1-6-6V14a6 6 0 0 1 6-6z" fill="url(#gl1a)" transform="rotate(6 37 27)"/><circle cx="26" cy="36" r="12" fill="#1CA3E8" opacity=".55" filter="url(#gl1f)"/><path d="M12 20h28a6 6 0 0 1 6 6v14a6 6 0 0 1-6 6H24l-9 8 1.6-8H12a6 6 0 0 1-6-6V26a6 6 0 0 1 6-6z" fill="url(#gl1b)"/><path d="M16 30c2.5 0 2.5 3 5 3s2.5-3 5-3 2.5 3 5 3 2.5-3 5-3" stroke="#2f7ee0" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M18 37.5c2 0 2 2.4 4 2.4s2-2.4 4-2.4 2 2.4 4 2.4 2-2.4 4-2.4" stroke="#7fbcee" stroke-width="2" stroke-linecap="round" fill="none"/></svg></div><div class="svc-tag">TEAM / LISTEN</div><h3 style="margin-top:0">LISTEN</h3><div class="svc-kicker">SOCIAL LISTENING</div><p>Every crisis is a whisper before it is a headline. We read Hong Kong around the clock, across every platform, in both languages the city argues in.</p><div class="svc-list">Real-time monitoring · 24/7 crisis alert</div></div>
+<div class="card dark reveal"><div class="ico-glass"><svg width="132" height="132" viewBox="0 0 66 66" fill="none" aria-hidden="true"><defs><linearGradient id="gl2a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4aa9ec"/><stop offset="1" stop-color="#1CA3E8"/></linearGradient><linearGradient id="gl2b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".95"/><stop offset="1" stop-color="#cfe7fb" stop-opacity=".8"/></linearGradient><filter id="gl2f" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5"/></filter></defs><path d="M42 6 60 13v13c0 12-8 20-18 24-10-4-18-12-18-24V13l18-7z" fill="url(#gl2a)" transform="rotate(8 42 30)"/><circle cx="30" cy="38" r="12" fill="#1CA3E8" opacity=".6" filter="url(#gl2f)"/><path d="M26 16 44 23v13c0 12-8 20-18 24-10-4-18-12-18-24V23l18-7z" fill="url(#gl2b)"/><path d="M26 28v10" stroke="#2f7ee0" stroke-width="3" stroke-linecap="round"/><circle cx="26" cy="45" r="2" fill="#2f7ee0"/></svg></div><div class="svc-tag">TEAM / RESPOND</div><h3 style="margin-top:0">RESPOND</h3><div class="svc-kicker">ISSUE &amp; CRISIS MANAGEMENT</div><p>When the story turns, we write the statement, brief the room, and steady the narrative while it can still be steadied.</p><div class="svc-list">Lines-to-take · statements · community response</div></div>
+<div class="card reveal"><div class="ico-glass"><svg width="132" height="132" viewBox="0 0 66 66" fill="none" aria-hidden="true"><defs><linearGradient id="gl3a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f7ee0"/><stop offset="1" stop-color="#1CA3E8"/></linearGradient><linearGradient id="gl3b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".95"/><stop offset="1" stop-color="#cfe7fb" stop-opacity=".8"/></linearGradient><filter id="gl3f" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5"/></filter></defs><rect x="18" y="8" width="40" height="30" rx="6" fill="url(#gl3a)" transform="rotate(8 38 23)"/><circle cx="30" cy="36" r="12" fill="#1CA3E8" opacity=".55" filter="url(#gl3f)"/><rect x="8" y="22" width="40" height="30" rx="6" fill="url(#gl3b)"/><path d="m24 30 12 7-12 7v-14z" fill="#2f7ee0"/></svg></div><div class="svc-tag">TEAM / CREATE</div><h3 style="margin-top:0">CREATE</h3><div class="svc-kicker">CAMPAIGN &amp; PRODUCTION</div><p>Every brand needs a story worth telling. From key visual to final cut, we make work people share because they want to.</p><div class="svc-list">Concepts · retainers · ads · photo &amp; video</div></div>
+</div>
+</div>
+</section>
 
-    <!-- ============ ABOUT ============ -->
-    <section class="section" id="about">
-      <div class="container">
-        <header class="section-head reveal">
-          <span class="section-num">01</span>
-          <h2>About us</h2>
-        </header>
-        <div class="about-grid">
-          <div class="about-story reveal">
-            <p class="lede">
-              To reinterpret social media marketing through the power of
-              narrative — and to inspire the greatness in every audience.
-            </p>
-            <p>
-              Founded in 2010, Photoblog.hk grew into one of Hong Kong's most
-              popular photography communities, with over 400,000 followers.
-              In 2017 it evolved into <strong>Social Strategy Hong Kong</strong>,
-              bringing professional social media marketing and crisis
-              management to higher education, public utilities and commercial
-              brands.
-            </p>
-            <p>
-              Our team blends journalist instincts with creative execution —
-              we read the news cycle, plan ahead of it, and tell brand
-              stories that cut through.
-            </p>
-          </div>
-          <ul class="method-list">
-            <li class="method reveal">
-              <span class="method-index">B/01</span>
-              <h3>Bomb Remover</h3>
-              <p>Identify brand opportunities — and defuse risks — from current affairs and crisis.</p>
-            </li>
-            <li class="method reveal">
-              <span class="method-index">B/02</span>
-              <h3>Buzz Planner</h3>
-              <p>Set campaign agendas with a forward-looking mindset, before the conversation starts.</p>
-            </li>
-            <li class="method reveal">
-              <span class="method-index">B/03</span>
-              <h3>Brand Storyteller</h3>
-              <p>Tell brand stories creatively and effectively, on the channels that matter.</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
+<section class="triage" id="triage">
+<div class="triage-track" id="triageTrack">
+<div class="triage-sticky">
+<div class="tcount">FLAGGED <b>3 / 6</b></div>
+<div class="triage-grid">
+<div>
+<div class="eyebrow">THE TRIAGE</div>
+<div style="font-size:22px;font-weight:700;letter-spacing:-.4px;color:var(--azure);margin:10px 0 4px">How it works</div>
+<h2 style="margin-top:0">Read. Scored.<br>Flagged. Handled.</h2>
+<div class="tstep on" data-step="0"><div class="num">01</div><div><h3>Read</h3><p>Every mention is read by the team — 1M+ channels, five-minute crawls, nothing skimmed.</p></div></div>
+<div class="tstep" data-step="1"><div class="num">02</div><div><h3>Score</h3><p>Each post gets a number. Green can wait. Red cannot.</p></div></div>
+<div class="tstep" data-step="2"><div class="num">03</div><div><h3>Flag</h3><p>Whatever can hurt the brand goes on the watchlist — graded on five dimensions, not gut feel.</p></div></div>
+<div class="tstep" data-step="3"><div class="num">04</div><div><h3>Handle</h3><p>Flagged means handled — a line-to-take, a counter-story, a quiet fix, before the post becomes the story.</p></div></div>
+<a class="triage-link" href="#contact">See how we fight the fire ↓</a>
+</div>
+<div class="tcards" aria-hidden="true">
+<div class="tcard tc1"><div class="badge">READ ✓ 0.4s</div><div class="who"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#FF2442"/><text x="12" y="16.6" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff" font-family="'Noto Sans TC',sans-serif">红</text></svg><span>@foodie852</span><span class="t">2m</span></div><div class="txt">呢間新餐廳排隊兩粒鐘，值唔值？</div><div class="meta">♥ 689 · ↺ 76</div><div class="score">+0.62</div></div>
+<div class="tcard tc2"><div class="badge">READ ✓ 0.7s</div><div class="who"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#000"/><text x="12" y="16.4" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Helvetica,Arial,sans-serif">@</text></svg><span>TRENDING</span><span class="t">5m</span></div><div class="txt">Terminal 2 好正 ✈️</div><div class="meta">♥ 3.8k · ↺ 1.4k</div><div class="score">+0.81</div></div>
+<div class="tcard tc3"><div class="badge">READ ✓ 1.1s</div><div class="who"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1.6" y="1.6" width="20.8" height="20.8" rx="6" stroke="#E4405F" stroke-width="2.6"/><circle cx="12" cy="12" r="4.7" stroke="#E4405F" stroke-width="2.6"/><circle cx="17.6" cy="6.4" r="1.7" fill="#E4405F"/></svg><span>@user2081</span><span class="t">7m</span></div><div class="txt">個 brand 道歉聲明寫得幾好，respect</div><div class="meta">♥ 954 · ↺ 218</div><div class="score">+0.55</div></div>
+<div class="tcard tc4 flag"><div class="wl">⚑ WATCHLIST</div><div class="badge">READ ✓ 0.3s</div><div class="who"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1877F2"/><path fill="#fff" d="M15.9 12.7h-2.5V20h-3v-7.3H8.5V10h1.9V8.3c0-2 1.2-3.2 3.1-3.2.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V10h2.3l-.4 2.7z"/></svg><span>@user432</span><span class="t">4m</span></div><div class="txt">今次公關災難……點收科 🙈</div><div class="meta">♥ 1.2k · ↺ 340</div><div class="act">→ LINE-TO-TAKE ISSUED</div><div class="score neg">−0.78</div></div>
+<div class="tcard tc5 flag"><div class="wl">⚑ WATCHLIST</div><div class="badge">READ ✓ 0.6s</div><div class="who"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#33342E"/><text x="12" y="16.8" text-anchor="middle" font-size="11.5" font-weight="700" fill="#F5C51E" font-family="'Noto Sans TC',sans-serif">連</text></svg><span>FORUM</span><span class="t">11m</span></div><div class="txt">客服三日冇覆，係未比人炒哂？ 🤬</div><div class="meta">♥ 2.1k · ↺ 690</div><div class="act">→ RESPONSE PUBLISHED</div><div class="score neg">−0.66</div></div>
+<div class="tcard tc6 flag"><div class="wl">⚑ WATCHLIST</div><div class="badge">READ ✓ 0.9s</div><div class="who"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#07C160"/><path fill="#fff" d="M9.7 5.6c-2.9 0-5.2 1.9-5.2 4.3 0 1.4.8 2.6 2 3.4l-.5 1.6 1.8-1c.6.2 1.2.3 1.9.3h.3c-.1-.4-.2-.8-.2-1.2 0-2.4 2.3-4.3 5.1-4.3h.3c-.5-1.8-2.7-3.1-5.5-3.1zM7.8 8.1c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm3.9 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm3.2 2.1c-2.4 0-4.3 1.6-4.3 3.6s1.9 3.6 4.3 3.6c.5 0 1-.1 1.5-.2l1.5.8-.4-1.3c1-.7 1.7-1.7 1.7-2.9 0-2-1.9-3.6-4.3-3.6zm-1.6 2.1c.3 0 .6.3.6.6s-.3.6-.6.6-.6-.3-.6-.6.3-.6.6-.6zm3.2 0c.3 0 .6.3.6.6s-.3.6-.6.6-.6-.3-.6-.6.3-.6.6-.6z"/></svg><span>@hk_daily</span><span class="t">9m</span></div><div class="txt">個 campaign 係咪抄嘢？有圖</div><div class="meta">♥ 840 · ↺ 152</div><div class="act">→ STATEMENT DRAFTED</div><div class="score neg">−0.41</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- ============ SERVICES ============ -->
-    <section class="section section-tinted" id="services">
-      <div class="container">
-        <header class="section-head reveal">
-          <span class="section-num">02</span>
-          <h2>What we do</h2>
-        </header>
-        <div class="services-grid">
-          <article class="service reveal">
-            <h3><span class="service-mark" aria-hidden="true"></span>Content</h3>
-            <ul>
-              <li>Concept creation</li>
-              <li>Project management</li>
-              <li>Social retainer</li>
-              <li>Ad placement &amp; optimisation</li>
-            </ul>
-          </article>
-          <article class="service reveal">
-            <h3><span class="service-mark" aria-hidden="true"></span>Production</h3>
-            <ul>
-              <li>Photography</li>
-              <li>Video production</li>
-              <li>Powered by the Photoblog.hk production team</li>
-            </ul>
-          </article>
-          <article class="service reveal">
-            <h3><span class="service-mark" aria-hidden="true"></span>ePR</h3>
-            <ul>
-              <li>Social seeding</li>
-              <li>Real-time monitoring</li>
-              <li>24/7 crisis monitoring &amp; alert</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
+<section class="playbook" id="playbook">
+<div class="wrap">
+<div class="sec-hd reveal" style="margin-bottom:0"><div><div class="eyebrow">THE PLAYBOOK</div><h2 style="font-size:38px;letter-spacing:-1.2px;margin:12px 0 0;line-height:1.15">From forecast to fire-out</h2></div><a class="hint" href="services.html#kpi">The full crisis cycle →</a></div>
+<p class="intro reveal">Hong Kong reads weather signals; we read sentiment the same way. Every crisis follows a cycle — and at every stage of it, there is a right move.</p>
+<div class="pb-grid">
+<div class="pb-card reveal"><div class="pb-ill"><svg width="100" height="84" viewBox="0 0 100 84" fill="none" aria-hidden="true"><g transform="translate(0,-8)"><circle cx="50" cy="50" r="34" stroke="#dbe6ee" stroke-width="2"/><circle cx="50" cy="50" r="22" stroke="#dbe6ee" stroke-width="2"/><circle cx="50" cy="50" r="10" stroke="#dbe6ee" stroke-width="2"/><line class="radar-sweep" x1="50" y1="50" x2="22" y2="78" stroke="#1CA3E8" stroke-width="2.5" stroke-linecap="round"/><circle cx="50" cy="50" r="3" fill="#0F1D2B"/><circle cx="66" cy="34" r="3.5" fill="#1CA3E8"/></g></svg></div><div class="pb-tag">FORECAST</div><h3>Watch the sky</h3><p>AI monitoring across 1M+ channels, five-minute crawl intervals, trend prediction — the whisper is caught while it is still a whisper.</p></div>
+<div class="pb-arrow">→</div>
+<div class="pb-card reveal"><div class="pb-ill"><svg width="100" height="84" viewBox="0 0 100 84" fill="none" aria-hidden="true"><line x1="44" y1="12" x2="44" y2="76" stroke="#0F1D2B" stroke-width="4"/><path class="flag-wave" d="M44 14 L70 30 L44 46 Z" fill="#0F1D2B"/><text x="76" y="34" font-family="ui-monospace,monospace" font-size="11" font-weight="700" fill="#ea7317">T·8</text></svg></div><div class="pb-tag">HOIST THE SIGNAL</div><h3>Raise the signal early</h3><p>Risk assessment, emergency plans and lines-to-take prepared before the storm makes landfall — so nobody drafts in the rain.</p></div>
+<div class="pb-arrow">→</div>
+<div class="pb-card reveal"><div class="pb-ill"><svg width="120" height="84" viewBox="0 0 120 84" fill="none" aria-hidden="true"><line x1="8" y1="64" x2="112" y2="64" stroke="#dbe6ee" stroke-width="2" stroke-dasharray="4 4"/><polyline points="8,58 30,54 46,56 58,26 70,50 84,42 98,46 112,40" stroke="#1CA3E8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><polyline points="46,56 58,26" stroke="#ea7317" stroke-width="3" stroke-linecap="round"/><path class="flame-flick" d="M58 22c-3-4 0-8 2-10 0 3 4 3 4 7a3.5 3.5 0 0 1-6 3z" fill="#ea7317"/></svg></div><div class="pb-tag">FIGHT THE FIRE</div><h3>Contain and steady</h3><p>Every crisis has a rhythm. We read it, slow it down, and quietly turn the conversation — one stage at a time.</p></div>
+<div class="pb-arrow">→</div>
+<div class="pb-card reveal"><div class="pb-ill"><svg width="110" height="84" viewBox="0 0 110 84" fill="none" aria-hidden="true"><rect class="pb-bar" x="14" y="48" width="14" height="28" fill="#c9dcea"/><rect class="pb-bar" x="36" y="40" width="14" height="36" fill="#9ec7e8" style="transition-delay:.12s"/><rect class="pb-bar" x="58" y="30" width="14" height="46" fill="#1CA3E8" style="transition-delay:.24s"/><rect class="pb-bar" x="80" y="18" width="14" height="58" fill="#0F1D2B" style="transition-delay:.36s"/><path d="M12 52 C40 44 70 34 96 14" stroke="#0F1D2B" stroke-width="2.5" fill="none"/><circle cx="96" cy="14" r="3.5" fill="#0F1D2B"/></svg></div><div class="pb-tag">REBUILD</div><h3>Rebuild, then fireproof</h3><p>The best defence is a story worth telling: creative campaigns and community acquisition that leave the brand stronger than before the smoke.</p></div>
+</div>
+</div>
+</section>
 
-    <!-- ============ WORKS ============ -->
-    <section class="section" id="works">
-      <div class="container">
-        <header class="section-head reveal">
-          <span class="section-num">03</span>
-          <h2>Selected works</h2>
-        </header>
-        <ul class="works-list">
-          <li class="work reveal">
-            <span class="work-index">01</span>
-            <span class="work-name">Hong Kong International Airport</span>
-            <span class="work-tag">Aviation</span>
-          </li>
-          <li class="work reveal">
-            <span class="work-index">02</span>
-            <span class="work-name">MTR</span>
-            <span class="work-tag">Transport</span>
-          </li>
-          <li class="work reveal">
-            <span class="work-index">03</span>
-            <span class="work-name">Generali</span>
-            <span class="work-tag">Insurance</span>
-          </li>
-          <li class="work reveal">
-            <span class="work-index">04</span>
-            <span class="work-name">Stanley Plaza</span>
-            <span class="work-tag">Retail &amp; lifestyle</span>
-          </li>
-          <li class="work reveal">
-            <span class="work-index">05</span>
-            <span class="work-name">OCBC</span>
-            <span class="work-tag">Banking</span>
-          </li>
-          <li class="work reveal">
-            <span class="work-index">06</span>
-            <span class="work-name">New World Group</span>
-            <span class="work-tag">Property &amp; hospitality</span>
-          </li>
-          <li class="work reveal">
-            <span class="work-index">07</span>
-            <span class="work-name">AsiaWorld-Expo</span>
-            <span class="work-tag">Events &amp; venues</span>
-          </li>
-        </ul>
-      </div>
-    </section>
+<section class="sec" id="works" style="padding-top:0">
+<div class="wrap">
+<div class="sec-hd reveal"><h2>Selected works</h2><a class="hint" href="works.html">See all →</a></div>
+<div class="grid3">
+<div class="work reveal" style="background-image:url('assets/hkia/kv-terminal.jpg')"><span class="tag">HKIA · Three-Runway 10km Race Runway race</span></div>
+<div class="work reveal" style="background-image:url('assets/mtr/kv-train.png')"><span class="tag">MTR · Social Retainer Social programme</span></div>
+<div class="work reveal" style="background-image:url('assets/works/unicef.webp')"><span class="tag">UNICEF · WhatsApp Sticker Campaign</span></div>
+<div class="work reveal" style="background-image:url('assets/works/stanley-plaza.webp')"><span class="tag">Stanley Plaza · Christmas Market Christmas market</span></div>
+<div class="work reveal" style="background-image:url('assets/alibaba/kv-neon.jpg')"><span class="tag">Alibaba · B2B Never Means Boring2Business</span></div>
+<div class="work reveal" style="background-image:url('assets/works/john-tsang.webp')"><span class="tag">John Tsang 2017 · CE Election Campaign Election campaign</span></div>
+</div>
+</div>
+</section>
 
-    <!-- ============ CLIENTS ============ -->
-    <section class="section section-clients" id="clients">
-      <div class="container">
-        <header class="section-head reveal">
-          <span class="section-num">04</span>
-          <h2>Trusted by</h2>
-        </header>
-      </div>
-      <div class="marquee reveal" data-marquee>
-        <div class="marquee-track">
-          <ul class="marquee-list">
-            <li>MTR</li><li>Swire</li><li>Cathay Pacific</li><li>Sun Hung Kai</li>
-            <li>New World</li><li>Standard Chartered</li><li>Hang Seng Bank</li>
-            <li>Airport Authority HK</li><li>HKMA</li><li>The Link</li>
-            <li>HK Observatory</li><li>HKTDC</li><li>HKU</li><li>CUHK</li>
-            <li>HKUST</li><li>CityU</li><li>HK Jockey Club</li><li>UNICEF</li>
-            <li>Greenpeace</li><li>The Community Chest</li><li>Manulife</li>
-            <li>Tesla</li><li>foodpanda</li><li>SmarTone</li><li>Sony</li>
-            <li>Samsung</li><li>Nikon</li><li>Canon</li><li>Yahoo</li>
-          </ul>
-          <ul class="marquee-list" aria-hidden="true">
-            <li>MTR</li><li>Swire</li><li>Cathay Pacific</li><li>Sun Hung Kai</li>
-            <li>New World</li><li>Standard Chartered</li><li>Hang Seng Bank</li>
-            <li>Airport Authority HK</li><li>HKMA</li><li>The Link</li>
-            <li>HK Observatory</li><li>HKTDC</li><li>HKU</li><li>CUHK</li>
-            <li>HKUST</li><li>CityU</li><li>HK Jockey Club</li><li>UNICEF</li>
-            <li>Greenpeace</li><li>The Community Chest</li><li>Manulife</li>
-            <li>Tesla</li><li>foodpanda</li><li>SmarTone</li><li>Sony</li>
-            <li>Samsung</li><li>Nikon</li><li>Canon</li><li>Yahoo</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+<section class="sec" id="clients" style="padding-top:0">
+<div class="wrap">
+<div class="sec-hd reveal"><h2>Brands we make waves for</h2><span class="hint">300+ BRANDS SINCE 2017 <svg class="ic" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span></div>
+<div class="logo-track ltr"><div class="logo-set"><div class="logo-slot"><img src="assets/clients/MTR.png" alt="MTR" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Swire.png" alt="Swire" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/CX.png" alt="Cathay Pacific" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/New-World.png" alt="New World" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/SC.png" alt="Standard Chartered" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Alibaba.png" alt="Alibaba" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HSB.png" alt="Hang Seng Bank" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/AAHK.png" alt="Airport Authority Hong Kong" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HKMA.jpg" alt="HKMA" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/MPFA.png" alt="MPFA" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Link.png" alt="Link REIT" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HKO.png" alt="Hong Kong Observatory" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HKTDC.png" alt="HKTDC" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HKU.png" alt="HKU" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/CUHK.png" alt="CUHK" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/UST.png" alt="HKUST" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/CityU.png" alt="CityU" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/VTC.png" alt="VTC" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HKIAA.png" alt="HKIAA" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HKJC.png" alt="Hong Kong Jockey Club" loading="lazy"></div></div><div class="logo-set" aria-hidden="true"><div class="logo-slot"><img src="assets/clients/MTR.png" alt="MTR" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Swire.png" alt="Swire" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/CX.png" alt="Cathay Pacific" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/New-World.png" alt="New World" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/SC.png" alt="Standard Chartered" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Alibaba.png" alt="Alibaba" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HSB.png" alt="Hang Seng Bank" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/AAHK.png" alt="Airport Authority Hong Kong" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HKMA.jpg" alt="HKMA" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/MPFA.png" alt="MPFA" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Link.png" alt="Link REIT" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HKO.png" alt="Hong Kong Observatory" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HKTDC.png" alt="HKTDC" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HKU.png" alt="HKU" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/CUHK.png" alt="CUHK" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/UST.png" alt="HKUST" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/CityU.png" alt="CityU" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/VTC.png" alt="VTC" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HKIAA.png" alt="HKIAA" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/HKJC.png" alt="Hong Kong Jockey Club" loading="lazy"></div></div></div>
+<div class="logo-track rtl"><div class="logo-set"><div class="logo-slot"><img src="assets/clients/Greenpeace.png" alt="Greenpeace" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Unicef.png" alt="UNICEF" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Community-Chest.png" alt="Community Chest" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/BCT.png" alt="BCT" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Tesla.png" alt="Tesla" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Foodpanda.png" alt="foodpanda" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/TSL.png" alt="TSL" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Lecole.png" alt="LÉCOLE" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Smartone.png" alt="SmarTone" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Sony.png" alt="Sony" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Samsung.png" alt="Samsung" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Nikon.png" alt="Nikon" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Canon.png" alt="Canon" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Yahoo.png" alt="Yahoo" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/AP.png" alt="AP" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/SEB.png" alt="SEB" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Resolve.png" alt="Resolve" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Manulife.png" alt="Manulife" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Nokia.png" alt="Nokia" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/John-Tsang.png" alt="John Tsang" loading="lazy"></div></div><div class="logo-set" aria-hidden="true"><div class="logo-slot"><img src="assets/clients/Greenpeace.png" alt="Greenpeace" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Unicef.png" alt="UNICEF" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Community-Chest.png" alt="Community Chest" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/BCT.png" alt="BCT" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Tesla.png" alt="Tesla" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Foodpanda.png" alt="foodpanda" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/TSL.png" alt="TSL" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Lecole.png" alt="LÉCOLE" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Smartone.png" alt="SmarTone" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Sony.png" alt="Sony" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Samsung.png" alt="Samsung" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Nikon.png" alt="Nikon" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Canon.png" alt="Canon" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Yahoo.png" alt="Yahoo" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/AP.png" alt="AP" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/SEB.png" alt="SEB" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Resolve.png" alt="Resolve" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Manulife.png" alt="Manulife" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/Nokia.png" alt="Nokia" loading="lazy"></div><div class="logo-slot"><img src="assets/clients/John-Tsang.png" alt="John Tsang" loading="lazy"></div></div></div>
+</div>
+</section>
 
-    <!-- ============ TEAM ============ -->
-    <section class="section" id="team">
-      <div class="container">
-        <header class="section-head reveal">
-          <span class="section-num">05</span>
-          <h2>The partners</h2>
-        </header>
-        <div class="team-grid">
-          <div class="member reveal">
-            <h3>Alex Lo</h3>
-            <p class="member-role">Social strategy &amp; crisis management</p>
-            <p class="member-note">Former journalist</p>
-          </div>
-          <div class="member reveal">
-            <h3>Kenneth Yung</h3>
-            <p class="member-role">Photography &amp; design</p>
-            <p class="member-note">Photoblog.hk</p>
-          </div>
-          <div class="member reveal">
-            <h3>Rex Wong</h3>
-            <p class="member-role">Video production</p>
-            <p class="member-note">Production lead</p>
-          </div>
-          <div class="member reveal">
-            <h3>Terry Chan</h3>
-            <p class="member-role">Public affairs &amp; editorial</p>
-            <p class="member-note">Social media editor</p>
-          </div>
-        </div>
-        <p class="join-line reveal">
-          Want to join the team?
-          <a href="mailto:info@sshk.ltd?subject=Joining%20SSHK">We're always looking for sharp storytellers →</a>
-        </p>
-      </div>
-    </section>
+<section class="cta" id="contact">
+<div class="wrap">
+<div class="cta-in reveal">
+<h2>Got something brewing?<br>Got something to launch?</h2>
+</div>
+<div class="contact-grid reveal">
+<div class="contact-info">
+<div class="ci-row"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>6/F, China Paint Building,<br>1163 Canton Road, Mong Kok, Hong Kong</span></div>
+<div class="ci-row"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+85227130997">+852 2713 0997</a></div>
+<div class="ci-row"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7L22 7"/></svg><a href="contact.html">info@sshk.ltd</a></div>
+<div class="ci-row"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>Mon–Fri 10:00–19:00<br>Crisis watch: 24/7</span></div>
+<div class="cta-bottom">
+<a class="btn btn-cta" href="contact.html">Let's talk <svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></a>
+</div>
+</div>
+<div class="chatbox">
+<div class="chat-head"><span class="dot"></span>SSHK — replies within one business day</div>
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:36px 32px">
+<div style="font-size:12px;font-weight:700;letter-spacing:2px;color:#9db0c0">BRIEF THE TEAM</div>
+<a href="contact.html" style="font-size:clamp(24px,3.2vw,38px);font-weight:700;letter-spacing:-1px;color:var(--ink);line-height:1.1">Tell us where the story stands.</a>
+<p style="font-size:14px;line-height:1.65;color:var(--muted);margin:0">One brief, one inbox — a real strategist replies within one business day.</p>
+<div><a class="btn btn-ink" href="contact.html" style="font-size:14.5px;padding:14px 26px">Go to contact <svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7L22 7"/></svg></a></div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- ============ CONTACT ============ -->
-    <section class="section section-contact" id="contact">
-      <div class="container">
-        <header class="section-head reveal">
-          <span class="section-num">06</span>
-          <h2>Contact</h2>
-        </header>
-        <p class="contact-lede reveal">Have a story to tell —<br>or a fire to put out?</p>
-        <a class="contact-mail reveal" href="mailto:info@sshk.ltd">info@sshk.ltd</a>
-        <div class="contact-grid reveal">
-          <div>
-            <h3>Visit</h3>
-            <p>6/F, China Paint Building<br>No. 1163 Canton Road<br>Mong Kok, Hong Kong</p>
-          </div>
-          <div>
-            <h3>Call</h3>
-            <p><a href="tel:+85227130008">+852 2713 0008</a></p>
-          </div>
-          <div>
-            <h3>Follow</h3>
-            <p>
-              <a href="https://www.facebook.com/SocialStrategyHongKong" rel="noopener" target="_blank">Facebook</a><br>
-              <a href="https://www.linkedin.com/company/socialstrategyhk" rel="noopener" target="_blank">LinkedIn</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+<footer class="footer">
+<div class="footer-map">
+<div class="fm-brand"><img src="assets/SSHK_Logo-01.png" alt="Social Strategy HK"></div>
+<div class="fm-col"><h4>SITE</h4><a href="about.html">About</a><a href="services.html">Services</a><a href="works.html">Works</a><a href="training.html">Training</a><a href="production.html">704 Production</a></div>
+<div class="fm-col"><h4>COMPANY</h4><a href="clients.html">Clients</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+<div class="fm-col"><h4>VISIT</h4><a href="https://www.google.com/maps/search/China+Paint+Building,+1163+Canton+Road,+Mong+Kok,+Hong+Kong" target="_blank" rel="noopener">6/F, China Paint Building,<br>1163 Canton Road, Mong Kok</a><a href="tel:+85227130997">+852 2713 0997</a><a href="contact.html">info@sshk.ltd</a></div>
+</div>
+<div class="footer-in">
+<span class="brand">Social Strategy HK</span>
+<span>© 2026 Social Strategy HK Ltd. All rights reserved.</span>
+</div>
+</footer>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© 2026 Social Strategy Hong Kong Limited. All rights reserved.</p>
-      <a href="#top">Back to top ↑</a>
-    </div>
-  </footer>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const track=document.getElementById('triageTrack');
+if(track&&matchMedia('(min-width:1101px)').matches){
+const triage=document.querySelector('.triage');
+const steps=document.querySelectorAll('.tstep'),cards=document.querySelectorAll('.tcard');
+const onScroll=()=>{const r=track.getBoundingClientRect();const total=r.height-innerHeight;const p=Math.min(1,Math.max(0,-r.top/total));
+const phase=Math.min(3,Math.floor(p*4));
+cards.forEach((c,i)=>c.classList.toggle('show',p>=((i+.5)/cards.length)*0.25));
+triage.classList.toggle('p1',phase>=1);triage.classList.toggle('p2',phase>=2);triage.classList.toggle('p3',phase>=3);
+steps.forEach((s,i)=>s.classList.toggle('on',i===phase));};
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+}
+</script>
 
-  <script src="assets/js/main.js" defer></script>
+<script>
+(function(){var gs=[].slice.call(document.querySelectorAll('.feed .fgroup'));if(!gs.length)return;
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){gs.forEach(function(g,i){g.classList.toggle('on',i===3)});return}
+var t0=Date.now();
+function tick(){var p=Math.floor((Date.now()-t0)/4600)%gs.length;gs.forEach(function(g,i){g.classList.toggle('on',i===p)})}
+tick();setInterval(tick,400);})();
+</script>
 </body>
 </html>
