@@ -21,8 +21,13 @@ previous Wix build with a fast, dependency-free static site.
 index.html          Single-page site (Home, About, Services, Works, Clients, Team, Contact)
 assets/css/style.css
 assets/js/main.js   Header state, mobile nav, reveal-on-scroll
-favicon.svg
+favicon.svg         Brand mark, vector (source of truth for all icon sizes)
+favicon.ico         16/32/48 raster fallback, generated from favicon.svg
+apple-touch-icon.png  180x180, generated from favicon.svg
 ```
+
+Regenerate the raster icons after editing `favicon.svg` — they are rendered
+from it, not drawn by hand.
 
 ## Local preview
 
