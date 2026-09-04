@@ -21,9 +21,11 @@ previous Wix build with a fast, dependency-free static site.
 index.html          Single-page site (Home, About, Services, Works, Clients, Team, Contact)
 assets/css/style.css
 assets/js/main.js   Header state, mobile nav, reveal-on-scroll
-favicon.svg         Brand mark, vector (source of truth for all icon sizes);
-                    the mark is centred and scaled 1.55x so it stays legible
-                    at 16px, bleeding off the left and right edges
+favicon.svg         Brand mark, vector (source of truth for all icon sizes).
+                    Geometry traced from the master logo (assets/SSHK_Logo-01.png
+                    on the live site), brand blue #00A0DD. Cropped to the bolt
+                    and enlarged so it stays legible at 16px, bleeding off the
+                    left and right edges
 favicon.ico         16/32/48 raster fallback, generated from favicon.svg
 apple-touch-icon.png  180x180, generated from favicon.svg
 ```
