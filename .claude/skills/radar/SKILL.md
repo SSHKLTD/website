@@ -59,10 +59,12 @@ Mondays additionally: **本週輿情 長文** for the week's strongest case (may
 ## Step 5 — Republish the artifact
 1. `Artifact read` on `ARTIFACT_URL`. The page embeds its data in `<script type="application/json" id="radar-data">`. Parse it.
 2. Append today's run: `{date, candidates:[{rank,case,org_type,score,reason,is_update}], drafts:{linkedin_zh, linkedin_en, threads, longform?}, sources:[...]}`. Keep the last 30 days; drop older.
-3. The page renders itself from that JSON. **Replace only the contents of the `#radar-data` script block**; leave every other byte of the HTML untouched (no restyling, no new sections). Publish with `url: ARTIFACT_URL`, `label: "radar-YYYY-MM-DD"`. Do **not** pass `favicon`.
+3. **Rebuild the page from the template, never by editing the live HTML.** Fetch `template.html` from this skill's folder (in the repo, or the raw GitHub URL recorded in `meta.template`), replace the literal `__DATA__` with the updated JSON (`json.dumps(..., ensure_ascii=False)` with `</` escaped as `<\/`), write it to a file, and publish that file with `url: ARTIFACT_URL`, `label: "radar-YYYY-MM-DD"`. Do **not** pass `favicon`. The design lives in the template; the data lives in the JSON — never restyle or add sections.
 4. If nothing survived triage, still republish with an empty candidates list for the day and a one-line note — the founder needs to know it ran.
 
 ## Guardrails
 - Never post to LinkedIn/Threads/anywhere. Never commit or push to any repo. Never create new artifacts — republish the given URL only.
 - Never name private individuals or minors. Quote organisations' statements verbatim; never paraphrase a quote as if verbatim.
 - Total budget: ≤12 WebFetch calls per run. If the fetch script errors on every query, republish with an error note rather than inventing items.
+
+- `case`: `<機構或事件>：<今日角度>` — the part before the first colon is the stable case name; the page uses it to link a 第二波 row back to the day it was drafted (e.g. `城大迎新營：英文媒體跟進…` matches `城大迎新營：三個機構…`)

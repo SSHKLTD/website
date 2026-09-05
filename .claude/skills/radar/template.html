@@ -1,0 +1,254 @@
+<title>SSHK Radar</title>
+<meta name="description" content="每日香港公關事件雷達 — 篩選、評分、起稿">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ink:#0F1D2B; --paper:#FFFFFF; --panel:#E3F4FD; --panel2:#F3F9FD;
+  --rule:#C9D6E2; --muted:#4A5D70; --azure:#00A0DD; --azure-ink:#0079A8;
+  --flag:#E0532F; --flag-bg:#FCE9E3; --ok:#1F8A4C;
+  --sans:"Helvetica Neue",Helvetica,Arial,"Noto Sans TC","PingFang HK",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --shadow:3px 3px 0 var(--ink);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#E8EEF4; --paper:#0B1620; --panel:#12283A; --panel2:#0F1F2E;
+  --rule:#27394B; --muted:#93A7BB; --azure:#2DB5EC; --azure-ink:#7FD3F5;
+  --flag:#FF7A55; --flag-bg:#3A1D14; --ok:#4FC77E; --shadow:3px 3px 0 var(--azure);
+}}
+:root[data-theme="dark"]{
+  --ink:#E8EEF4; --paper:#0B1620; --panel:#12283A; --panel2:#0F1F2E;
+  --rule:#27394B; --muted:#93A7BB; --azure:#2DB5EC; --azure-ink:#7FD3F5;
+  --flag:#FF7A55; --flag-bg:#3A1D14; --ok:#4FC77E; --shadow:3px 3px 0 var(--azure);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--azure-ink);text-decoration:none;border-bottom:1px solid var(--rule)} a:hover{border-bottom-color:var(--azure)}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px 80px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:0}
+h1,h2,h3{margin:0;text-wrap:balance;line-height:1.2}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* masthead */
+.mast{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:28px 0 18px;border-bottom:2px solid var(--ink)}
+.brand{display:flex;align-items:center;gap:12px}
+.bolt{width:40px;height:40px;background:#000;flex:none}
+.brand h1{font-size:22px;font-weight:700;letter-spacing:-.01em}
+.brand .sub{font-size:12px;color:var(--muted);margin-top:2px}
+.status{display:grid;grid-template-columns:repeat(4,auto);gap:0 22px;text-align:right}
+.status div{display:flex;flex-direction:column;gap:2px}
+.status b{font-family:var(--mono);font-weight:500;font-size:18px;font-variant-numeric:tabular-nums}
+.status span{font-size:11px;color:var(--muted)}
+.flow{font-family:var(--mono);font-size:12px;color:var(--muted);padding:10px 0 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.flow .arrow{color:var(--rule)}
+.flow .boot{color:var(--azure-ink)}
+
+section{padding-top:36px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+.sec-head h2{font-size:17px;font-weight:700}
+.sec-head .eyebrow{font-size:11px}
+
+/* candidates */
+.cands{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.cand{display:grid;grid-template-columns:34px 1fr auto;gap:6px 14px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:start}
+.cand.top{background:var(--panel2);margin:0 -14px;padding:16px 14px;border-bottom:2px solid var(--ink)}
+.cand .rank{font-family:var(--mono);font-size:15px;color:var(--muted);padding-top:2px}
+.cand.top .rank{color:var(--azure-ink);font-weight:500}
+.cand .title{font-weight:700;font-size:15px}
+.cand.top .title{font-size:17px}
+.cand .why{grid-column:2;color:var(--muted);font-size:13.5px}
+.cand .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.chip{font-size:11.5px;padding:2px 8px;border:1px solid var(--rule);border-radius:2px;color:var(--muted);white-space:nowrap}
+.chip.flag{color:var(--flag);border-color:var(--flag);background:var(--flag-bg);font-weight:500}
+.chip.drafted{color:var(--ok);border-color:var(--ok)}
+.chip.link{border-bottom:1px solid var(--ok);cursor:pointer}
+.chip.link:hover{background:var(--panel)}
+.score{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;display:inline-flex;gap:3px;align-items:center}
+.score i{display:inline-block;width:8px;height:8px;background:var(--rule);border-radius:1px}
+.score i.on{background:var(--azure)}
+.note{font-size:13px;color:var(--muted);padding:12px 0 0}
+
+/* drafts */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--rule);overflow-x:auto}
+.tab{background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:10px 14px;font:inherit;font-size:13.5px;font-weight:500;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.tab:focus-visible,.copy:focus-visible,.day-head:focus-visible{outline:2px solid var(--azure);outline-offset:2px}
+.pane{display:none;padding-top:16px}
+.pane.on{display:block}
+.pane-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.pane-bar .len{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.copy{font:inherit;font-size:13px;font-weight:700;background:var(--azure);color:#fff;border:0;padding:8px 16px;cursor:pointer;box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s}
+.copy:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+:root[data-theme="dark"] .copy:hover,:root:not([data-theme="light"]) .copy:hover{box-shadow:5px 5px 0 var(--azure)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .copy:hover{box-shadow:5px 5px 0 var(--ink)}}
+.copy.done{background:var(--ok)}
+.draft{background:var(--panel);padding:18px 20px;white-space:pre-wrap;font-family:var(--sans);font-size:14.5px;line-height:1.7;max-width:100%;overflow-x:auto}
+.draft .h{font-weight:700;font-size:16px;display:block;margin:14px 0 4px}
+.draft .h4{font-weight:700;display:block;margin:12px 0 2px}
+.draft .q{display:block;border-left:3px solid var(--azure);padding-left:12px;color:var(--muted);margin:6px 0}
+.draft .confirm{background:var(--flag-bg);color:var(--flag);padding:0 4px;font-weight:500}
+.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:13.5px}
+.check li{display:flex;gap:10px;align-items:flex-start}
+.check li:before{content:"";flex:none;width:14px;height:14px;border:1.5px solid var(--muted);margin-top:3px;border-radius:2px}
+
+/* sources */
+.srcs{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.src{display:grid;grid-template-columns:78px 60px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--rule);font-size:13.5px;align-items:baseline}
+.src .d{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.src .o{font-weight:500;white-space:nowrap}
+.src .t{color:var(--muted)}
+.src .t a{color:var(--ink)}
+
+/* history */
+.days{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.day{border-bottom:1px solid var(--rule)}
+.day-head{width:100%;display:grid;grid-template-columns:96px 1fr auto;gap:12px;align-items:baseline;padding:11px 0;background:none;border:0;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.day-head .d{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.day-head .c{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.day-body{display:none;padding:0 0 18px}
+.day-cands .cand{padding:10px 0}
+.day-cands .cand .title{font-size:14px}
+.day-drafts{margin-top:12px}
+.day-head small{font-family:var(--mono);opacity:.7;margin-left:4px}
+.day.open .day-body{display:block}
+.empty{color:var(--muted);font-size:13.5px;padding:14px 0}
+
+.foot{margin-top:56px;padding-top:14px;border-top:1px solid var(--rule);font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);padding:10px 16px;font-size:13px;font-weight:500;opacity:0;transition:opacity .18s,transform .18s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (max-width:640px){
+  .mast{flex-direction:column;align-items:flex-start}
+  .status{grid-template-columns:repeat(4,auto);text-align:left;gap:0 16px}
+  .cand{grid-template-columns:28px 1fr}
+  .cand .meta{grid-column:2;justify-content:flex-start}
+  .src{grid-template-columns:1fr;gap:2px}
+  .day-head{grid-template-columns:90px 1fr}
+  .day-head .c{grid-column:2}
+}
+@media (prefers-reduced-motion:reduce){.copy,.toast{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="brand">
+      <svg class="bolt" viewBox="0 0 800 800" aria-hidden="true"><rect width="800" height="800" fill="#000"/><path fill="#00A0DD" d="M0 191.7h19.2L498.56 380.98 401.12 191.7H800v116.48H594.88L750 608.34 0 310.34z"/></svg>
+      <div><h1>SSHK Radar</h1><div class="sub">每日香港公關事件 · Read → Score → Flag → Handle</div></div>
+    </div>
+    <div class="status" id="status"></div>
+  </header>
+  <div class="flow" id="flow"></div>
+
+  <section>
+    <div class="sec-head"><h2>今日候選</h2><span class="eyebrow" id="cand-date"></span></div>
+    <div class="cands" id="cands"></div>
+    <div class="note" id="excluded"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>今日手稿</h2><span class="eyebrow">複製 → 自己執 → 出 post</span></div>
+    <div id="drafts"></div>
+    <div style="padding-top:22px">
+      <div class="eyebrow" style="margin-bottom:8px">發佈前檢查</div>
+      <ul class="check" id="check"></ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>來源</h2><span class="eyebrow">原文,唔係 Google 轉址</span></div>
+    <div class="srcs" id="srcs"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>過往 30 日</h2><span class="eyebrow" id="hist-count"></span></div>
+    <div class="days" id="days"></div>
+  </section>
+
+  <div class="foot"><span>Social Strategy Hong Kong · 內部編輯台</span><span class="mono" id="foot-run"></span></div>
+</div>
+<div class="toast" id="toast">已複製</div>
+
+<noscript><p style="padding:20px">呢頁需要 JavaScript 先顯示到數據。</p></noscript>
+
+<script type="application/json" id="radar-data">
+__DATA__
+</script>
+<script>
+(function(){
+  const $=s=>document.querySelector(s);
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  let D; try{ D=JSON.parse($('#radar-data').textContent); }catch(e){ $('#cands').innerHTML='<p class="empty">數據讀取失敗:'+esc(e.message)+'</p>'; return; }
+  const runs=D.runs||[]; const R=runs[0];
+  if(!R){ $('#cands').innerHTML='<p class="empty">未有運行紀錄。</p>'; return; }
+  const TEXTS={};  // scope -> key -> text  (for copy)
+  const caseKey=s=>String(s||'').split(/[：:]/)[0].trim();
+  const md=s=>s.slice(5).replace('-','/');
+
+  // masthead
+  $('#status').innerHTML=[['items_fetched','抓取'],['survived','候選'],[null,'起稿']].map(([k,l])=>{
+    const v=k?R[k]:(R.candidates||[]).filter(c=>c.drafted).length;
+    return '<div><b>'+esc(v)+'</b><span>'+l+'</span></div>';}).join('')
+    +'<div><b>'+esc(md(R.date))+'</b><span>'+esc(R.ran_at||'')+'</span></div>';
+  $('#flow').innerHTML='<span>'+R.window_days+' 日窗口</span><span class="arrow">→</span><span>Google News RSS 中 '+R.items_zh+' / 英 '+R.items_en+'</span><span class="arrow">→</span><span>五項準則篩選</span><span class="arrow">→</span><span>原文核實</span><span class="arrow">→</span><span>起稿</span>'+(R.bootstrap?'<span class="boot">· 首次運行</span>':'');
+  $('#cand-date').textContent=R.date;
+  $('#foot-run').textContent='run '+R.date+' '+(R.ran_at||'');
+
+  // where was this case drafted before? (for 第二波 rows)
+  const priorDraft=(c,fromIdx)=>{const k=caseKey(c.case);if(!k)return null;
+    for(let j=fromIdx+1;j<runs.length;j++){const r=runs[j];if((r.candidates||[]).some(x=>x.drafted&&caseKey(x.case)===k)&&r.drafts)return j;}return -1;};
+
+  // candidates
+  const score=n=>'<span class="score" title="'+n+'/5">'+[1,2,3,4,5].map(i=>'<i class="'+(i<=n?'on':'')+'"></i>').join('')+'<span>'+n+'</span></span>';
+  const candRow=(c,runIdx)=>{const pj=c.is_update&&!c.drafted?priorDraft(c,runIdx):-1;const prev=pj>=0?runs[pj]:null;
+    return '<div class="cand'+(c.rank===1&&runIdx===0?' top':'')+'"><div class="rank">'+String(c.rank).padStart(2,'0')+'</div>'
+    +'<div class="title">'+esc(c.case)+'</div>'
+    +'<div class="meta"><span class="chip">'+esc(c.org_type)+'</span>'+(c.is_update?'<span class="chip flag">第二波</span>':'')
+    +(c.drafted?'<span class="chip drafted">已起稿</span>':'')+(prev?'<a class="chip drafted link" href="#day-'+pj+'" data-day="'+pj+'">已起稿 '+esc(md(prev.date))+' ↓</a>':'')
+    +score(c.score)+'</div><div class="why">'+esc(c.reason)+'</div></div>';};
+  $('#cands').innerHTML=(R.candidates||[]).map(c=>candRow(c,0)).join('')||'<p class="empty">今日冇個案通過篩選。</p>';
+  $('#excluded').textContent=R.excluded_note?('已剔除:'+R.excluded_note):'';
+
+  // drafts (reused for today and for every history day)
+  const fmt=t=>esc(t).replace(/^### (.*)$/gm,'<span class="h">$1</span>').replace(/^#### (.*)$/gm,'<span class="h4">$1</span>')
+    .replace(/^\*\*(.*?)\*\*$/gm,'<span class="h4">$1</span>').replace(/\*\*(.*?)\*\*/g,'<b>$1</b>')
+    .replace(/^&gt; (.*)$/gm,'<span class="q">$1</span>').replace(/^\*(.*)\*$/gm,'<i>$1</i>')
+    .replace(/^---$/gm,'').replace(/\[確認[^\]]*\]/g,m=>'<span class="confirm">'+m+'</span>');
+  const LABELS={linkedin_zh:'LinkedIn 中',linkedin_en:'LinkedIn EN',threads:'Threads',longform:'長文'};
+  function renderDrafts(r,scope){
+    const tabs=['linkedin_zh','linkedin_en','threads','longform'].filter(k=>r.drafts&&r.drafts[k]).map(k=>[k,LABELS[k]]);
+    if(r.secondary&&r.secondary.text) tabs.push(['__secondary','副稿 · '+caseKey(r.secondary.case).slice(0,8)]);
+    if(!tabs.length) return '<p class="empty">呢日冇起稿。</p>';
+    TEXTS[scope]={}; tabs.forEach(([k])=>TEXTS[scope][k]=k==='__secondary'?r.secondary.text:r.drafts[k]);
+    return '<div class="tabs" role="tablist" data-scope="'+scope+'">'+tabs.map(([k,l],i)=>'<button class="tab" role="tab" aria-selected="'+(i===0)+'" data-k="'+k+'">'+esc(l)+'</button>').join('')+'</div>'
+      +'<div class="panes" data-scope="'+scope+'">'+tabs.map(([k],i)=>{const t=TEXTS[scope][k];const n=(t.match(/[一-鿿]/g)||[]).length;const w=t.split(/\s+/).length;
+        return '<div class="pane'+(i===0?' on':'')+'" data-k="'+k+'"><div class="pane-bar"><span class="len">'+(n>w?n+' 字':w+' words')+'</span><button class="copy" data-k="'+k+'">複製</button></div><div class="draft">'+fmt(t)+'</div></div>';}).join('')+'</div>';
+  }
+  $('#drafts').innerHTML=renderDrafts(R,'today');
+  $('#check').innerHTML=(R.checklist||[]).map(c=>'<li>'+esc(c)+'</li>').join('');
+
+  // one delegated handler for every tabs/copy block on the page
+  document.addEventListener('click',async e=>{
+    const tb=e.target.closest('.tab');
+    if(tb){const wrap=tb.closest('.tabs');const scope=wrap.dataset.scope;
+      wrap.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t===tb));
+      document.querySelectorAll('.panes[data-scope="'+scope+'"] .pane').forEach(p=>p.classList.toggle('on',p.dataset.k===tb.dataset.k));return;}
+    const cp=e.target.closest('.copy');
+    if(cp){const scope=cp.closest('.panes').dataset.scope;const t=(TEXTS[scope]||{})[cp.dataset.k]||'';const clean=t.replace(/\[確認[^\]]*\]\s?/g,'');
+      try{await navigator.clipboard.writeText(clean);}catch(_){const ta=document.createElement('textarea');ta.value=clean;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
+      cp.classList.add('done');cp.textContent='已複製';const T=$('#toast');T.classList.add('show');
+      setTimeout(()=>{T.classList.remove('show');cp.classList.remove('done');cp.textContent='複製';},1600);return;}
+    const lk=e.target.closest('a.link[data-day]');
+    if(lk){const d=document.getElementById('day-'+lk.dataset.day);if(d){d.classList.add('open');d.querySelector('.day-head').setAttribute('aria-expanded','true');}return;}
+    const h=e.target.closest('.day-head');
+    if(h){const d=h.parentElement;d.classList.toggle('open');h.setAttribute('aria-expanded',d.classList.contains('open'));}
+  });
+
+  // sources
+  $('#srcs').innerHTML=(R.sources||[]).map(s=>'<div class="src"><span class="d">'+esc(s.date)+'</span><span class="o">'+esc(s.outlet)+'</span><span class="t">'+(s.url?'<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.title)+'</a>':esc(s.title))+'</span></div>').join('');
+
+  // history: every run, collapsed, each with its candidates AND its drafts
+  $('#hist-count').textContent=runs.length+' 次運行';
+  $('#days').innerHTML=runs.map((r,i)=>{const top=(r.candidates||[])[0];const nd=r.drafts?Object.keys(r.drafts).length+(r.secondary&&r.secondary.text?1:0):0;
+    return '<div class="day" id="day-'+i+'"><button class="day-head" aria-expanded="false"><span class="d">'+esc(r.date)+(r.ran_at?' <small>'+esc(r.ran_at.replace(' HKT',''))+'</small>':'')+'</span><span>'+(top?esc(top.case):'—')+'</span><span class="c">'+(r.survived||0)+' / '+(r.items_fetched||0)+(nd?' · '+nd+' 稿':'')+'</span></button>'
+    +'<div class="day-body"><div class="day-cands">'+(r.candidates||[]).map(c=>candRow(c,i)).join('')+'</div>'+(nd?'<div class="day-drafts">'+renderDrafts(r,'d'+i)+'</div>':'')+'</div></div>';}).join('');
+})();
+</script>
