@@ -194,15 +194,15 @@ __DATA__
 
   // where was this case drafted before? (for 第二波 rows)
   const priorDraft=(c,fromIdx)=>{const k=caseKey(c.case);if(!k)return null;
-    for(let j=fromIdx+1;j<runs.length;j++){const r=runs[j];if((r.candidates||[]).some(x=>x.drafted&&caseKey(x.case)===k)&&r.drafts)return r;}return null;};
+    for(let j=fromIdx+1;j<runs.length;j++){const r=runs[j];if((r.candidates||[]).some(x=>x.drafted&&caseKey(x.case)===k)&&r.drafts)return j;}return -1;};
 
   // candidates
   const score=n=>'<span class="score" title="'+n+'/5">'+[1,2,3,4,5].map(i=>'<i class="'+(i<=n?'on':'')+'"></i>').join('')+'<span>'+n+'</span></span>';
-  const candRow=(c,runIdx)=>{const prev=c.is_update&&!c.drafted?priorDraft(c,runIdx):null;
+  const candRow=(c,runIdx)=>{const pj=c.is_update&&!c.drafted?priorDraft(c,runIdx):-1;const prev=pj>=0?runs[pj]:null;
     return '<div class="cand'+(c.rank===1&&runIdx===0?' top':'')+'"><div class="rank">'+String(c.rank).padStart(2,'0')+'</div>'
     +'<div class="title">'+esc(c.case)+'</div>'
     +'<div class="meta"><span class="chip">'+esc(c.org_type)+'</span>'+(c.is_update?'<span class="chip flag">第二波</span>':'')
-    +(c.drafted?'<span class="chip drafted">已起稿</span>':'')+(prev?'<a class="chip drafted link" href="#day-'+esc(prev.date)+'" data-day="'+esc(prev.date)+'">已起稿 '+esc(md(prev.date))+' ↓</a>':'')
+    +(c.drafted?'<span class="chip drafted">已起稿</span>':'')+(prev?'<a class="chip drafted link" href="#day-'+pj+'" data-day="'+pj+'">已起稿 '+esc(md(prev.date))+' ↓</a>':'')
     +score(c.score)+'</div><div class="why">'+esc(c.reason)+'</div></div>';};
   $('#cands').innerHTML=(R.candidates||[]).map(c=>candRow(c,0)).join('')||'<p class="empty">今日冇個案通過篩選。</p>';
   $('#excluded').textContent=R.excluded_note?('已剔除:'+R.excluded_note):'';
@@ -248,7 +248,7 @@ __DATA__
   // history: every run, collapsed, each with its candidates AND its drafts
   $('#hist-count').textContent=runs.length+' 次運行';
   $('#days').innerHTML=runs.map((r,i)=>{const top=(r.candidates||[])[0];const nd=r.drafts?Object.keys(r.drafts).length+(r.secondary&&r.secondary.text?1:0):0;
-    return '<div class="day" id="day-'+esc(r.date)+'"><button class="day-head" aria-expanded="false"><span class="d">'+esc(r.date)+(r.ran_at?' <small>'+esc(r.ran_at.replace(' HKT',''))+'</small>':'')+'</span><span>'+(top?esc(top.case):'—')+'</span><span class="c">'+(r.survived||0)+' / '+(r.items_fetched||0)+(nd?' · '+nd+' 稿':'')+'</span></button>'
+    return '<div class="day" id="day-'+i+'"><button class="day-head" aria-expanded="false"><span class="d">'+esc(r.date)+(r.ran_at?' <small>'+esc(r.ran_at.replace(' HKT',''))+'</small>':'')+'</span><span>'+(top?esc(top.case):'—')+'</span><span class="c">'+(r.survived||0)+' / '+(r.items_fetched||0)+(nd?' · '+nd+' 稿':'')+'</span></button>'
     +'<div class="day-body"><div class="day-cands">'+(r.candidates||[]).map(c=>candRow(c,i)).join('')+'</div>'+(nd?'<div class="day-drafts">'+renderDrafts(r,'d'+i)+'</div>':'')+'</div></div>';}).join('');
 })();
 </script>
