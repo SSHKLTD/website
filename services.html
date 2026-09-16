@@ -405,13 +405,20 @@ h1{font-size:52px;letter-spacing:-2px}
 .ar-core .ci{margin:0 0 6px;width:34px;height:34px}
 .ar-core span{margin-top:6px}.ar-hd h1{font-size:38px}.ar-foot{grid-template-columns:1fr}}
 
-.svc-tabs{display:flex;gap:10px;margin:34px 0 26px;flex-wrap:wrap}
-.svc-tab{font-family:inherit;font-size:14.5px;font-weight:700;letter-spacing:.4px;padding:12px 22px;border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:8px}
+.svc-tabs{display:flex;align-items:flex-end;gap:0;margin:34px 0 0;position:relative;z-index:2}
+.svc-tab{position:relative;font-family:inherit;font-size:14.5px;font-weight:700;letter-spacing:.4px;padding:11px 34px 10px 18px;margin-right:6px;border:0;background:none;color:var(--muted);cursor:pointer;transition:color .15s,padding .15s;display:flex;align-items:center;gap:8px;--tabfill:var(--tint)}
+.svc-tab:before,.svc-tab:after{content:"";position:absolute;z-index:-1;background:var(--tabfill);border:2px solid var(--ink);border-bottom:0;transition:background .15s}
+.svc-tab:before{top:0;left:0;right:17px;bottom:0;border-right:0;border-radius:10px 0 0 0}
+.svc-tab:after{top:0;left:calc(100% - 18px);right:-17px;bottom:0;border-left:0;border-radius:0 10px 0 0;transform:skewX(24deg);transform-origin:bottom left}
 .svc-tab span{font-weight:500;color:var(--muted);font-size:13px}
-.svc-tab:hover{transform:translateY(-2px);box-shadow:4px 4px 0 var(--azure)}
-.svc-tab.on{background:var(--ink);color:#fff}
-.svc-tab.on span{color:var(--slate)}
-.svc-pane{display:none}
+.svc-tab:not(.on):hover{color:var(--ink);--tabfill:#d3ecfa}
+.svc-tab.on{color:var(--ink);padding-top:14px;padding-bottom:12px;margin-bottom:-2px;--tabfill:#fff}
+.svc-tab.on span{color:var(--muted)}
+.svc-tab:nth-child(1){z-index:4}
+.svc-tab:nth-child(2){z-index:3}
+.svc-tab:nth-child(3){z-index:2}
+.svc-tab.on{z-index:5}
+.svc-pane{display:none;border-top:2px solid var(--ink);padding-top:28px}
 .svc-pane.on{display:block;animation:svcin .28s ease}
 @keyframes svcin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .svc-intro{font-size:15.5px;line-height:1.7;color:var(--muted);max-width:640px;margin:0 0 26px;text-wrap:pretty}
@@ -515,8 +522,12 @@ html.js .reveal{opacity:1;transform:none}
 .sec-hd h2{font-size:28px;letter-spacing:-.8px}
 .intro{font-size:15.5px;line-height:1.6;margin:16px 0 22px}
 .svc-intro{font-size:15px;line-height:1.6;margin:0 0 18px}
-.svc-tabs{gap:8px;margin:20px 0 18px}
-.svc-tab{padding:9px 15px;font-size:13.5px}
+.svc-tabs{gap:0;margin:20px 0 0}
+.svc-tab{padding:9px 28px 8px 14px;margin-right:4px;font-size:13.5px}
+.svc-tab.on{padding-top:12px;padding-bottom:10px}
+.svc-tab:before{right:14px}
+.svc-tab:after{left:calc(100% - 15px);right:-14px}
+.svc-pane{padding-top:22px}
 .svc-grid{grid-template-columns:1fr 1fr;gap:12px}
 .svc-card{padding:16px 14px}
 .svc-card .ico{margin-bottom:8px}
