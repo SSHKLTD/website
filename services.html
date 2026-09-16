@@ -551,21 +551,48 @@ html.js .reveal{opacity:1;transform:none}
 .ar-foot{margin-top:24px;padding-top:16px;gap:14px}
 }
 
-/* The deep-dive blocks are a disclosure: open by default so they are there
-   without JS and for crawlers, collapsed on phones by the script below. */
-.meth-d>summary{list-style:none;cursor:default;display:block}
-.meth-d>summary::-webkit-details-marker{display:none}
+
+/* Inner tabs over the three parts of the method block. */
+.mtabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+.mtab{font-family:inherit;font-size:13px;font-weight:700;letter-spacing:.3px;padding:8px 15px;
+ border:2px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;cursor:pointer;
+ transition:background .15s,color .15s}
+.mtab:hover{background:rgba(15,29,43,.07)}
+.mtab.on{background:var(--ink);color:#fff}
+.mtab:focus-visible{outline:3px solid var(--azure-ink);outline-offset:2px}
+.mpane{display:none}
+.mpane.on{display:block;animation:svcin .28s ease}
+.mpane>.mkick{margin-top:0!important}
 @media(max-width:700px){
-.meth-d>summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;
- padding:4px 0;-webkit-tap-highlight-color:transparent}
-.meth-d>summary::after{content:"";flex:none;width:9px;height:9px;margin-right:2px;
- border-right:2.5px solid var(--azure-ink);border-bottom:2.5px solid var(--azure-ink);
- transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s}
-.meth-d[open]>summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
-.meth-d>summary:focus-visible{outline:3px solid var(--azure-ink);outline-offset:3px}
-.meth-d:not([open]){padding-bottom:14px}
+/* Tab bars stay on one line and scroll, rather than wrapping to two rows. */
+.mtabs,.svc-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.svc-tabs{margin-left:-24px;margin-right:-24px;padding:2px 24px}
+.mtabs{margin-left:-12px;margin-right:-12px;padding:2px 12px}
+.mtabs::-webkit-scrollbar,.svc-tabs::-webkit-scrollbar{display:none}
+.mtab,.svc-tab{flex:none}
+.mtabs{gap:6px;margin-bottom:14px}
+.mtab{font-size:12.5px;padding:7px 12px}
+/* the tab label already names the part — the long kicker repeats it */
+.mpane>.mkick{display:none}
+/* trim the supporting copy so a pane reads at a glance */
+.svc-intro{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:14px}
+.svc-grid{gap:10px}
+.svc-card{padding:14px 12px}
+.svc-card .ico{width:28px;height:28px;margin-bottom:6px}
+.svc-card h3{font-size:15px;line-height:1.25}
+.meth{padding:14px 12px}
+.meth-stats{gap:10px;margin-top:12px}
+.meth-steps{gap:10px}
+.mstep p,.istep p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.svc-card p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 }
 </style>
+<noscript><style>
+/* Tabs need JS to switch, so without it show every pane and drop the bars. */
+.svc-pane,.mpane{display:block!important}
+.svc-tabs,.mtabs{display:none}
+.mpane>.mkick{display:block!important;margin-top:26px!important}
+</style></noscript>
 </head>
 <body>
 <a class="skip-link" href="#allround">Skip to content</a>
@@ -601,8 +628,7 @@ html.js .reveal{opacity:1;transform:none}
 <p class="svc-intro">Round-the-clock listening across forums, socials and news — so you hear it first, with data to read where it goes next.</p>
 <div class="svc-grid"><div class="svc-card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div><h3>Monitoring &amp; alert</h3><p>Social monitoring · instant alert</p></div><div class="svc-card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div><h3>Trend &amp; data</h3><p>Trend prediction · data analysis</p></div></div>
 
-<details class="meth reveal meth-d" open>
-<summary class="mkick">HOW THE LISTENING WORKS · BUILT WITH JERVOIS ONE</summary>
+<div class="meth reveal"><div class="mtabs" role="tablist"><button class="mtab on" data-mt="0" role="tab" aria-selected="true">How it works</button><button class="mtab" data-mt="1" role="tab" aria-selected="false">What we listen to</button><button class="mtab" data-mt="2" role="tab" aria-selected="false">Data to action</button></div><div class="mpane on" data-mp="0" role="tabpanel"><div class="mkick">HOW THE LISTENING WORKS · BUILT WITH JERVOIS ONE</div>
 <div class="meth-steps">
 <div class="mstep"><span class="n">1</span><h4>AI data gathering</h4><p>Crawlers sweep news, socials and forums every 5 minutes, on keywords defined with you.</p></div>
 <div class="mstep"><span class="n">2</span><h4>AI categorisation</h4><p>The system learns your brand's context and scores sentiment automatically.</p></div>
@@ -610,22 +636,22 @@ html.js .reveal{opacity:1;transform:none}
 <div class="mstep"><span class="n">4</span><h4>AskLenx AI chatbot</h4><p>Ask the data anything; the AI answers in the same WhatsApp thread.</p></div>
 </div>
 <div class="meth-stats"><div><b>5 min</b><span>crawl interval</span></div><div><b>5M+</b><span>data points processed daily</span></div><div><b>1M+</b><span>channels covered — and growing</span></div></div>
-<div class="mkick" style="margin-top:34px">WHAT WE LISTEN TO · NEWS, SOCIALS &amp; FORUMS</div>
+</div><div class="mpane" data-mp="1" role="tabpanel"><div class="mkick" style="margin-top:34px">WHAT WE LISTEN TO · NEWS, SOCIALS &amp; FORUMS</div>
 <div class="chan"><span class="chip2"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1877F2"/><path fill="#fff" d="M15.9 12.7h-2.5V20h-3v-7.3H8.5V10h1.9V8.3c0-2 1.2-3.2 3.1-3.2.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V10h2.3l-.4 2.7z"/></svg>Facebook</span><span class="chip2"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1.6" y="1.6" width="20.8" height="20.8" rx="6" stroke="#E4405F" stroke-width="2.6"/><circle cx="12" cy="12" r="4.7" stroke="#E4405F" stroke-width="2.6"/><circle cx="17.6" cy="6.4" r="1.7" fill="#E4405F"/></svg>Instagram</span><span class="chip2"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#000"/><text x="12" y="16.4" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Helvetica,Arial,sans-serif">@</text></svg>Threads</span><span class="chip2"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#000"/><path d="M7 7l10 10M17 7L7 17" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>X</span><span class="chip2"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#FF0000"/><path d="M10 8.4l6 3.6-6 3.6z" fill="#fff"/></svg>YouTube</span><span class="chip2"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#000"/><text x="12" y="17" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Helvetica,Arial,sans-serif">♪</text></svg>TikTok</span><span class="chip2"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#33342E"/><text x="12" y="16.7" text-anchor="middle" font-size="11.5" font-weight="700" fill="#F5C51E" font-family="Noto Sans TC,sans-serif">連</text></svg>LIHKG</span><span class="chip2"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#FF2442"/><text x="12" y="16.7" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff" font-family="Noto Sans TC,sans-serif">红</text></svg>Xiaohongshu</span><span class="chip2"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#07C160"/><path fill="#fff" d="M9.7 5.6c-2.9 0-5.2 1.9-5.2 4.3 0 1.4.8 2.6 2 3.4l-.5 1.6 1.8-1c.6.2 1.2.3 1.9.3h.3c-.1-.4-.2-.8-.2-1.2 0-2.4 2.3-4.3 5.1-4.3h.3c-.5-1.8-2.7-3.1-5.5-3.1zM7.8 8.1c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm3.9 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm3.2 2.1c-2.4 0-4.3 1.6-4.3 3.6s1.9 3.6 4.3 3.6c.5 0 1-.1 1.5-.2l1.5.8-.4-1.3c1-.7 1.7-1.7 1.7-2.9 0-2-1.9-3.6-4.3-3.6zm-1.6 2.1c.3 0 .6.3.6.6s-.3.6-.6.6-.6-.3-.6-.6.3-.6.6-.6zm3.2 0c.3 0 .6.3.6.6s-.3.6-.6.6-.6-.3-.6-.6.3-.6.6-.6z"/></svg>WeChat</span><span class="chip2"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#E6162D"/><text x="12" y="16.7" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff" font-family="Noto Sans TC,sans-serif">微</text></svg>Weibo</span><span class="chip2"><svg viewBox="0 0 24 24" fill="none" stroke="#0F1D2B" stroke-width="2" aria-hidden="true"><rect x="3" y="4.5" width="14" height="15" rx="2"/><path d="M17 9h2.5a1.5 1.5 0 0 1 1.5 1.5V18a1.8 1.8 0 0 1-1.8 1.8H5"/><path d="M6.5 8.5h7M6.5 12h7M6.5 15.5h4.5"/></svg>News &amp; blogs</span><span class="chip2"><svg viewBox="0 0 24 24" fill="none" stroke="#0F1D2B" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-3-3h-3"/></svg>Forums &amp; groups</span><span class="chip2 more">…and 1M+ more channels</span></div>
-<div class="mkick" style="margin-top:34px">FROM DATA TO ACTION · THREE STEPS</div>
+</div><div class="mpane" data-mp="2" role="tabpanel"><div class="mkick" style="margin-top:34px">FROM DATA TO ACTION · THREE STEPS</div>
 <div class="ise">
 <div class="istep"><h5>Identify</h5><p>Media coverage, trending topics, sentiment spikes — spot the moments that matter for the brand.</p></div>
 <div class="istep"><h5>Strategize</h5><p>Read the implication, find the gap and the opportunity, decide what the brand can credibly react to.</p></div>
 <div class="istep"><h5>Execute</h5><p>An action plan for the identified moment — brand protection, ePR amplification or a new social-commerce play.</p></div>
 </div>
-</details>
+</div></div>
 </div>
 <div class="svc-pane" data-p="1">
 <p class="svc-intro">Before, during and after: risk mapped early, the conversation turned quietly, trust rebuilt through the right channels.</p>
 <div class="svc-grid"><div class="svc-card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div><h3>Risk &amp; planning</h3><p>Risk assessment · emergency planning</p></div><div class="svc-card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Crisis handling</h3><p>Counter-narrative · press release optimisation</p></div><div class="svc-card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M8.6 13.5l6.8 4"/><path d="M15.4 6.5l-6.8 4"/></svg></div><h3>ePR &amp; amplification</h3><p>Word-of-mouth placement · media pitching · community engagement</p></div></div>
 
-<details class="meth reveal meth-d" open>
-<summary class="mkick">THE CRISIS CYCLE · WHERE WE INTERVENE</summary>
+<div class="meth reveal">
+<div class="mkick">THE CRISIS CYCLE · WHERE WE INTERVENE</div>
 <div class="cyc-wrap"><svg class="cyc-svg" viewBox="0 0 440 350" aria-hidden="true">
 <defs><marker id="arw" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#1CA3E8"/></marker></defs>
 <path d="M236.6 68.3 A110 110 0 0 1 316.7 148.4" fill="none" stroke="#1CA3E8" stroke-width="2.5" marker-end="url(#arw)"/>
@@ -651,7 +677,7 @@ html.js .reveal{opacity:1;transform:none}
 <div class="cstage"><span class="cn">STAGE 4</span><h4>Netizen pile-on</h4><p>Information penetration · sentiment management · word-of-mouth placement</p></div>
 </div></div>
 <p class="meth-note">Each stage feeds the next — the earlier we step in, the smaller the fix. Monitoring is what buys you the early stages.</p>
-</details>
+</div>
 </div>
 <div class="svc-pane" data-p="2">
 <p class="svc-intro">The build side — ideas, content and platforms that earn attention and grow your share of voice.</p>
@@ -680,6 +706,13 @@ document.querySelectorAll('.svc-tab').forEach(b=>b.addEventListener('click',()=>
 document.querySelectorAll('.svc-tab').forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-selected',x===b)});
 document.querySelectorAll('.svc-pane').forEach(p=>p.classList.toggle('on',p.dataset.p===b.dataset.t));
 }));
+document.querySelectorAll('.mtabs').forEach(group=>{
+var scope=group.parentElement;
+group.querySelectorAll('.mtab').forEach(b=>b.addEventListener('click',()=>{
+group.querySelectorAll('.mtab').forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-selected',x===b)});
+scope.querySelectorAll('.mpane').forEach(p=>p.classList.toggle('on',p.dataset.mp===b.dataset.mt));
+}));
+});
 </script>
 
 <script>
@@ -712,17 +745,5 @@ var mq=window.matchMedia('(min-width:901px)');
 })();
 </script>
 
-<script>
-/* Collapse the deep-dive blocks on phones only. They ship open, so without
-   this script (or without JS at all) nothing is hidden. */
-(function(){
-var blocks=document.querySelectorAll('.meth-d');
-if(!blocks.length)return;
-var mq=window.matchMedia('(max-width:700px)');
-function apply(e){blocks.forEach(function(d){d.open=!e.matches})}
-apply(mq);
-(mq.addEventListener?mq.addEventListener.bind(mq,'change'):mq.addListener.bind(mq))(apply);
-})();
-</script>
 </body>
 </html>
