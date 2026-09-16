@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-223QE4C4MP"></script>
 <script>
@@ -27,7 +28,7 @@
 <meta name="description" content="Corporate training and speaking on crisis management, social media strategy and AI workflow — by Social Strategy Hong Kong, with cases pulled from live war rooms.">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#0F1D2B;--azure:#1CA3E8;--tint:#E3F4FD;--tint2:#F6FBFE;--muted:#4a5d70}
+:root{--ink:#0F1D2B;--azure:#1CA3E8;--azure-ink:#1473A3;--tint:#E3F4FD;--tint2:#F6FBFE;--muted:#4a5d70;--slate:#687580;--alert:#B25812}
 *{box-sizing:border-box}
 body{margin:0;font-family:'Helvetica Neue',Helvetica,Arial,'Noto Sans TC',sans-serif;color:var(--ink);background:#fff}
 a{color:inherit;text-decoration:none}
@@ -40,12 +41,12 @@ img{max-width:100%}
 .nav img:hover{transform:rotate(-2deg) scale(1.05)}
 .nav-links{display:flex;gap:32px;align-items:center;font-size:14px;font-weight:700}
 .nav-links a{transition:all .15s;display:inline-block}
-.nav-links a:not(.btn):hover{color:var(--azure);transform:rotate(-3deg)}
+.nav-links a:not(.btn):hover{color:var(--azure-ink);transform:rotate(-3deg)}
 .nav-links a:not(.btn):nth-child(even):hover{transform:rotate(3deg)}
 .btn{display:inline-block;font-weight:700;transition:all .15s;white-space:nowrap;cursor:pointer}
-.btn-azure{background:var(--azure);color:#fff;padding:11px 22px;box-shadow:3px 3px 0 var(--ink)}
+.btn-azure{background:var(--azure-ink);color:#fff;padding:11px 22px;box-shadow:3px 3px 0 var(--ink)}
 .btn-azure:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);color:var(--ink)}
-.eyebrow{font-size:13px;letter-spacing:2.5px;color:var(--azure);font-weight:700}
+.eyebrow{font-size:13px;letter-spacing:2.5px;color:var(--azure-ink);font-weight:700}
 .page-hero{background:var(--tint);padding:84px 0;position:relative;overflow:hidden}
 .page-hero h1{font-size:64px;line-height:1.06;font-weight:700;letter-spacing:-2.5px;margin:20px 0 0;max-width:920px}
 .page-hero .lead{font-size:17px;line-height:1.65;color:var(--muted);max-width:660px;margin:24px 0 0}
@@ -59,26 +60,26 @@ img{max-width:100%}
 .sec{padding:72px 0}
 .sec-hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:32px}
 .sec-hd h2{font-size:38px;font-weight:700;letter-spacing:-1.2px;margin:0;line-height:1.15}
-.kick{font:700 11px ui-monospace,monospace;letter-spacing:2.4px;color:var(--azure)}
+.kick{font:700 11px ui-monospace,monospace;letter-spacing:2.4px;color:var(--azure-ink)}
 /* Speaker band */
 .spk{background:var(--ink);color:#fff;padding:64px 0}
 .spk .spk-in{display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:center}
 .spk img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 0;border:2px solid var(--azure)}
 .spk h2{font-size:38px;font-weight:700;letter-spacing:-1.4px;margin:12px 0 0;color:#fff}
-.spk .role{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--azure);margin-top:10px}
+.spk .role{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--azure-ink);margin-top:10px}
 .spk ul{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:10px}
 .spk li{font-size:14.5px;line-height:1.6;color:#c4d3ec;padding-left:18px;position:relative}
-.spk li:before{content:"→";position:absolute;left:0;color:var(--azure);font-weight:700}
+.spk li:before{content:"→";position:absolute;left:0;color:var(--azure-ink);font-weight:700}
 /* Programme cards */
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
 .card{background:#fff;border:2px solid var(--ink);padding:30px;transition:all .18s;display:flex;flex-direction:column}
 .card:hover{transform:translateY(-8px) rotate(-1.5deg);box-shadow:8px 8px 0 var(--azure)}
 .card:nth-child(2):hover{transform:translateY(-8px) rotate(1.5deg)}
-.card .n{font:700 11px ui-monospace,monospace;letter-spacing:2px;color:#9db0c0}
+.card .n{font:700 11px ui-monospace,monospace;letter-spacing:2px;color:var(--slate)}
 .card h3{font-size:21px;font-weight:700;margin:12px 0 0;letter-spacing:-.4px}
-.card .zh-k{font-size:11.5px;font-weight:700;letter-spacing:1.5px;color:var(--azure);margin:6px 0 14px}
+.card .zh-k{font-size:11.5px;font-weight:700;letter-spacing:1.5px;color:var(--azure-ink);margin:6px 0 14px}
 .card p{font-size:14px;line-height:1.75;color:var(--muted);margin:0;flex:1}
-.card .svc-list{margin-top:20px;padding-top:14px;border-top:2px solid #e3edf4;font-size:11.5px;font-weight:700;color:#9db0c0;letter-spacing:.8px}
+.card .svc-list{margin-top:20px;padding-top:14px;border-top:2px solid #e3edf4;font-size:11.5px;font-weight:700;color:var(--slate);letter-spacing:.8px}
 .card.dark{background:var(--ink);color:#fff}
 .card.dark p{color:#9fc2d8}
 .card.dark .svc-list{border-top-color:#2a3d52}
@@ -98,11 +99,11 @@ img{max-width:100%}
 .sshot{margin:0;border:2px solid var(--ink);background:#fff;transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column}
 .sshot:hover{transform:translateY(-6px);box-shadow:6px 6px 0 var(--azure)}
 .sshot .im{aspect-ratio:4/3;background-size:cover;background-position:center}
-.sshot .slot{aspect-ratio:4/3;border-bottom:2px dashed rgba(15,29,43,.3);display:grid;place-items:center;text-align:center;font:700 10.5px ui-monospace,monospace;letter-spacing:1.4px;color:#9db0c0;padding:16px;background:#fff}
+.sshot .slot{aspect-ratio:4/3;border-bottom:2px dashed rgba(15,29,43,.3);display:grid;place-items:center;text-align:center;font:700 10.5px ui-monospace,monospace;letter-spacing:1.4px;color:var(--slate);padding:16px;background:#fff}
 .sshot figcaption{font-size:12px;font-weight:700;line-height:1.5;color:var(--ink);padding:12px 14px;border-top:2px solid var(--ink);flex:1}
 .sshot .slot+figcaption{border-top:none}
 /* CTA */
-.cta{background:var(--azure);padding:72px 0}
+.cta{background:var(--azure-ink);padding:72px 0}
 .cta-in{display:flex;justify-content:space-between;align-items:center;gap:32px}
 .cta h2{font-size:40px;font-weight:700;letter-spacing:-1.4px;color:#fff;line-height:1.12;margin:0}
 .cta p{color:#eaf7ff;font-size:15px;line-height:1.6;margin:12px 0 0;max-width:520px}
@@ -111,15 +112,15 @@ img{max-width:100%}
 .footer{background:var(--ink);color:#7d95ab;font-size:12.5px}
 .footer-map{max-width:1200px;margin:0 auto;padding:56px 48px 40px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;border-bottom:1px solid #22364d}
 .footer-map .fm-brand img{height:110px;width:auto;max-width:100%;object-fit:contain;object-position:left center;filter:brightness(0) invert(1)}
-.fm-col h4{font-size:11.5px;font-weight:700;letter-spacing:2px;color:#fff;margin:0 0 16px}
+.fm-col h2{font-size:11.5px;font-weight:700;letter-spacing:2px;color:#fff;margin:0 0 16px}
 .fm-col{display:flex;flex-direction:column;gap:10px}
 .fm-col a{font-size:13.5px;color:#9fb2d8;transition:color .15s}
 .fm-col a:hover{color:var(--azure)}
 .footer-in{display:flex;justify-content:space-between;align-items:center;padding:26px 48px;max-width:1200px;margin:0 auto;gap:20px;flex-wrap:wrap}
 .footer .brand{color:#fff;font-weight:700;font-size:16px}
 .footer a:hover{color:#fff}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-.reveal.in{opacity:1;transform:none}
+html.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+html.js .reveal.in{opacity:1;transform:none}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 @media(max-width:900px){
 .page-hero h1{font-size:42px;letter-spacing:-1.5px}
@@ -141,29 +142,59 @@ img{max-width:100%}
 .nav-burger.on span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
 @media(max-width:900px){
 .nav-burger{display:flex}
-.nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:2px solid var(--ink);flex-direction:column;align-items:stretch;gap:0;padding:6px 0 10px;box-shadow:0 14px 30px rgba(15,29,43,.12)}
+.nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:2px solid var(--ink);flex-direction:column;align-items:stretch;gap:0;padding:6px 0 10px;box-shadow:0 14px 30px rgba(15,29,43,.12);max-height:calc(100vh - 100%);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 .nav-links.open{display:flex}
-.nav-links.open a{display:block;padding:20px 24px;font-size:30px;line-height:1.3}
+.nav-links.open a{display:block;padding:14px 24px;font-size:22px;line-height:1.3}
 .nav-links.open a.btn{margin:10px 24px 6px;text-align:center}
 }
 
 @media(max-width:900px){
-p,li,dd,dt,figcaption,blockquote,td,th,label,input,textarea,button,a,span,b,strong,em,i,small,h5,h6{font-size:max(1em,20px)!important}
-.nav-links.open a{font-size:30px!important}
+p,li,dd,dt,blockquote{font-size:max(1em,17px)}
+input,textarea,select{font-size:max(1em,16px)}
+.nav-links.open a{font-size:22px}
 }
+
+/* --- a11y & motion ------------------------------------------------- */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink);color:#fff;padding:12px 20px;font-size:14px;font-weight:700}
+.skip-link:focus{left:8px;top:8px}
+:focus-visible{outline:3px solid var(--azure-ink);outline-offset:2px}
+.cform input:focus-visible,.cform textarea:focus-visible,.chat-form input:focus-visible{outline:3px solid var(--azure-ink);outline-offset:1px}
+@media(prefers-reduced-motion:reduce){
+*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+html.js .reveal{opacity:1;transform:none}
+}
+
+/* Standalone links need a finger-sized target, not just a text line (WCAG 2.5.8). */
+@media(max-width:900px){
+.fm-col a{padding:9px 0;font-size:15px}
+.fm-col{gap:2px}
+.hint,.p-more,.ws-more,.triage-link,.cta-bottom a,.ci-row a{display:inline-flex;align-items:center;min-height:32px}
+.footer-in,.footer-map{padding-left:24px;padding-right:24px}
+}
+
+/* Dark surfaces need the light-on-dark end of the ramp, not the dark-on-light one. */
+.allround,.footer,.spk,.stat-grid,.vhero,.khero,.kvhero,.xhero,.wstats,.marquee,
+.pillar.dark,.card.dark,.formula,.chat-head,.btn-ink,.btn-cta,.fb-card.sshk,.t-cover,
+.ws-grid div,.hex,.ring .core,.b3,.work .tag.dark,.svc-tab.on,.sec.dark{
+--azure-ink:#5CC0F5;--slate:#9FB2C6;--alert:#F09A4A}
+/* ...and light panels sitting inside a dark one take the ramp back. */
+.chatbox,.fb-badge,.badge,.tcard,.logo-cell,.job,.work,.wfilter button,.pfilter button,
+.card:not(.dark),.pillar:not(.dark),.fb-card:not(.sshk){
+--azure-ink:#1473A3;--slate:#687580;--alert:#B25812}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <nav class="nav"><div class="nav-in"><a href="index.html"><img src="assets/SSHK_Logo-01.png" alt="Social Strategy HK"></a><button class="nav-burger" aria-label="Menu" aria-expanded="false" onclick="var l=this.closest('.nav').querySelector('.nav-links');var o=l.classList.toggle('open');this.classList.toggle('on',o);this.setAttribute('aria-expanded',o)"><span></span><span></span><span></span></button><div class="nav-links"><a href="about.html">About</a>
 <a href="services.html">Services</a>
 <a href="works.html">Works</a>
 <a href="production.html">Production</a>
-<a href="training.html" style="color:var(--azure)">Training</a>
+<a href="training.html" style="color:var(--azure-ink)">Training</a>
 <a href="clients.html">Clients</a>
 <a href="careers.html">Careers</a>
 <a class="btn btn-azure" href="contact.html">Brief the team</a></div></div></nav>
 
-<header class="page-hero"><div class="hero-blob"></div><div class="wrap">
+<header id="main" tabindex="-1" class="page-hero"><div class="hero-blob"></div><div class="wrap">
 <div class="eyebrow">TRAINING &amp; SPEAKING · CORPORATE WORKSHOPS</div>
 <h1>Training, from the war room.</h1>
 <p class="lead">Keynotes, workshops and crisis drills on social media and crisis management — taught by the team that reads Hong Kong 24/7, with cases pulled from live monitoring, not textbooks. Blue-chip brands and the city's largest institutions bring us in to train their own comms teams.</p>
@@ -247,9 +278,9 @@ p,li,dd,dt,figcaption,blockquote,td,th,label,input,textarea,button,a,span,b,stro
 <footer class="footer">
 <div class="footer-map">
 <div class="fm-brand"><img src="assets/SSHK_Logo-01.png" alt="Social Strategy HK"></div>
-<div class="fm-col"><h4>SITE</h4><a href="about.html">About</a><a href="services.html">Services</a><a href="works.html">Works</a><a href="training.html">Training</a><a href="production.html">704 Production</a></div>
-<div class="fm-col"><h4>COMPANY</h4><a href="clients.html">Clients</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
-<div class="fm-col"><h4>VISIT</h4><a href="https://www.google.com/maps/search/China+Paint+Building,+1163+Canton+Road,+Mong+Kok,+Hong+Kong" target="_blank" rel="noopener">6/F, China Paint Building,<br>1163 Canton Road, Mong Kok</a><a href="tel:+85227130997">+852 2713 0997</a><a href="contact.html">info@sshk.ltd</a></div>
+<div class="fm-col"><h2>SITE</h2><a href="about.html">About</a><a href="services.html">Services</a><a href="works.html">Works</a><a href="training.html">Training</a><a href="production.html">704 Production</a></div>
+<div class="fm-col"><h2>COMPANY</h2><a href="clients.html">Clients</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+<div class="fm-col"><h2>VISIT</h2><a href="https://www.google.com/maps/search/China+Paint+Building,+1163+Canton+Road,+Mong+Kok,+Hong+Kong" target="_blank" rel="noopener">6/F, China Paint Building,<br>1163 Canton Road, Mong Kok</a><a href="tel:+85227130997">+852 2713 0997</a><a href="contact.html">info@sshk.ltd</a></div>
 </div>
 <div class="footer-in">
 <span class="brand">Social Strategy HK</span>
@@ -257,8 +288,40 @@ p,li,dd,dt,figcaption,blockquote,td,th,label,input,textarea,button,a,span,b,stro
 </div>
 </footer>
 <script>
+if(!('IntersectionObserver' in window)){document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'))}else{
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+</script>
+
+<script>
+/* Mobile menu: open/close, Escape, outside click, link tap, breakpoint reset. */
+(function(){
+var nav=document.querySelector('.nav');if(!nav)return;
+var burger=nav.querySelector('.nav-burger'),menu=nav.querySelector('.nav-links');
+if(!burger||!menu)return;
+if(!menu.id)menu.id='navMenu';
+burger.setAttribute('type','button');
+burger.setAttribute('aria-controls',menu.id);
+burger.removeAttribute('onclick');
+function setOpen(open){
+  menu.classList.toggle('open',open);
+  burger.classList.toggle('on',open);
+  burger.setAttribute('aria-expanded',String(open));
+}
+burger.addEventListener('click',function(e){e.stopPropagation();setOpen(!menu.classList.contains('open'))});
+menu.addEventListener('click',function(e){if(e.target.closest('a'))setOpen(false)});
+document.addEventListener('click',function(e){
+  if(!menu.classList.contains('open'))return;
+  if(!nav.contains(e.target))setOpen(false);
+});
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Escape'||!menu.classList.contains('open'))return;
+  setOpen(false);burger.focus();
+});
+var mq=window.matchMedia('(min-width:901px)');
+(mq.addEventListener?mq.addEventListener.bind(mq,'change'):mq.addListener.bind(mq))(function(e){if(e.matches)setOpen(false)});
+})();
 </script>
 </body>
 </html>
