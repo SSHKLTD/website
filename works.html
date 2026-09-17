@@ -409,13 +409,15 @@ h1{font-size:52px;letter-spacing:-2px}
 .feat p{font-size:15px;line-height:1.6;margin-top:10px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.feat:nth-child(even) .fimg{order:0}.feat .fimg{min-height:0;position:static;background:none}.feat .fimg img{position:static;width:100%;height:auto;max-height:360px;object-fit:cover}
 .feat>*{min-width:0}.feat .fbody{padding:26px 24px}.feat b{font-size:22px}}
 @media(max-width:900px){
-/* Mobile: a case study collapses to its title; the blue arrow opens the rest. */
+/* Mobile: a case study keeps its image and title; the blue arrow opens the copy. */
 .feats{padding:44px 0 56px}
 .feats .wrap{gap:12px}
 .feat{position:relative}
 .feat:hover{transform:none;box-shadow:none}
-html.js .feat .fimg,html.js .feat .no,html.js .feat .cat,html.js .feat p{display:none}
-html.js .feat.open .fimg,html.js .feat.open .no,html.js .feat.open .cat{display:block}
+html.js .feat .no,html.js .feat .cat,html.js .feat p{display:none}
+html.js .feat.open .no,html.js .feat.open .cat{display:block}
+/* Closed, the image is a band so 22 of them stay browsable; open, it runs at its own height. */
+html.js .feat:not(.open) .fimg img{height:160px}
 html.js .feat.open p{display:block;-webkit-line-clamp:none;overflow:visible}
 html.js .feat:not(.open) .fbody{flex-direction:row;align-items:center;gap:14px;padding:16px 24px}
 html.js .feat:not(.open) b{flex:1;min-width:0;margin:0;font-size:19px;line-height:1.25}
