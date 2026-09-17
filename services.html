@@ -572,6 +572,7 @@ html.js .reveal{opacity:1;transform:none}
 .svc-tab:before,.svc-tab:after{display:none}
 .svc-tab:not(.on):hover{background:#d3ecfa}
 .svc-tab.on{margin:0;padding:12px 16px;background:#fff;box-shadow:inset 5px 0 0 var(--azure-ink)}
+.svc-tab .tn{display:inline;font:inherit;letter-spacing:inherit;color:inherit;margin:0}
 /* the stacked parts sit closer together than the desktop 34px */
 .meth .mkick[style]{margin-top:20px!important}
 .cyc-wrap{gap:14px}
@@ -590,18 +591,32 @@ html.js .reveal{opacity:1;transform:none}
 .svc-card p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 }
 @media(min-width:1000px){
-/* Tabs as a left rail: the list sits against the pane's rule and the selected tab
-   breaks through it, the folder tab turned on its side. */
-#disciplines .wrap{display:grid;grid-template-columns:210px 1fr;align-items:start}
+/* The folder tab turned on its side: flat top and left, the bottom edge slanting
+   down to the pane, the right edge open into it, each tab tucked under the one
+   above. Drawn as two clipped layers — an ink shape and a fill shape inset 2px —
+   because a border cannot follow a clip-path's diagonal. */
+#disciplines .wrap{display:grid;grid-template-columns:168px 1fr;align-items:start}
 #disciplines .sec-hd{grid-column:1/-1}
-.svc-tabs{grid-column:1;grid-row:2;display:block;margin:34px 0 0;padding:0;overflow:visible;position:relative;z-index:2;border:2px solid var(--ink);border-right:0}
-.svc-tab{display:flex;width:100%;margin:0;padding:15px 18px;font-size:15px;letter-spacing:.3px;text-align:left;background:var(--tint);border-bottom:2px solid var(--ink);transition:background .15s,color .15s}
-.svc-tab:last-child{border-bottom:0}
-.svc-tab:before,.svc-tab:after{display:none}
-.svc-tab:not(.on):hover{background:#d3ecfa}
-.svc-tab.on{margin:0 -2px 0 0;padding:15px 20px 15px 18px;background:#fff;box-shadow:inset 5px 0 0 var(--azure-ink)}
+.svc-tabs{grid-column:1;grid-row:2;display:block;margin:34px 0 0;padding:0;border:0;overflow:visible;position:relative;z-index:2}
+.svc-tab{--slant:18px;--tabfill:var(--tint);position:relative;display:block;width:100%;text-align:left;
+ padding:20px 15px calc(13px + var(--slant)) 18px;margin:0 0 calc(0px - var(--slant));border:0;background:none;
+ font-size:15px;line-height:1.28;letter-spacing:-.1px;color:var(--muted);transition:color .15s}
+.svc-tab:before,.svc-tab:after{content:"";position:absolute;z-index:-1;border:0;border-radius:0;transform:none;
+ clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--slant)))}
+.svc-tab:before{inset:0;background:var(--ink)}
+.svc-tab:after{top:2px;left:2px;right:0;bottom:2px;transition:background .15s;
+ background:linear-gradient(90deg,var(--tabbar,transparent) 0 5px,var(--tabfill) 5px)}
+.svc-tab:nth-child(1){z-index:4}
+.svc-tab:nth-child(2){z-index:3}
+.svc-tab:nth-child(3){z-index:2}
+.svc-tab:not(.on):hover{color:var(--ink);--tabfill:#d3ecfa}
+.svc-tab.on{z-index:5;color:var(--ink);--tabfill:#fff;--tabbar:var(--azure-ink);
+ padding:20px 15px calc(13px + var(--slant)) 18px;margin:0 -2px calc(0px - var(--slant)) 0}
+.svc-tab:last-child,.svc-tab.on:last-child{margin-bottom:0}
+.svc-tab .tn{display:block;font:700 11px ui-monospace,monospace;letter-spacing:1.6px;color:var(--slate);margin-bottom:6px}
+.svc-tab.on .tn{color:var(--azure-ink)}
 .svc-pane{grid-column:2;grid-row:2;margin-top:34px;border-top:0;border-left:2px solid var(--ink);padding:34px 0 0 32px}
-/* The pane is 242px narrower than the column, so the cards keep their count. */
+/* The pane is 200px narrower than the column, so the cards keep their count. */
 .svc-grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 }
 </style>
@@ -637,9 +652,9 @@ html.js .reveal{opacity:1;transform:none}
 <section class="sec" id="disciplines"><div class="wrap">
 <div class="sec-hd reveal"><div><div class="eyebrow">WHAT WE DO · THREE DISCIPLINES</div><h2 style="margin:12px 0 0">Watch. Respond. Create.</h2></div></div>
 <div class="svc-tabs reveal" role="tablist" aria-orientation="vertical" aria-label="Disciplines">
-<button class="svc-tab on" data-t="0" id="svct0" role="tab" aria-selected="true" aria-controls="svcp0">01 Monitoring</button>
-<button class="svc-tab" data-t="1" id="svct1" role="tab" aria-selected="false" aria-controls="svcp1">02 Crisis management</button>
-<button class="svc-tab" data-t="2" id="svct2" role="tab" aria-selected="false" aria-controls="svcp2">03 Creative</button>
+<button class="svc-tab on" data-t="0" id="svct0" role="tab" aria-selected="true" aria-controls="svcp0"><span class="tn">01</span> Monitoring</button>
+<button class="svc-tab" data-t="1" id="svct1" role="tab" aria-selected="false" aria-controls="svcp1"><span class="tn">02</span> Crisis management</button>
+<button class="svc-tab" data-t="2" id="svct2" role="tab" aria-selected="false" aria-controls="svcp2"><span class="tn">03</span> Creative</button>
 </div>
 <div class="svc-pane on" data-p="0" id="svcp0" role="tabpanel" aria-labelledby="svct0">
 <p class="svc-intro">Round-the-clock listening across forums, socials and news — so you hear it first, with data to read where it goes next.</p>
