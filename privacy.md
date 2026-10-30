@@ -43,7 +43,7 @@ You can block or delete cookies in your browser settings, or use Google’s opt-
 
 We may update this page from time to time. The latest version will always be here.
 
-LAST UPDATED · DRAFT · 2026
+LAST UPDATED · 30 OCTOBER 2026
 
 ![Social Strategy HK](https://www.sshk.ltd/assets/SSHK_Logo-01.png)
 
