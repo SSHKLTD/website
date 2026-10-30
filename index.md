@@ -223,4 +223,4 @@ One brief, one inbox — a real strategist replies within one business day.
 
 [+852 2713 0997](tel:+85227130997) · [info@sshk.ltd](https://www.sshk.ltd/contact)
 
-Social Strategy HK © 2026 Social Strategy HK Ltd. All rights reserved.
+Social Strategy HK © 2026 Social Strategy Hong Kong Limited. All rights reserved.

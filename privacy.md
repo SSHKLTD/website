@@ -14,12 +14,12 @@ What we collect when you get in touch through this website, why, and how to ask 
 
 ## Who we are
 
-This website, www.sshk.ltd, is run by Social Strategy Hong Kong (SSHK), 6/F, China Paint Building, 1163 Canton Road, Mong Kok, Hong Kong. We handle personal data in line with the Personal Data (Privacy) Ordinance (Cap. 486) of Hong Kong.
+This website, www.sshk.ltd, is run by Social Strategy Hong Kong Limited (香港社交媒體策略有限公司, “SSHK”), 6/F, China Paint Building, 1163 Canton Road, Mong Kok, Hong Kong. We handle personal data in line with the Personal Data (Privacy) Ordinance (Cap. 486) of Hong Kong.
 
 ## What we collect
 
 - **When you contact us.** The brief form on our contact page does not store anything on this website: it opens an email in your own mail app, addressed to info@sshk.ltd. If you send it, we receive what you typed: your name, email address, phone number (optional) and message. The same applies when you email or phone us directly, or send us a CV.
-- **When you browse.** We use Google Analytics to understand how the site is used, such as which pages are visited and roughly where visitors come from. Google Analytics uses cookies and similar technologies, and collects information like your device, browser, approximate location and pages viewed. Our hosting provider also keeps standard technical logs (such as IP address and time of request) to run and protect the site.
+- **When you browse.** We use Google Analytics to understand how the site is used, such as which pages are visited and roughly where visitors come from. Google Analytics uses cookies and similar technologies, and collects information like your device, browser, approximate location and pages viewed. Our hosting provider also keeps standard technical logs (such as IP address and time of request) to run and protect the site. Apart from Google Analytics, we do not use any other analytics, advertising pixels or tracking tools on this website, and we do not use a CRM system.
 
 ## How we use it
 
@@ -31,11 +31,11 @@ We do not sell your personal data. We only share it with service providers that 
 
 ## How long we keep it
 
-We keep enquiry and application emails only for as long as we need them for the purposes above, then delete them.
+We keep enquiry emails only for as long as we need them to answer your enquiry (and application emails only for as long as we need them to consider your application), then delete them.
 
 ## Your choices and rights
 
-Under the Personal Data (Privacy) Ordinance you can ask to access or correct the personal data we hold about you. You can also ask us to delete it, or to stop contacting you. Email [info@sshk.ltd](mailto:info@sshk.ltd) or call [+852 2713 0997](tel:+85227130997) and we will reply within a reasonable time.
+Under the Personal Data (Privacy) Ordinance you can ask to access or correct the personal data we hold about you. You can also ask us to delete it, or to stop contacting you. For any privacy question or request, email [info@sshk.ltd](mailto:info@sshk.ltd) and we will reply within a reasonable time.
 
 You can block or delete cookies in your browser settings, or use Google’s opt-out tool for Google Analytics, without affecting how the site works for you.
 

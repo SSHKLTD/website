@@ -12,8 +12,6 @@ WORKS · FROM THE ARCHIVE
 
 Every campaign leaves an echo — the part of the story the city keeps repeating. Here are ours.
 
-/header>
-
 **22 selected cases** 500+ projects since 2010 — this page is a shortlist, not the archive.
 
 **500+** PROJECTS DELIVERED

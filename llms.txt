@@ -1,6 +1,6 @@
 # Social Strategy Hong Kong (SSHK)
 
-> Social Strategy Hong Kong (SSHK) is a Hong Kong social-first PR and creative communication agency: 24/7 social listening, issue and crisis management, ePR, and creative campaigns and production. Loud when you launch, silent-fast when it burns. Based at 6/F, China Paint Building, 1163 Canton Road, Mong Kok, Hong Kong.
+> Social Strategy Hong Kong (SSHK; legal name Social Strategy Hong Kong Limited, Chinese name 香港社交媒體策略有限公司) is a Hong Kong social-first PR and creative communication agency: 24/7 social listening, issue and crisis management, ePR, and creative campaigns and production. Loud when you launch, silent-fast when it burns. Based at 6/F, China Paint Building, 1163 Canton Road, Mong Kok, Hong Kong.
 
 SSHK grew out of Photoblog.hk (since 2010) into an ePR-led creative communication agency with 50+ strategists, former journalists, producers and analysts. Its in-house video studio is 704 Production. Every page below is also available as plain Markdown: add `.md` to the page name (for example https://www.sshk.ltd/services.md), or request the page with the header `Accept: text/markdown`.
 
@@ -31,6 +31,7 @@ To start a project, send a brief to info@sshk.ltd or call +852 2713 0997 (Mon–
 
 ## Contact
 
+- Company: Social Strategy Hong Kong Limited (香港社交媒體策略有限公司)
 - Email: info@sshk.ltd
 - Phone: +852 2713 0997
 - Address: 6/F, China Paint Building, No. 1163 Canton Road, Mong Kok, Hong Kong
