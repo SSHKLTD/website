@@ -18,8 +18,13 @@ contact.html        Address, phone, enquiry
 
 assets/             Images (149 files): client logos, case-study key
                     visuals, team portraits, 704 Production stills
-robots.txt          Allow all, points at the sitemap
-sitemap.xml         All nine pages
+privacy.html        Privacy policy (PDPO)
+404.html            Plain not-found page (404.md for Markdown clients)
+robots.txt          Allow all, points at the sitemap and llms.txt
+sitemap.xml         All pages
+llms.txt            Site summary for AI agents (llmstxt.org)
+*.md                Markdown copy of each page, generated — do not edit by hand
+scripts/build-md.mjs  Regenerates the *.md copies from the HTML
 
 favicon.svg         Brand mark, vector — source of truth for every icon size.
                     Geometry measured from the master logo (assets/SSHK_Logo-01.png),
@@ -32,6 +37,17 @@ apple-touch-icon.png  180x180, generated from favicon.svg
 
 Regenerate the raster icons after editing `favicon.svg` — they are rendered
 from it, not drawn by hand.
+
+## Markdown copies for AI agents
+
+Each page has a Markdown twin (`about.html` → `about.md`) linked from its
+`<head>` with `rel="alternate" type="text/markdown"`. On Vercel, a request
+with `Accept: text/markdown` to `/`, `/about`, ... gets the Markdown copy
+(see `routes` in `vercel.json`). After editing any page, regenerate:
+
+```sh
+node scripts/build-md.mjs
+```
 
 ## Local preview
 

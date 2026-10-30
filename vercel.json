@@ -1,4 +1,46 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/(.*).md",
+      "headers": [
+        { "key": "Content-Type", "value": "text/markdown; charset=utf-8" },
+        { "key": "Vary", "value": "Accept" }
+      ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [{ "key": "Content-Type", "value": "text/plain; charset=utf-8" }]
+    },
+    {
+      "source": "/",
+      "headers": [{ "key": "Vary", "value": "Accept" }]
+    },
+    {
+      "source": "/:page(about|services|works|production|training|clients|careers|contact|privacy)",
+      "headers": [{ "key": "Vary", "value": "Accept" }]
+    }
+  ],
+  "routes": [
+    {
+      "src": "^/$",
+      "has": [{ "type": "header", "key": "accept", "value": "(.*)text/markdown(.*)" }],
+      "dest": "/index.md",
+      "headers": { "Content-Type": "text/markdown; charset=utf-8", "Vary": "Accept" }
+    },
+    {
+      "src": "^/(about|services|works|production|training|clients|careers|contact|privacy)$",
+      "has": [{ "type": "header", "key": "accept", "value": "(.*)text/markdown(.*)" }],
+      "dest": "/$1.md",
+      "headers": { "Content-Type": "text/markdown; charset=utf-8", "Vary": "Accept" }
+    },
+    {
+      "src": "^/(?!(?:about|services|works|production|training|clients|careers|contact|privacy|index|404)$)[^.]+$",
+      "has": [{ "type": "header", "key": "accept", "value": "(.*)text/markdown(.*)" }],
+      "dest": "/404.md",
+      "status": 404,
+      "headers": { "Content-Type": "text/markdown; charset=utf-8", "Vary": "Accept" }
+    }
+  ]
 }
