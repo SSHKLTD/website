@@ -1,6 +1,6 @@
 # Careers | SSHK
 
-> Join SSHK — openings in social media strategy, public affairs and research.
+> Join SSHK — a Senior Manager opening, plus internships in social media, public affairs and research.
 
 Source: https://www.sshk.ltd/careers
 
@@ -14,7 +14,37 @@ We are 50+ strategists, former journalists, producers and analysts who care abou
 
 OPEN POSITIONS
 
-## 3 openings
+## 4 openings
+
+SENIOR
+
+### Senior Manager
+
+高級經理
+
+HONG KONG
+
+Social Strategy Hong Kong is hiring a Senior Manager to lead account work: the advice a client is given, the standard of what is published, and the people doing the day-to-day listening, issues work and campaigns.
+
+#### THE ROLE
+
+- Own the relationship on the accounts you lead, and be the person the client can reach.
+- Set the social and public-affairs approach, then review the work before it goes out.
+- Direct listening, issues and crisis handling, and campaign delivery with the team.
+- Keep timelines, reporting and quality in order, and coach the people on the account.
+- Write and speak clearly in the English and Chinese the work is done in.
+
+#### WHAT WE LOOK FOR
+
+- A record of leading accounts in public relations, social media, or a closely related communications practice in Hong Kong.
+- Judgement on reputation, including when a story is moving quickly.
+- The ability to hold both the strategy and the operational detail.
+- Experience supervising colleagues and representing the work to a client.
+- Written and spoken English and Chinese.
+
+Email a CV and a short note on relevant work to [info@sshk.ltd](mailto:info@sshk.ltd?subject=Senior%20Manager%20application). Please use the subject line “Senior Manager”. Applications may be in English or Chinese.
+
+[Apply by email](mailto:info@sshk.ltd?subject=Senior%20Manager%20application)
 
 - [INTERNSHIP Social Media Specialist Shape strategies, create viral content and run day-to-day social operations for leading Hong Kong brands. Apply →](https://www.sshk.ltd/contact)
 - [INTERNSHIP Officer — Public Affairs, Social Media & Crisis Management Work at the intersection of public affairs and social media — spotting issues early and helping brands respond well. Apply →](https://www.sshk.ltd/contact)
