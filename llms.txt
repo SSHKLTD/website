@@ -26,7 +26,7 @@ To start a project, send a brief to info@sshk.ltd or call +852 2713 0997 (Mon–
 - [704 Production](https://www.sshk.ltd/production): the in-house video studio and its production log ([Markdown](https://www.sshk.ltd/production.md))
 - [Training](https://www.sshk.ltd/training): corporate training, workshops and crisis simulations ([Markdown](https://www.sshk.ltd/training.md))
 - [Clients](https://www.sshk.ltd/clients): the client list by sector ([Markdown](https://www.sshk.ltd/clients.md))
-- [Careers](https://www.sshk.ltd/careers): open positions, including Senior Manager (高級經理) ([Markdown](https://www.sshk.ltd/careers.md))
+- [Careers](https://www.sshk.ltd/careers): open positions, including Senior Account Manager — PR, Crisis & AI-Driven Workflows ([Markdown](https://www.sshk.ltd/careers.md))
 - [Contact](https://www.sshk.ltd/contact): address, phone, email and the brief form ([Markdown](https://www.sshk.ltd/contact.md))
 
 ## Contact
