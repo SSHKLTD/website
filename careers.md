@@ -75,7 +75,67 @@ Send your CV and your current and expected salary to [info@sshk.ltd](mailto:info
 
 [Apply by email](mailto:info@sshk.ltd?subject=Senior%20Account%20Manager)
 
-- [FULL-TIME Social Media Specialist Shape strategies, create viral content and run day-to-day social operations for leading Hong Kong brands. Apply →](https://www.sshk.ltd/contact)
+FULL-TIME
+
+### Social Media Specialist
+
+- Shape strategies, create platform-native content and run day-to-day social operations for government, public-sector and blue-chip brands
+- Use AI tools to work faster, then apply human judgement for Hong Kong online culture, tone and reputational risk
+- Work alongside our monitoring and crisis teams, so community responses stay sharp when the conversation turns
+
+#### ABOUT US
+
+Social Strategy Hong Kong (SSHK, part of the same group as PBHK) is an integrated communications consultancy. Since 2017 we have worked with 100+ brands across three connected services: social listening (real-time monitoring across 1M+ channels with 24/7 crisis alerts), issue and crisis management, and campaign production.
+
+Our clients are mainly government departments, public bodies and blue-chip corporates. Our work has included Hong Kong International Airport, MTR and Cathay Pacific. AI already sits inside our monitoring and reporting.
+
+#### THE ROLE
+
+This is a full-time, hands-on role. You will shape social strategies, create content and run day-to-day social operations for leading Hong Kong brands, across retainers and campaigns, on the platforms where the city actually talks. You will write and publish in a voice that fits each brand, watch the comments, flag risk early, and use AI to speed up research, drafting and reporting without losing judgement. You will work closely with colleagues in monitoring, crisis and production, so insight turns into content and response, not just a posting calendar.
+
+#### WHAT YOU WILL DO
+
+- Own day-to-day social operations for assigned accounts: content calendars, drafting and publishing, community management and quality control
+- Plan and create platform-native content (copy, short-form video, carousels and stories) for Facebook, Instagram, Threads, Xiaohongshu and other channels as required
+- Monitor comments, messages and mentions; reply in brand voice; escalate sensitive or reputational issues quickly
+- Support issue and crisis response on social channels when needed, including out-of-hours coverage (with compensatory leave)
+- Track performance and prepare clear reports with insights and recommendations
+- Use AI tools for research, ideation, drafting, production and reporting, then edit for accuracy, tone and risk
+- Keep up with Hong Kong online trends, platform changes and competitor activity
+- Work with account, monitoring, crisis and production colleagues, and with external partners where a campaign requires it
+- Contribute ideas to proposals, pitches and campaign planning
+
+#### WHAT WE ARE LOOKING FOR
+
+- 2–3 years' hands-on experience in social media, digital content or a related role, ideally in an agency, in-house communications or media setting
+- Native Cantonese, plus strong written and spoken English; Mandarin is an advantage. You can write copy that sounds like Hong Kong, not a translation.
+- Sharp instinct for Hong Kong online culture, platform tone and reputational risk: you read the comments, and you know when a post should not go out
+- Strong content sense: you can plan a calendar, write the caption, and shape or direct a short-form video
+- Practical experience using AI tools in your workflow, with the judgement to check and rewrite the output
+- Comfortable with social analytics and turning numbers into plain-language recommendations
+- Organised, detail-oriented and calm under tight deadlines; able to manage more than one account at a time
+- Clear and professional with clients and colleagues; able to take and give feedback
+
+#### WHY SSHK
+
+- Direct work on major public-sector and blue-chip accounts, not only lifestyle campaigns
+- A team that already watches Hong Kong around the clock, so your content sits next to real monitoring and crisis work
+- Room to build AI into everyday social operations, with a training budget to go deeper
+
+#### WHAT WE OFFER
+
+- 5-day work week, 10am–7pm
+- Compensatory leave for out-of-hours work
+- Medical insurance
+- AI training budget
+- Salary commensurate with experience
+
+#### HOW TO APPLY
+
+Send your CV and your current and expected salary to [info@sshk.ltd](mailto:info@sshk.ltd?subject=Social%20Media%20Specialist). All information will be kept strictly confidential and used for recruitment purposes only.
+
+[Apply by email](mailto:info@sshk.ltd?subject=Social%20Media%20Specialist)
+
 - [INTERNSHIP Officer — Public Affairs, Social Media & Crisis Management Work at the intersection of public affairs and social media — spotting issues early and helping brands respond well. Apply →](https://www.sshk.ltd/contact)
 - [INTERNSHIP Research Analyst — Social Media Monitor the conversation, find the signal and turn it into reports clients act on. Apply →](https://www.sshk.ltd/contact)
 
