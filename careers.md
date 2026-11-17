@@ -1,6 +1,6 @@
 # Careers | SSHK
 
-> Senior Account Manager — PR, Crisis & AI-Driven Workflows at Social Strategy Hong Kong, plus internships.
+> Senior Account Manager and a full-time Social Media Specialist at Social Strategy Hong Kong, plus internships.
 
 Source: https://www.sshk.ltd/careers
 
@@ -75,7 +75,7 @@ Send your CV and your current and expected salary to [info@sshk.ltd](mailto:info
 
 [Apply by email](mailto:info@sshk.ltd?subject=Senior%20Account%20Manager)
 
-- [INTERNSHIP Social Media Specialist Shape strategies, create viral content and run day-to-day social operations for leading Hong Kong brands. Apply →](https://www.sshk.ltd/contact)
+- [FULL-TIME Social Media Specialist Shape strategies, create viral content and run day-to-day social operations for leading Hong Kong brands. Apply →](https://www.sshk.ltd/contact)
 - [INTERNSHIP Officer — Public Affairs, Social Media & Crisis Management Work at the intersection of public affairs and social media — spotting issues early and helping brands respond well. Apply →](https://www.sshk.ltd/contact)
 - [INTERNSHIP Research Analyst — Social Media Monitor the conversation, find the signal and turn it into reports clients act on. Apply →](https://www.sshk.ltd/contact)
 
