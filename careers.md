@@ -56,6 +56,7 @@ This is a newly created, hands-on role reporting to the Account Director. You wi
 - Hands-on AI capability: you have built AI into real work, not just used chatbots
 - Diligent, detail-oriented and accountable; integrity and proper handover are non-negotiable
 - Mature and steady, able to take over active accounts quickly
+- Candidates with more extensive experience will be considered for a Senior Account Manager position.
 
 #### WHY SSHK
 
