@@ -1,6 +1,6 @@
 # Careers | SSHK
 
-> Senior Account Manager and a full-time Social Media Specialist at Social Strategy Hong Kong, plus internships.
+> Account Manager and a full-time Social Media Specialist at Social Strategy Hong Kong, plus internships.
 
 Source: https://www.sshk.ltd/careers
 
@@ -18,13 +18,13 @@ OPEN POSITIONS
 
 FULL-TIME
 
-### Senior Account Manager — PR, Crisis & AI-Driven Workflows
+### Account Manager — PR, Crisis & AI-Driven Workflows
 
-Social Strategy Hong Kong (SSHK) · 6/F, China Paint Building, No.1163 Canton Road, Mong Kok · Full-time · New headcount · Reports directly to the Director
+Social Strategy Hong Kong (SSHK) · 6/F, China Paint Building, No.1163 Canton Road, Mong Kok · Full-time · New headcount · Reports to the Account Director
 
-- Lead a team of 5 on government, public-sector and blue-chip accounts
-- Design and roll out AI workflows, and train the team to use them
-- Report directly to the Director, with real autonomy and a seat at the strategy table
+- Run day-to-day servicing on government, public-sector and blue-chip accounts
+- Create content and handle issues and crises hands-on for your clients
+- Help design and roll out AI workflows, and support the team in using them
 
 #### ABOUT US
 
@@ -34,32 +34,34 @@ Our clients are mainly government departments, public bodies and blue-chip corpo
 
 #### THE ROLE
 
-This is a newly created, hands-on management role reporting directly to the Director. You will own a portfolio of public-sector and blue-chip accounts (retainers and projects) and lead a team of 5. You will also bring our monitoring and crisis teams together into one service (detect, judge, respond, report), and build AI workflows that change how the team works and help win new business. You set direction and sign off the work, but you can still write the statement, fix the deck and read the comments yourself.
+This is a newly created, hands-on role reporting to the Account Director. You will manage a portfolio of public-sector and blue-chip accounts (retainers and projects) day to day, create content yourself, and take an active part in issue and crisis management, from monitoring and judgement to response and reporting. You will coordinate junior colleagues on your accounts and use AI workflows to raise the quality and speed of the team's work.
 
 #### WHAT YOU WILL DO
 
 - Manage client relationships end to end: expectations, meetings, quality and timelines
-- Handle everything on your accounts, including out-of-hours issues and crises (with compensatory leave)
-- Integrate the monitoring and crisis teams so insight turns into action faster
-- Design, build and roll out AI-assisted workflows for research, reporting, content, proposals and prospecting, and train colleagues to use them
-- Lead proposals and pitches, and use AI to open new client conversations
-- Manage, develop and review a team of 5, and share workload with the existing managers
+- Plan and create content for your accounts, including social posts, press releases, statements and campaign materials
+- Handle issues and crises on your accounts: monitor sentiment, assess risk, draft holding statements and responses, and report to clients, including out of hours (with compensatory leave)
+- Work with the monitoring team so insight turns into action faster
+- Build and use AI-assisted workflows for research, reporting, content, proposals and prospecting, and help colleagues adopt them
+- Support the Account Director on proposals and pitches
+- Guide and review the work of junior team members
 
 #### WHAT WE ARE LOOKING FOR
 
-- 5+ years in PR, communications, journalism, digital or a related field, including at least 2 years managing clients and people. Agency, in-house and newsroom backgrounds are welcome; former journalists and editors are especially encouraged to apply.
+- 5+ years in PR, communications, journalism, digital or a related field, including hands-on client servicing. Agency, in-house and newsroom backgrounds are welcome; former journalists and editors are especially encouraged to apply.
+- Proven experience in content creation and in handling issues or crises for clients or organisations
 - Native Cantonese, plus business-level English and Mandarin. You can write a client-ready Chinese statement and an English proposal.
 - Sharp instinct for Hong Kong online culture, public sentiment and reputational risk
 - Strong client communication and expectation management
-- Hands-on AI capability: you have designed and rolled out team workflows, not just used chatbots
+- Hands-on AI capability: you have built AI into real work, not just used chatbots
 - Diligent, detail-oriented and accountable; integrity and proper handover are non-negotiable
-- Mature and steady, able to take over active accounts immediately
+- Mature and steady, able to take over active accounts quickly
 
 #### WHY SSHK
 
-- Real autonomy over client advice, team allocation, budgets and crisis response
+- Real ownership of your accounts and a direct say in client advice and crisis response
 - Direct access to major public-sector and blue-chip clients
-- A seat at the strategy table, and room to grow with the business
+- Clear room to grow, with a path towards Senior Account Manager
 
 #### WHAT WE OFFER
 
@@ -71,9 +73,9 @@ This is a newly created, hands-on management role reporting directly to the Dire
 
 #### HOW TO APPLY
 
-Send your CV and your current and expected salary to [info@sshk.ltd](mailto:info@sshk.ltd?subject=Senior%20Account%20Manager). All information will be kept strictly confidential and used for recruitment purposes only.
+Send your CV and your current and expected salary to [info@sshk.ltd](mailto:info@sshk.ltd?subject=Account%20Manager%20application). All information will be kept strictly confidential and used for recruitment purposes only.
 
-[Apply by email](mailto:info@sshk.ltd?subject=Senior%20Account%20Manager)
+[Apply by email](mailto:info@sshk.ltd?subject=Account%20Manager%20application)
 
 FULL-TIME
 
